@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* puriSCOPEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* puriSCOPEAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		590DCB2E1467ED3300549041 /* puriSCOPE_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 590DCB2D1467ED3300549041 /* puriSCOPE_114.png */; };
+		590DCB331467F3B200549041 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 590DCB321467F3B200549041 /* Default@2x.png */; };
+		594893FF14618B5F00B39BC0 /* puriscope.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 594893FE14618B5F00B39BC0 /* puriscope.pdf */; };
+		E94743A1119D1983000FB9F4 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E94743A0119D1983000FB9F4 /* icon.png */; };
+		E95585DE11895E05005BC2B7 /* Capture.png in Resources */ = {isa = PBXBuildFile; fileRef = E95585D711895E05005BC2B7 /* Capture.png */; };
+		E95585DF11895E05005BC2B7 /* DeleteReport.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E95585D811895E05005BC2B7 /* DeleteReport.jpg */; };
+		E95585E011895E05005BC2B7 /* dgrayslide.png in Resources */ = {isa = PBXBuildFile; fileRef = E95585D911895E05005BC2B7 /* dgrayslide.png */; };
+		E95585E111895E05005BC2B7 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = E95585DA11895E05005BC2B7 /* info.png */; };
+		E95585E311895E05005BC2B7 /* Options.png in Resources */ = {isa = PBXBuildFile; fileRef = E95585DC11895E05005BC2B7 /* Options.png */; };
+		E95585E911895E16005BC2B7 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E95585E511895E16005BC2B7 /* MainWindow.xib */; };
+		E95585EB11895E16005BC2B7 /* puriSCOPEView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E95585E711895E16005BC2B7 /* puriSCOPEView.xib */; };
+		E95585EC11895E16005BC2B7 /* TypeSomethingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E95585E811895E16005BC2B7 /* TypeSomethingView.xib */; };
+		E95585F611895E3E005BC2B7 /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E95585EE11895E3E005BC2B7 /* OptionsViewController.m */; };
+		E95585F711895E3E005BC2B7 /* puriSCOPEController.m in Sources */ = {isa = PBXBuildFile; fileRef = E95585F011895E3E005BC2B7 /* puriSCOPEController.m */; };
+		E95585F811895E3E005BC2B7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E95585F111895E3E005BC2B7 /* Settings.bundle */; };
+		E95585F911895E3E005BC2B7 /* TypeSomethingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E95585F311895E3E005BC2B7 /* TypeSomethingViewController.m */; };
+		E95585FA11895E3E005BC2B7 /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = E95585F511895E3E005BC2B7 /* UIDeviceHardware.m */; };
+		E955860011895E5C005BC2B7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E95585FE11895E5C005BC2B7 /* Default.png */; };
+		E95586171189658E005BC2B7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E95586151189658E005BC2B7 /* AddressBook.framework */; };
+		E95586181189658E005BC2B7 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E95586161189658E005BC2B7 /* MessageUI.framework */; };
+		E955861B118965A2005BC2B7 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E955861A118965A2005BC2B7 /* AddressBookUI.framework */; };
+		E975B8DB1189CF4900062D4D /* puriSCOPE_logo_color_190x30px.png in Resources */ = {isa = PBXBuildFile; fileRef = E975B8DA1189CF4900062D4D /* puriSCOPE_logo_color_190x30px.png */; };
+		E975B8DF1189CFA000062D4D /* slidemenu.png in Resources */ = {isa = PBXBuildFile; fileRef = E975B8DE1189CFA000062D4D /* slidemenu.png */; };
+		E975B8EE1189D17600062D4D /* slider_ball.png in Resources */ = {isa = PBXBuildFile; fileRef = E975B8E91189D17600062D4D /* slider_ball.png */; };
+		E975B8EF1189D17600062D4D /* Smiley_green.png in Resources */ = {isa = PBXBuildFile; fileRef = E975B8EA1189D17600062D4D /* Smiley_green.png */; };
+		E975B8F01189D17600062D4D /* Smiley_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = E975B8EB1189D17600062D4D /* Smiley_pink.png */; };
+		E975B8F11189D17600062D4D /* Smiley_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = E975B8EC1189D17600062D4D /* Smiley_yellow.png */; };
+		E975B8F21189D17600062D4D /* tslider.png in Resources */ = {isa = PBXBuildFile; fileRef = E975B8ED1189D17600062D4D /* tslider.png */; };
+		E99DB5C711D4CF8F00CCA417 /* Load.png in Resources */ = {isa = PBXBuildFile; fileRef = E99DB5C511D4CF8F00CCA417 /* Load.png */; };
+		E99DB5C811D4CF8F00CCA417 /* Save.png in Resources */ = {isa = PBXBuildFile; fileRef = E99DB5C611D4CF8F00CCA417 /* Save.png */; };
+		E9A50B9511913C090082EA4B /* stop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E9A50B9411913C090082EA4B /* stop.jpg */; };
+		E9A50C24119197F40082EA4B /* PDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A50C22119197F40082EA4B /* PDFViewController.m */; };
+		E9A50C851191B21A0082EA4B /* PDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9A50C841191B21A0082EA4B /* PDFView.xib */; };
+		E9B7569F1199E352001F5015 /* OptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B7569E1199E352001F5015 /* OptionsView.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* puriSCOPEAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = puriSCOPEAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* puriSCOPEAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = puriSCOPEAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* puriSCOPE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = puriSCOPE.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* puriSCOPE_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = puriSCOPE_Prefix.pch; sourceTree = "<group>"; };
+		590DCB2D1467ED3300549041 /* puriSCOPE_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puriSCOPE_114.png; sourceTree = "<group>"; };
+		590DCB321467F3B200549041 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		594893FE14618B5F00B39BC0 /* puriscope.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = puriscope.pdf; path = Resources/puriscope.pdf; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* puriSCOPE-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "puriSCOPE-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		E94743A0119D1983000FB9F4 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		E95585D711895E05005BC2B7 /* Capture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Capture.png; path = Resources/Images/Capture.png; sourceTree = "<group>"; };
+		E95585D811895E05005BC2B7 /* DeleteReport.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = DeleteReport.jpg; path = Resources/Images/DeleteReport.jpg; sourceTree = "<group>"; };
+		E95585D911895E05005BC2B7 /* dgrayslide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dgrayslide.png; path = Resources/Images/dgrayslide.png; sourceTree = "<group>"; };
+		E95585DA11895E05005BC2B7 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = info.png; path = Resources/Images/info.png; sourceTree = "<group>"; };
+		E95585DC11895E05005BC2B7 /* Options.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Options.png; path = Resources/Images/Options.png; sourceTree = "<group>"; };
+		E95585E511895E16005BC2B7 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/XIB/MainWindow.xib; sourceTree = "<group>"; };
+		E95585E711895E16005BC2B7 /* puriSCOPEView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = puriSCOPEView.xib; path = Resources/XIB/puriSCOPEView.xib; sourceTree = "<group>"; };
+		E95585E811895E16005BC2B7 /* TypeSomethingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TypeSomethingView.xib; path = Resources/XIB/TypeSomethingView.xib; sourceTree = "<group>"; };
+		E95585ED11895E3E005BC2B7 /* OptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsViewController.h; sourceTree = "<group>"; };
+		E95585EE11895E3E005BC2B7 /* OptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsViewController.m; sourceTree = "<group>"; };
+		E95585EF11895E3E005BC2B7 /* puriSCOPEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = puriSCOPEViewController.h; sourceTree = "<group>"; };
+		E95585F011895E3E005BC2B7 /* puriSCOPEController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = puriSCOPEController.m; sourceTree = "<group>"; };
+		E95585F111895E3E005BC2B7 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		E95585F211895E3E005BC2B7 /* TypeSomethingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeSomethingViewController.h; sourceTree = "<group>"; };
+		E95585F311895E3E005BC2B7 /* TypeSomethingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeSomethingViewController.m; sourceTree = "<group>"; };
+		E95585F411895E3E005BC2B7 /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
+		E95585F511895E3E005BC2B7 /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
+		E95585FE11895E5C005BC2B7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E95586151189658E005BC2B7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		E95586161189658E005BC2B7 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		E955861A118965A2005BC2B7 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		E975B8DA1189CF4900062D4D /* puriSCOPE_logo_color_190x30px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = puriSCOPE_logo_color_190x30px.png; path = Resources/Images/puriSCOPE_logo_color_190x30px.png; sourceTree = "<group>"; };
+		E975B8DE1189CFA000062D4D /* slidemenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slidemenu.png; path = Resources/Images/slidemenu.png; sourceTree = "<group>"; };
+		E975B8E91189D17600062D4D /* slider_ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slider_ball.png; path = Resources/Images/slider_ball.png; sourceTree = "<group>"; };
+		E975B8EA1189D17600062D4D /* Smiley_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Smiley_green.png; path = Resources/Images/Smiley_green.png; sourceTree = "<group>"; };
+		E975B8EB1189D17600062D4D /* Smiley_pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Smiley_pink.png; path = Resources/Images/Smiley_pink.png; sourceTree = "<group>"; };
+		E975B8EC1189D17600062D4D /* Smiley_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Smiley_yellow.png; path = Resources/Images/Smiley_yellow.png; sourceTree = "<group>"; };
+		E975B8ED1189D17600062D4D /* tslider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tslider.png; path = Resources/Images/tslider.png; sourceTree = "<group>"; };
+		E99DB5C511D4CF8F00CCA417 /* Load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Load.png; path = Resources/Images/Load.png; sourceTree = "<group>"; };
+		E99DB5C611D4CF8F00CCA417 /* Save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Save.png; path = Resources/Images/Save.png; sourceTree = "<group>"; };
+		E9A50B9411913C090082EA4B /* stop.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = stop.jpg; path = Resources/Images/stop.jpg; sourceTree = "<group>"; };
+		E9A50C21119197F40082EA4B /* PDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFViewController.h; sourceTree = "<group>"; };
+		E9A50C22119197F40082EA4B /* PDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFViewController.m; sourceTree = "<group>"; };
+		E9A50C841191B21A0082EA4B /* PDFView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PDFView.xib; path = Resources/XIB/PDFView.xib; sourceTree = "<group>"; };
+		E9B7569E1199E352001F5015 /* OptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OptionsView.xib; path = Resources/XIB/OptionsView.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				E95586171189658E005BC2B7 /* AddressBook.framework in Frameworks */,
+				E95586181189658E005BC2B7 /* MessageUI.framework in Frameworks */,
+				E955861B118965A2005BC2B7 /* AddressBookUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E95585ED11895E3E005BC2B7 /* OptionsViewController.h */,
+				E95585EE11895E3E005BC2B7 /* OptionsViewController.m */,
+				E95585EF11895E3E005BC2B7 /* puriSCOPEViewController.h */,
+				E95585F011895E3E005BC2B7 /* puriSCOPEController.m */,
+				E95585F111895E3E005BC2B7 /* Settings.bundle */,
+				E95585F211895E3E005BC2B7 /* TypeSomethingViewController.h */,
+				E95585F311895E3E005BC2B7 /* TypeSomethingViewController.m */,
+				E95585F411895E3E005BC2B7 /* UIDeviceHardware.h */,
+				E95585F511895E3E005BC2B7 /* UIDeviceHardware.m */,
+				1D3623240D0F684500981E51 /* puriSCOPEAppDelegate.h */,
+				1D3623250D0F684500981E51 /* puriSCOPEAppDelegate.m */,
+				E9A50C21119197F40082EA4B /* PDFViewController.h */,
+				E9A50C22119197F40082EA4B /* PDFViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* puriSCOPE.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				590DCB321467F3B200549041 /* Default@2x.png */,
+				590DCB2D1467ED3300549041 /* puriSCOPE_114.png */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* puriSCOPE_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				594893FE14618B5F00B39BC0 /* puriscope.pdf */,
+				E94743A0119D1983000FB9F4 /* icon.png */,
+				E95585FE11895E5C005BC2B7 /* Default.png */,
+				E95585C611895C2D005BC2B7 /* Images */,
+				E95585C511895C21005BC2B7 /* XIB */,
+				8D1107310486CEB800E47090 /* puriSCOPE-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E955861A118965A2005BC2B7 /* AddressBookUI.framework */,
+				E95586151189658E005BC2B7 /* AddressBook.framework */,
+				E95586161189658E005BC2B7 /* MessageUI.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E95585C511895C21005BC2B7 /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+				E9B7569E1199E352001F5015 /* OptionsView.xib */,
+				E9A50C841191B21A0082EA4B /* PDFView.xib */,
+				E95585E511895E16005BC2B7 /* MainWindow.xib */,
+				E95585E711895E16005BC2B7 /* puriSCOPEView.xib */,
+				E95585E811895E16005BC2B7 /* TypeSomethingView.xib */,
+			);
+			name = XIB;
+			sourceTree = "<group>";
+		};
+		E95585C611895C2D005BC2B7 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E99DB5C511D4CF8F00CCA417 /* Load.png */,
+				E99DB5C611D4CF8F00CCA417 /* Save.png */,
+				E9A50B9411913C090082EA4B /* stop.jpg */,
+				E975B8E91189D17600062D4D /* slider_ball.png */,
+				E975B8EA1189D17600062D4D /* Smiley_green.png */,
+				E975B8EB1189D17600062D4D /* Smiley_pink.png */,
+				E975B8EC1189D17600062D4D /* Smiley_yellow.png */,
+				E975B8ED1189D17600062D4D /* tslider.png */,
+				E975B8DE1189CFA000062D4D /* slidemenu.png */,
+				E975B8DA1189CF4900062D4D /* puriSCOPE_logo_color_190x30px.png */,
+				E95585D711895E05005BC2B7 /* Capture.png */,
+				E95585D811895E05005BC2B7 /* DeleteReport.jpg */,
+				E95585D911895E05005BC2B7 /* dgrayslide.png */,
+				E95585DA11895E05005BC2B7 /* info.png */,
+				E95585DC11895E05005BC2B7 /* Options.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* puriSCOPE */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "puriSCOPE" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = puriSCOPE;
+			productName = puriSCOPE;
+			productReference = 1D6058910D05DD3D006BFB54 /* puriSCOPE.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "puriSCOPE" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* puriSCOPE */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E95585DE11895E05005BC2B7 /* Capture.png in Resources */,
+				E95585DF11895E05005BC2B7 /* DeleteReport.jpg in Resources */,
+				E95585E011895E05005BC2B7 /* dgrayslide.png in Resources */,
+				E95585E111895E05005BC2B7 /* info.png in Resources */,
+				E95585E311895E05005BC2B7 /* Options.png in Resources */,
+				E95585E911895E16005BC2B7 /* MainWindow.xib in Resources */,
+				E95585EB11895E16005BC2B7 /* puriSCOPEView.xib in Resources */,
+				E95585EC11895E16005BC2B7 /* TypeSomethingView.xib in Resources */,
+				E95585F811895E3E005BC2B7 /* Settings.bundle in Resources */,
+				E955860011895E5C005BC2B7 /* Default.png in Resources */,
+				E975B8DB1189CF4900062D4D /* puriSCOPE_logo_color_190x30px.png in Resources */,
+				E975B8DF1189CFA000062D4D /* slidemenu.png in Resources */,
+				E975B8EE1189D17600062D4D /* slider_ball.png in Resources */,
+				E975B8EF1189D17600062D4D /* Smiley_green.png in Resources */,
+				E975B8F01189D17600062D4D /* Smiley_pink.png in Resources */,
+				E975B8F11189D17600062D4D /* Smiley_yellow.png in Resources */,
+				E975B8F21189D17600062D4D /* tslider.png in Resources */,
+				E9A50B9511913C090082EA4B /* stop.jpg in Resources */,
+				E9A50C851191B21A0082EA4B /* PDFView.xib in Resources */,
+				E9B7569F1199E352001F5015 /* OptionsView.xib in Resources */,
+				E94743A1119D1983000FB9F4 /* icon.png in Resources */,
+				E99DB5C711D4CF8F00CCA417 /* Load.png in Resources */,
+				E99DB5C811D4CF8F00CCA417 /* Save.png in Resources */,
+				594893FF14618B5F00B39BC0 /* puriscope.pdf in Resources */,
+				590DCB2E1467ED3300549041 /* puriSCOPE_114.png in Resources */,
+				590DCB331467F3B200549041 /* Default@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* puriSCOPEAppDelegate.m in Sources */,
+				E95585F611895E3E005BC2B7 /* OptionsViewController.m in Sources */,
+				E95585F711895E3E005BC2B7 /* puriSCOPEController.m in Sources */,
+				E95585F911895E3E005BC2B7 /* TypeSomethingViewController.m in Sources */,
+				E95585FA11895E3E005BC2B7 /* UIDeviceHardware.m in Sources */,
+				E9A50C24119197F40082EA4B /* PDFViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = puriSCOPE_Prefix.pch;
+				INFOPLIST_FILE = "puriSCOPE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = puriSCOPE;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = puriSCOPE_Prefix.pch;
+				INFOPLIST_FILE = "puriSCOPE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = puriSCOPE;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.0;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.0;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		E94743BA119D1A4C000FB9F4 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.0;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+			};
+			name = Distribution;
+		};
+		E94743BB119D1A4C000FB9F4 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = puriSCOPE_Prefix.pch;
+				INFOPLIST_FILE = "puriSCOPE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = puriSCOPE;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Distribution;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "puriSCOPE" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+				E94743BB119D1A4C000FB9F4 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "puriSCOPE" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+				E94743BA119D1A4C000FB9F4 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
