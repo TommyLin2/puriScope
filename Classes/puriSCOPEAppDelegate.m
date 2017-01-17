@@ -15,13 +15,17 @@
 //@synthesize viewController;
 
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
     viewController = [[puriSCOPEViewController alloc] initWithNibName:@"puriSCOPEView" bundle:nil];
     viewController.view.frame = [[UIScreen mainScreen] applicationFrame];
-    // Override point for customization after app launch    
+    
+    // Override point for customization after app launch
     [window addSubview:viewController.view];
     [window makeKeyAndVisible];
+    window.frame = [[UIScreen mainScreen] bounds];
+    [window setRootViewController:viewController];
 }
 
 

@@ -44,7 +44,8 @@ BOOL picorimg,optorpic;
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSString *lkeyI = [defaults stringForKey:@"lkey"];
 	
-	NSString *aresult = [[[UIDevice currentDevice] uniqueIdentifier] stringByReplacingOccurrencesOfString:@"a" withString:@""];
+//	NSString *aresult = [[[UIDevice currentDevice] uniqueIdentifier] stringByReplacingOccurrencesOfString:@"a" withString:@""];
+    NSString *aresult = [[[NSUUID UUID] UUIDString] stringByReplacingOccurrencesOfString:@"a" withString:@""];
 	NSString *bresult = [aresult stringByReplacingOccurrencesOfString:@"b" withString:@""];
 	NSString *cresult = [bresult stringByReplacingOccurrencesOfString:@"c" withString:@""];
 	NSString *dresult = [cresult stringByReplacingOccurrencesOfString:@"d" withString:@""];
