@@ -23,21 +23,17 @@ BOOL picorimg,optorpic;
     return self;
 }
 
-
-
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	if(interfaceOrientation ==UIInterfaceOrientationLandscapeRight)
-	{
-		return YES;
-	}
-	else
-	{
-		return NO;	
-	}
-	
-}
-
+//-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+//{
+//	if(interfaceOrientation ==UIInterfaceOrientationLandscapeRight)
+//	{
+//		return YES;
+//	}
+//	else
+//	{
+//		return NO;
+//	}
+//}
 - (BOOL)licheck
 {
 	
@@ -356,7 +352,6 @@ BOOL picorimg,optorpic;
 	ain=4*ag;
 	
 	alpha=((1.5*pi)-ag);
-	 	
 	
 	CGPoint pos1 = getImage.center;
 	CGPoint pos2 = getPhoto.center;
@@ -569,9 +564,8 @@ BOOL picorimg,optorpic;
 	optorpic=FALSE;
 	if(firstrun==0 |li==FALSE)
 	{
-		
-    imagePickerController = [[UIImagePickerController alloc] init];
-	imagePickerController.delegate = self;
+        imagePickerController = [[UIImagePickerController alloc] init];
+        imagePickerController.delegate = self;
 		if  ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
 		{
             imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -580,14 +574,7 @@ BOOL picorimg,optorpic;
 		{
 			imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 		}
-			
-	//}
-		
-  
-    [self presentModalViewController:imagePickerController animated:YES];
-    
-	//[imagePickerController release];
-
+        [self presentModalViewController:imagePickerController animated:YES];
 	}
 	else
 	{
@@ -595,33 +582,24 @@ BOOL picorimg,optorpic;
 		actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
 		[actionSheet showInView:self.view]; // show from our table view (pops up in the middle of the table)
 		[actionSheet release];
-		
-		
-	}	
+	}
 }
-
-
-
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	
 	UITouch *touch = [touches anyObject];
 	first = [touch locationInView:self.view];
-	
 
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:2];
-	
-	vwslidemenu.hidden=FALSE;
-	
-	[UIView commitAnimations];
 
-	
+	vwslidemenu.hidden=FALSE;
+	[UIView commitAnimations];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{	float l=120.0;
+{
+    float l=120.0;
 	float ix=520.0,iy=150.0;
 	float ag,ar,ain,ao,pi=M_PI,e=M_E;
 	

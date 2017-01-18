@@ -10,8 +10,6 @@
 #import "PDFViewController.h"
 //#import "S7FTPRequest.h"
 
-
-
 @implementation OptionsViewController
 @synthesize delegate,/*res0lab,res0vallab,res0val,res2lab,res2val,res2vallab,res4lab,*/lbloptions,svinfo,swugormg,swsavereport,Rvalue,Gvalue,Bvalue,kalib,reslabel,scrollView,vwopt01,vwopt02,vwopt03,vwopt04,btnopt01,btnopt02,btnopt03,btnopt04,lblrepcount,lbldisporcip,vwgrayoutsel,vwnoli,vwjust3g,txtcomp,txtdep,txtemail,btnback,btnregister,btndia01,btndia02,btndia03,btndia04,btndia05,btndia06,btndia07,btndia08,btndia09,btndia10,res0lab,res0val,res0vallab,res2lab,res2val,res4lab,res2vallab;
 
@@ -20,7 +18,6 @@ float vgood,good,satis,adeq,R,G,B,blankR,blankG,blankB,sampleR,sampleG,sampleB;
 uint DIA;
 bool OPorIN,li,ugormg;
 int x=240,arlen;
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,8 +28,6 @@ int x=240,arlen;
 	vwopt04.hidden=TRUE;
 	svinfo.hidden=TRUE;
 	vwnoli.hidden=TRUE;
-	
-	
 	if(li)
 	{vwnoli.hidden=TRUE;
 		
