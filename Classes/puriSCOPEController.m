@@ -23,6 +23,7 @@ BOOL picorimg,optorpic;
     return self;
 }
 
+
 //-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 //{
 //	if(interfaceOrientation ==UIInterfaceOrientationLandscapeRight)
@@ -34,6 +35,23 @@ BOOL picorimg,optorpic;
 //		return NO;
 //	}
 //}
+
+-(BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationLandscapeRight;
+}
+
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+}
+
 - (BOOL)licheck
 {
 	
@@ -546,17 +564,12 @@ BOOL picorimg,optorpic;
 			
 		}
 		
-		
-		
-		
 		[self presentModalViewController:imagePickerController animated:YES];
 		
 		//[imagePickerController release];
 		
 	}
 }
-
-
 
 
 - (IBAction)showImagePicker:(id)sender
@@ -687,8 +700,6 @@ BOOL picorimg,optorpic;
 	gIn.size.height=35+xlargeIn;
 	btninfo.bounds = gIn;
 	
-	
-	
 	getImage.center=pos1;
 	getPhoto.center=pos2;
 	
@@ -711,8 +722,6 @@ BOOL picorimg,optorpic;
 {
 	vwslidemenu.hidden=TRUE;
 }
-
-
 
 -(void)alertDone {
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"REPORT" message:@"... saved to your camera roll" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -1016,8 +1025,6 @@ dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
 	
 	// Make sure and release colorspace before returning
 	CGColorSpaceRelease( colorSpace );
-	
-	
 	return context;
 }
 
@@ -1026,20 +1033,17 @@ dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
 	[self dismissModalViewControllerAnimated:YES];
 	if( ugormg==FALSE)
 	{
-		lblugormg.text = @"ug/cm2 Organic";
+        lblugormg.text = @"ug/cm2 Organic";
 	}else
 	{
 		lblugormg.text = @"mg/L Organic";
         lbldiam.text=@"";
 	}
 	save.enabled=FALSE;
-    
 	vgoodlab = [[NSUserDefaults standardUserDefaults] stringForKey:@"vgoodlab"];
 	satislab = [[NSUserDefaults standardUserDefaults] stringForKey:@"satislab"];
 	inadeqlab = [[NSUserDefaults standardUserDefaults] stringForKey:@"inadeqlab"];
 }
-
-
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {	firstrun=1;
@@ -1061,10 +1065,8 @@ dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
 	CGContextDrawImage(bitmapcrop1, rect, ref);
 	
    	//NSLog(@"w ,%i h, %i",w,h);
-	 
-	
-	
-	unsigned char* data = CGBitmapContextGetData (bitmapcrop1);
+
+    unsigned char* data = CGBitmapContextGetData (bitmapcrop1);
     
 	if (data != NULL)
     {	
@@ -1135,10 +1137,9 @@ dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
 				rednewsx=rednewsx+reds;
 				greennewsx=greennewsx+greens;
 				bluenewsx=bluenewsx+blues;
-				
-				
 			}
-			ns++;
+            
+            ns++;
 			rednewsy=rednewsy+rednewsx;
 			greennewsy=greennewsy+greennewsx;
 			bluenewsy=bluenewsy+bluenewsx;
@@ -1377,13 +1378,9 @@ dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
 		NSLog([NSString stringWithFormat:@"dia %.2f",Diam]);
 		NSLog([NSString stringWithFormat:@"dia %.2f",Diam]);
 		*/
-		
+        li = true;
 		if(li)
 		{	
-		
-
-			
-
 			if([[NSUserDefaults standardUserDefaults] integerForKey:@"ugormg"]==0)
 			{	
 				if(RSF<=0.2)
