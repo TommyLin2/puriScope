@@ -43,10 +43,7 @@
 - (IBAction)back
 {
 	[self dismissModalViewControllerAnimated:YES];
-
-	
 }
-
 
 // Dealloc method -- webView, pdfURL
 - (void)dealloc {
@@ -54,6 +51,5 @@
 	[pdfURL release];
 	[super dealloc];
 }
-
 
 @end

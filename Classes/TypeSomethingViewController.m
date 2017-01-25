@@ -16,13 +16,12 @@ NSString *nname,*aadress,*pperson;
     if ([self.delegate respondsToSelector:@selector(typeSomethingViewController:didTypeSomething:)]) {
         [self.delegate typeSomethingViewController:self didTypeSomething:textField.text];
     }
-	
-	if(textField.text == @"")
+	if([textField.text isEqualToString:@""])
 	{
 		nname=@"          -";
 	}else
 	{
-	nname= textField.text;
+        nname= textField.text;
 	}
 }
 
@@ -49,21 +48,14 @@ NSString *nname,*aadress,*pperson;
 {
     ABPeoplePickerNavigationController *peoplePickerController = [[ABPeoplePickerNavigationController alloc] init];
     peoplePickerController.peoplePickerDelegate = self;
-    
-    [self presentModalViewController:peoplePickerController animated:YES];
-    
+    [self presentViewController:peoplePickerController animated:YES completion:nil];
     [peoplePickerController release];
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-
-
-
-
 
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
 {
@@ -121,7 +113,7 @@ NSString *nname,*aadress,*pperson;
 	
 	CFRelease(addrMulti);
 	
-	[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     return NO;
 	CFRelease(addressDict);
 	//CFRelease(addressLabel);

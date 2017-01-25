@@ -382,8 +382,7 @@ int x=240,arlen;
 	
 	//NSURL *pdfURL = [NSURL URLWithString:finalPath];
 	controller.pdfURL = [NSURL fileURLWithPath:finalPath];
-	
-	[self presentModalViewController:controller animated:YES];
+    [self presentViewController:controller animated:YES completion:nil];
 	[controller release];
 	
 }
@@ -1176,8 +1175,7 @@ if(textField!=res0lab)
 			// Fill out the email body text
 			NSString *emailBody = @"Your results from your puriSCOPE tests are attached.";
 			[picker setMessageBody:emailBody isHTML:NO];
-			
-			[self presentModalViewController:picker animated:YES];
+            [self presentViewController:picker animated:YES completion:nil];
 			[picker release];
 			
 		}
@@ -1230,8 +1228,7 @@ if(textField!=res0lab)
 	//alert.actionSheetStyle = UIActionSheetStyleDefault;
 	[alert show];	// show from our table view (pops up in the middle of the table)
 	[alert release];
-	
-	[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -1273,6 +1270,7 @@ if(textField!=res0lab)
 		
 	
 	NSString *Version = [[UIDevice currentDevice] systemVersion];
+
 	NSString *UUID = [[UIDevice currentDevice] uniqueIdentifier];
 	NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
 	NSString *thePath3 = [rootPath stringByAppendingPathComponent:@"act_puriSCOPE.csv"];	
@@ -1310,8 +1308,7 @@ if(textField!=res0lab)
 					// Fill out the email body text
 					NSString *emailBody = @"<h1>Please do not change any part of this Email.</h1> <br> <h1><b>Data from your iPod for activation is attached.</b></h1>";
 					[picker setMessageBody:emailBody isHTML:YES];
-					
-					[self presentModalViewController:picker animated:YES];
+                    [self presentViewController:picker animated:NO completion:nil];
 					[picker release];
 					
 				}

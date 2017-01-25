@@ -29,7 +29,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>net.thonhauser.puriscope</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
@@ -42,6 +42,8 @@
 	<string>2.0.1</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) uses photos</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UIInterfaceOrientation</key>
@@ -60,7 +62,5 @@
 	<array>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$(PRODUCT_NAME) uses photos</string>
 </dict>
 </plist>

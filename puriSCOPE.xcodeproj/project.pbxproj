@@ -15,6 +15,7 @@
 		590DCB2E1467ED3300549041 /* puriSCOPE_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 590DCB2D1467ED3300549041 /* puriSCOPE_114.png */; };
 		590DCB331467F3B200549041 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 590DCB321467F3B200549041 /* Default@2x.png */; };
 		594893FF14618B5F00B39BC0 /* puriscope.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 594893FE14618B5F00B39BC0 /* puriscope.pdf */; };
+		8D7E29B21E387430003C6583 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E29B11E387430003C6583 /* Default-568h@2x.png */; };
 		E94743A1119D1983000FB9F4 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E94743A0119D1983000FB9F4 /* icon.png */; };
 		E95585DE11895E05005BC2B7 /* Capture.png in Resources */ = {isa = PBXBuildFile; fileRef = E95585D711895E05005BC2B7 /* Capture.png */; };
 		E95585DF11895E05005BC2B7 /* DeleteReport.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E95585D811895E05005BC2B7 /* DeleteReport.jpg */; };
@@ -61,6 +62,7 @@
 		590DCB321467F3B200549041 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		594893FE14618B5F00B39BC0 /* puriscope.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = puriscope.pdf; path = Resources/puriscope.pdf; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* puriSCOPE-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "puriSCOPE-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8D7E29B11E387430003C6583 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E94743A0119D1983000FB9F4 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		E95585D711895E05005BC2B7 /* Capture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Capture.png; path = Resources/Images/Capture.png; sourceTree = "<group>"; };
 		E95585D811895E05005BC2B7 /* DeleteReport.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = DeleteReport.jpg; path = Resources/Images/DeleteReport.jpg; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				8D7E29B11E387430003C6583 /* Default-568h@2x.png */,
 				590DCB321467F3B200549041 /* Default@2x.png */,
 				590DCB2D1467ED3300549041 /* puriSCOPE_114.png */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -254,6 +257,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = 8H9MRT29Y9;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "puriSCOPE" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -290,6 +298,7 @@
 				E95585F811895E3E005BC2B7 /* Settings.bundle in Resources */,
 				E955860011895E5C005BC2B7 /* Default.png in Resources */,
 				E975B8DB1189CF4900062D4D /* puriSCOPE_logo_color_190x30px.png in Resources */,
+				8D7E29B21E387430003C6583 /* Default-568h@2x.png in Resources */,
 				E975B8DF1189CFA000062D4D /* slidemenu.png in Resources */,
 				E975B8EE1189D17600062D4D /* slider_ball.png in Resources */,
 				E975B8EF1189D17600062D4D /* Smiley_green.png in Resources */,
@@ -333,16 +342,18 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 8H9MRT29Y9;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = puriSCOPE_Prefix.pch;
 				INFOPLIST_FILE = "puriSCOPE-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_BUNDLE_IDENTIFIER = net.thonhauser.puriscope.test;
 				PRODUCT_NAME = puriSCOPE;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -356,14 +367,16 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = 8H9MRT29Y9;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = puriSCOPE_Prefix.pch;
 				INFOPLIST_FILE = "puriSCOPE-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_BUNDLE_IDENTIFIER = net.thonhauser.puriscope.test;
 				PRODUCT_NAME = puriSCOPE;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -428,14 +441,16 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = 8H9MRT29Y9;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = puriSCOPE_Prefix.pch;
 				INFOPLIST_FILE = "puriSCOPE-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_BUNDLE_IDENTIFIER = net.thonhauser.puriscope.test;
 				PRODUCT_NAME = puriSCOPE;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

@@ -23,7 +23,6 @@ BOOL picorimg,optorpic;
     return self;
 }
 
-
 //-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 //{
 //	if(interfaceOrientation ==UIInterfaceOrientationLandscapeRight)
@@ -38,19 +37,19 @@ BOOL picorimg,optorpic;
 
 -(BOOL)shouldAutorotate
 {
-    return NO;
+    return YES;
 }
 
--(UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationLandscapeRight;
-}
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
-}
+//-(UIInterfaceOrientationMask)supportedInterfaceOrientations
+//{
+//    return UIInterfaceOrientationLandscapeLeft;
+//}
+//
+//
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+//{
+//    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+//}
 
 - (BOOL)licheck
 {
@@ -395,7 +394,6 @@ BOOL picorimg,optorpic;
 	
 	slpos1.y=(alpha*75)-71;
 
-	
 	int xlargeI;
 	xlargeI=(150*pow(e,(-5*(alpha-(1.5*pi))*(alpha-(1.5*pi)))));
 	CGRect gI = getImage.bounds;
@@ -430,7 +428,6 @@ BOOL picorimg,optorpic;
 	gIn.size.width=35+xlargeIn;
 	gIn.size.height=35+xlargeIn;
 	btninfo.bounds = gIn;
-	
 	
 	getPhoto.center=pos2;
 	getImage.center=pos1;
@@ -561,19 +558,16 @@ BOOL picorimg,optorpic;
 		}else
 		{
 			imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-			
 		}
 		
 		[self presentModalViewController:imagePickerController animated:YES];
-		
 		//[imagePickerController release];
-		
 	}
 }
 
-
 - (IBAction)showImagePicker:(id)sender
-{	picorimg=TRUE;
+{
+    picorimg=TRUE;
 	optorpic=FALSE;
 	if(firstrun==0 |li==FALSE)
 	{
@@ -633,7 +627,6 @@ BOOL picorimg,optorpic;
 	{
 		alpha=((1.5*pi)-ain);
 	}
- 	
 		
 	CGPoint pos1 = getImage.center;
 	CGPoint pos2 = getPhoto.center;
@@ -691,8 +684,7 @@ BOOL picorimg,optorpic;
 	if(li)
 	{
 		xlargeIn=(150*pow(e,(-5*(alpha-((1.5*pi)-ain))*(alpha-((1.5*pi)-ain)))));
-	}else
-	{
+	}else{
 		xlargeIn=xlargeS;
 	}
 	CGRect gIn = btninfo.bounds;
@@ -874,9 +866,6 @@ BOOL picorimg,optorpic;
 dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
     }
 	
-	
-	
-	
 	NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
 	thePath = [rootPath stringByAppendingPathComponent:@"Data.xml"];
 	
@@ -892,9 +881,8 @@ dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
 	//NSLog(@"%@",dData);
 	[dData release];
 	[plistentries release];
-	
-	
-	save.enabled= FALSE;
+
+    save.enabled= FALSE;
 	//[self alertDone];
 	
 	/*
@@ -908,7 +896,7 @@ dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
 	//if([[NSUserDefaults standardUserDefaults] boolForKey:@"savereport"]==FALSE)
 	if([[NSUserDefaults standardUserDefaults] boolForKey:@"savereport"]==TRUE)
 	{
-			result3.text=@"0.00";
+        result3.text=@"0.00";
 	}
 }
 
@@ -917,13 +905,9 @@ dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
 	firstrun=0;
 	TypeSomethingViewController *typeSomethingViewController = [[TypeSomethingViewController alloc] init];
 	typeSomethingViewController.delegate = self;
-
 	[self presentModalViewController:typeSomethingViewController animated:YES];
-
-	[typeSomethingViewController release];    
-
+	[typeSomethingViewController release];
 }
-
 
 - (IBAction)showInfo {  
 	OPorIN = FALSE;
@@ -934,11 +918,8 @@ dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
 	[self presentModalViewController:controller animated:YES];
 	
 	[controller release];
-	
-	
-	
-	
 }
+
 - (IBAction)options:(id)sender{
 	optorpic=TRUE;
 	if(firstrun==1)
@@ -949,25 +930,22 @@ dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
 		[actionSheet release];
 	}else
 	{
-		
-		
-	OPorIN = TRUE;
-	OptionsViewController *controller = [[OptionsViewController alloc] initWithNibName:@"OptionsView" bundle:nil];
-	controller.delegate = self;
+        OPorIN = TRUE;
+        OptionsViewController *controller = [[OptionsViewController alloc] initWithNibName:@"OptionsView" bundle:nil];
+        controller.delegate = self;
 	
-	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self presentModalViewController:controller animated:YES];
+        controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self presentModalViewController:controller animated:YES];
 	
-	[controller release];
-	if( ugormg==0)
-	{
-		lblugormg.text = @"ug/cm2 Organic";
-	}else
-	{
-		lblugormg.text = @"mg/L Organic";
-	}
-
-	}
+        [controller release];
+        if( ugormg==0)
+        {
+            lblugormg.text = @"ug/cm2 Organic";
+        }else
+        {
+            lblugormg.text = @"mg/L Organic";
+        }
+    }
 }
 
 - (CGContextRef) createARGBBitmapContextFromImage:(CGImageRef) inImage {
