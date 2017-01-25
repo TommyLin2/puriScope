@@ -40,6 +40,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>2.0.1</string>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) uses camera</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -54,13 +56,15 @@
 	<array>
 		<string>still-camera</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>UIStatusBarHidden</key>
 	<false/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackOpaque</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
-		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 </dict>
 </plist>

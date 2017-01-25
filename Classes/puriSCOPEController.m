@@ -23,33 +23,15 @@ BOOL picorimg,optorpic;
     return self;
 }
 
-//-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-//{
-//	if(interfaceOrientation ==UIInterfaceOrientationLandscapeRight)
-//	{
-//		return YES;
-//	}
-//	else
-//	{
-//		return NO;
-//	}
-//}
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscapeRight;
+}
 
 -(BOOL)shouldAutorotate
 {
     return YES;
 }
-
-//-(UIInterfaceOrientationMask)supportedInterfaceOrientations
-//{
-//    return UIInterfaceOrientationLandscapeLeft;
-//}
-//
-//
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-//{
-//    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
-//}
 
 - (BOOL)licheck
 {
@@ -476,13 +458,7 @@ BOOL picorimg,optorpic;
 	imagePickerController = [[UIImagePickerController alloc] init];		
 	imagePickerController.delegate = self;
 	imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-	
-	
-	
-	
-	
-    [self presentModalViewController:imagePickerController animated:YES];
-    
+    [self presentViewController:imagePickerController animated:NO completion:nil];
     //[imagePickerController release];
 	}
 	else
@@ -503,10 +479,8 @@ BOOL picorimg,optorpic;
 	{	
 		TypeSomethingViewController *typeSomethingViewController = [[TypeSomethingViewController alloc] init];
 		typeSomethingViewController.delegate = self;
-		
-		[self presentModalViewController:typeSomethingViewController animated:YES];
-		
-		[typeSomethingViewController release];    
+        [self presentViewController:typeSomethingViewController animated:NO completion:nil];
+		[typeSomethingViewController release];
 	}
 	else
 	{
@@ -529,8 +503,7 @@ BOOL picorimg,optorpic;
 			controller.delegate = self;
 			
 			controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-			[self presentModalViewController:controller animated:YES];
-			
+            [self presentViewController:controller animated:NO completion:nil];
 			[controller release];
 			if( ugormg==TRUE)
 			{
@@ -560,8 +533,7 @@ BOOL picorimg,optorpic;
 			imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 		}
 		
-		[self presentModalViewController:imagePickerController animated:YES];
-		//[imagePickerController release];
+        [self presentViewController:imagePickerController animated:NO completion:nil];
 	}
 }
 

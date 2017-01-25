@@ -25,17 +25,14 @@ NSString *nname,*aadress,*pperson;
 	}
 }
 
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-	if(interfaceOrientation ==UIInterfaceOrientationLandscapeRight)
-	{
-		return YES;
-	}
-	else
-	{
-		return NO;	
-	}
-	
+    return UIInterfaceOrientationMaskLandscapeRight;
+}
+
+-(BOOL)shouldAutorotate
+{
+    return YES;
 }
 
 - ( BOOL)textFieldShouldReturn:(UITextField *)textfField

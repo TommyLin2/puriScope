@@ -318,16 +318,14 @@ int x=240,arlen;
 
 
 
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-	if(interfaceOrientation==UIInterfaceOrientationLandscapeRight)
-	{
-		return YES;
-	}
-	else
-	{
-		return NO;	
-	}
+    return UIInterfaceOrientationMaskLandscapeRight;
+}
+
+-(BOOL)shouldAutorotate
+{
+    return YES;
 }
 
 - ( BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -1157,7 +1155,6 @@ if(textField!=res0lab)
 			picker.mailComposeDelegate = self;
 			
 			[picker setSubject:@"Hello from puriSCOPE"];
-			
 			NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
 			NSString *thePath2 = [rootPath stringByAppendingPathComponent:@"puriSCOPE.csv"];
 
