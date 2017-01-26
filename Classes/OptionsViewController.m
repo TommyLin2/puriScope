@@ -1137,7 +1137,7 @@ if(textField!=res0lab)
 			{	outdn = [NSString stringWithFormat:@"%@%@,",outdn,unew];
 			}	
 		}
-		outd = [NSString stringWithFormat:@"%@%\n%@",outd,outdn];
+		outd = [NSString stringWithFormat:@"%@\n%@",outd,outdn];
 		[newd release];
 	}
 	[pfile writeData:[[NSString stringWithFormat:@"%@",outd] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -1227,14 +1227,6 @@ if(textField!=res0lab)
 	[alert release];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-
-
-
-
-
-
-
 
 - (IBAction)res2val:(id)sender
 {
