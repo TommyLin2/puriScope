@@ -4,6 +4,7 @@
 //
 #include <math.h>
 #import "puriSCOPEViewController.h"
+#import "CustomCameraViewController.h"
 
 int firstrun;
 NSString *thePath;
@@ -539,29 +540,34 @@ BOOL picorimg,optorpic;
 
 - (IBAction)showImagePicker:(id)sender
 {
-    picorimg=TRUE;
-	optorpic=FALSE;
-	if(firstrun==0 |li==FALSE)
-	{
-        imagePickerController = [[UIImagePickerController alloc] init];
-        imagePickerController.delegate = self;
-		if  ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-		{
-            imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-		}
-		else
-		{
-			imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-		}
-        [self presentModalViewController:imagePickerController animated:YES];
-	}
-	else
-	{
-		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Do You want to save the Result??"delegate:self cancelButtonTitle:@"NO" destructiveButtonTitle:nil otherButtonTitles:@"YES",nil];
-		actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-		[actionSheet showInView:self.view]; // show from our table view (pops up in the middle of the table)
-		[actionSheet release];
-	}
+    CustomCameraViewController *controller = [[CustomCameraViewController alloc] initWithNibName:@"CustomCameraViewController" bundle:nil];
+    controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:controller animated:NO completion:nil];
+    [controller release];
+
+//    picorimg=TRUE;
+//	optorpic=FALSE;
+//	if(firstrun==0 |li==FALSE)
+//	{
+//        imagePickerController = [[UIImagePickerController alloc] init];
+//        imagePickerController.delegate = self;
+//		if  ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+//		{
+//            imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+//		}
+//		else
+//		{
+//			imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//		}
+//        [self presentModalViewController:imagePickerController animated:YES];
+//	}
+//	else
+//	{
+//		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Do You want to save the Result??"delegate:self cancelButtonTitle:@"NO" destructiveButtonTitle:nil otherButtonTitles:@"YES",nil];
+//		actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+//		[actionSheet showInView:self.view]; // show from our table view (pops up in the middle of the table)
+//		[actionSheet release];
+//	}
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

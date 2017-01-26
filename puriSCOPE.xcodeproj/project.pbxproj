@@ -16,6 +16,9 @@
 		590DCB331467F3B200549041 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 590DCB321467F3B200549041 /* Default@2x.png */; };
 		594893FF14618B5F00B39BC0 /* puriscope.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 594893FE14618B5F00B39BC0 /* puriscope.pdf */; };
 		8D7E29B21E387430003C6583 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E29B11E387430003C6583 /* Default-568h@2x.png */; };
+		8DCD8F261E39D14D0077CD9C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DCD8F251E39D14D0077CD9C /* AVFoundation.framework */; };
+		8DCD8F291E39D1A70077CD9C /* CustomCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F281E39D1A70077CD9C /* CustomCameraViewController.m */; };
+		8DCD8F2B1E39D21B0077CD9C /* CustomCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DCD8F2A1E39D21B0077CD9C /* CustomCameraViewController.xib */; };
 		E94743A1119D1983000FB9F4 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E94743A0119D1983000FB9F4 /* icon.png */; };
 		E95585DE11895E05005BC2B7 /* Capture.png in Resources */ = {isa = PBXBuildFile; fileRef = E95585D711895E05005BC2B7 /* Capture.png */; };
 		E95585DF11895E05005BC2B7 /* DeleteReport.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E95585D811895E05005BC2B7 /* DeleteReport.jpg */; };
@@ -63,6 +66,10 @@
 		594893FE14618B5F00B39BC0 /* puriscope.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = puriscope.pdf; path = Resources/puriscope.pdf; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* puriSCOPE-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "puriSCOPE-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		8D7E29B11E387430003C6583 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		8DCD8F251E39D14D0077CD9C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8DCD8F271E39D1A70077CD9C /* CustomCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCameraViewController.h; path = CustomCameraViewController/CustomCameraViewController.h; sourceTree = "<group>"; };
+		8DCD8F281E39D1A70077CD9C /* CustomCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCameraViewController.m; path = CustomCameraViewController/CustomCameraViewController.m; sourceTree = "<group>"; };
+		8DCD8F2A1E39D21B0077CD9C /* CustomCameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomCameraViewController.xib; path = Resources/XIB/CustomCameraViewController.xib; sourceTree = "<group>"; };
 		E94743A0119D1983000FB9F4 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		E95585D711895E05005BC2B7 /* Capture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Capture.png; path = Resources/Images/Capture.png; sourceTree = "<group>"; };
 		E95585D811895E05005BC2B7 /* DeleteReport.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = DeleteReport.jpg; path = Resources/Images/DeleteReport.jpg; sourceTree = "<group>"; };
@@ -106,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DCD8F261E39D14D0077CD9C /* AVFoundation.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -134,6 +142,8 @@
 				1D3623250D0F684500981E51 /* puriSCOPEAppDelegate.m */,
 				E9A50C21119197F40082EA4B /* PDFViewController.h */,
 				E9A50C22119197F40082EA4B /* PDFViewController.m */,
+				8DCD8F271E39D1A70077CD9C /* CustomCameraViewController.h */,
+				8DCD8F281E39D1A70077CD9C /* CustomCameraViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -186,6 +196,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8DCD8F251E39D14D0077CD9C /* AVFoundation.framework */,
 				E955861A118965A2005BC2B7 /* AddressBookUI.framework */,
 				E95586151189658E005BC2B7 /* AddressBook.framework */,
 				E95586161189658E005BC2B7 /* MessageUI.framework */,
@@ -199,6 +210,7 @@
 		E95585C511895C21005BC2B7 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				8DCD8F2A1E39D21B0077CD9C /* CustomCameraViewController.xib */,
 				E9B7569E1199E352001F5015 /* OptionsView.xib */,
 				E9A50C841191B21A0082EA4B /* PDFView.xib */,
 				E95585E511895E16005BC2B7 /* MainWindow.xib */,
@@ -260,6 +272,7 @@
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = 8H9MRT29Y9;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -301,6 +314,7 @@
 				8D7E29B21E387430003C6583 /* Default-568h@2x.png in Resources */,
 				E975B8DF1189CFA000062D4D /* slidemenu.png in Resources */,
 				E975B8EE1189D17600062D4D /* slider_ball.png in Resources */,
+				8DCD8F2B1E39D21B0077CD9C /* CustomCameraViewController.xib in Resources */,
 				E975B8EF1189D17600062D4D /* Smiley_green.png in Resources */,
 				E975B8F01189D17600062D4D /* Smiley_pink.png in Resources */,
 				E975B8F11189D17600062D4D /* Smiley_yellow.png in Resources */,
@@ -326,6 +340,7 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* puriSCOPEAppDelegate.m in Sources */,
+				8DCD8F291E39D1A70077CD9C /* CustomCameraViewController.m in Sources */,
 				E95585F611895E3E005BC2B7 /* OptionsViewController.m in Sources */,
 				E95585F711895E3E005BC2B7 /* puriSCOPEController.m in Sources */,
 				E95585F911895E3E005BC2B7 /* TypeSomethingViewController.m in Sources */,
