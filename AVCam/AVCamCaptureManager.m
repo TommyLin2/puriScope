@@ -154,11 +154,11 @@
 	[[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
     
     [[self session] stopRunning];
-    [session release];
-    [videoInput release];
-    [audioInput release];
-    [stillImageOutput release];
-    [recorder release];
+    self.session = nil;
+    self.videoInput = nil;
+    self.audioInput = nil;
+    self.stillImageOutput = nil;
+    self.recorder = nil;
     
     [super dealloc];
 }
@@ -184,23 +184,21 @@
 			[[self backFacingCamera] unlockForConfiguration];
 		}
 	}
-	
     // Init the device inputs
-    AVCaptureDeviceInput *newVideoInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self backFacingCamera] error:nil];
-    AVCaptureDeviceInput *newAudioInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self audioDevice] error:nil];
+    AVCaptureDeviceInput *newVideoInput = [[[AVCaptureDeviceInput alloc] initWithDevice:[self backFacingCamera] error:nil] autorelease];
+    AVCaptureDeviceInput *newAudioInput = [[[AVCaptureDeviceInput alloc] initWithDevice:[self audioDevice] error:nil] autorelease];
     
 	
     // Setup the still image file output
-    AVCaptureStillImageOutput *newStillImageOutput = [[AVCaptureStillImageOutput alloc] init];
-    NSDictionary *outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys:
+    AVCaptureStillImageOutput *newStillImageOutput = [[[AVCaptureStillImageOutput alloc] init] autorelease];
+    NSDictionary *outputSettings = [[[NSDictionary alloc] initWithObjectsAndKeys:
                                     AVVideoCodecJPEG, AVVideoCodecKey,
-                                    nil];
+                                    nil] autorelease];
     [newStillImageOutput setOutputSettings:outputSettings];
-    [outputSettings release];
     
     
     // Create session (use default AVCaptureSessionPresetHigh)
-    AVCaptureSession *newCaptureSession = [[AVCaptureSession alloc] init];
+    AVCaptureSession *newCaptureSession = [[[AVCaptureSession alloc] init] autorelease];
     
     
     // Add inputs and output to the capture session
@@ -219,14 +217,9 @@
     [self setAudioInput:newAudioInput];
     [self setSession:newCaptureSession];
     
-    [newStillImageOutput release];
-    [newVideoInput release];
-    [newAudioInput release];
-    [newCaptureSession release];
-    
 	// Set up the movie file output
     NSURL *outputFileURL = [self tempFileURL];
-    AVCamRecorder *newRecorder = [[AVCamRecorder alloc] initWithSession:[self session] outputFileURL:outputFileURL];
+    AVCamRecorder *newRecorder = [[[AVCamRecorder alloc] initWithSession:[self session] outputFileURL:outputFileURL] autorelease];
     [newRecorder setDelegate:self];
 	
 	// Send an error to the delegate if video recording is unavailable
@@ -244,7 +237,6 @@
 	}
 	
 	[self setRecorder:newRecorder];
-    [newRecorder release];
 	
     success = YES;
     
@@ -281,11 +273,10 @@
 
 															 if (imageDataSampleBuffer != NULL) {
 																 NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-                                                                 UIImage *image = [[UIImage alloc] initWithData:imageData];
+                                                                 UIImage *image = [UIImage imageWithData:imageData];
                                                                  if (delegate) {
                                                                      [delegate captureManagerStillImageCaptured:image];
                                                                  }
-                                                                 [image release];
                                                              }
                                                          }];
 }
@@ -302,9 +293,9 @@
         
         [self performSelector:@selector(deviceOrientationDidChange)];
         if (position == AVCaptureDevicePositionBack)
-            newVideoInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self frontFacingCamera] error:&error];
+            newVideoInput = [[[AVCaptureDeviceInput alloc] initWithDevice:[self frontFacingCamera] error:&error] autorelease];
         else if (position == AVCaptureDevicePositionFront)
-            newVideoInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self backFacingCamera] error:&error];
+            newVideoInput = [[[AVCaptureDeviceInput alloc] initWithDevice:[self backFacingCamera] error:&error] autorelease];
         else
             goto bail;
         
@@ -319,7 +310,6 @@
             }
             [[self session] commitConfiguration];
             success = YES;
-            [newVideoInput release];
         } else if (error) {
             if ([[self delegate] respondsToSelector:@selector(captureManager:didFailWithError:)]) {
                 [[self delegate] captureManager:self didFailWithError:error];
@@ -463,10 +453,9 @@ bail:
 - (void) copyFileToDocuments:(NSURL *)fileURL
 {
 	NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	[dateFormatter setDateFormat:@"yyyy-MM-dd_HH-mm-ss"];
 	NSString *destinationPath = [documentsDirectory stringByAppendingFormat:@"/output_%@.mov", [dateFormatter stringFromDate:[NSDate date]]];
-	[dateFormatter release];
 	NSError	*error;
 	if (![[NSFileManager defaultManager] copyItemAtURL:fileURL toURL:[NSURL fileURLWithPath:destinationPath] error:&error]) {
 		if ([[self delegate] respondsToSelector:@selector(captureManager:didFailWithError:)]) {

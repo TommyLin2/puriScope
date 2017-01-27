@@ -575,7 +575,6 @@ BOOL picorimg,optorpic;
     controller.delegate = self;
     controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:controller animated:NO completion:nil];
-    [controller release];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -1015,7 +1014,7 @@ BOOL picorimg,optorpic;
 
 - (void)customCameraImageCaptured:(CustomCameraViewController*)controller withCapturedImage:(UIImage *)image{
     [self dismissViewControllerAnimated:YES completion:nil];
-    [self imageProcess:image];
+//    [self imageProcess:image];
 }
 
 -(void)imageProcess:(UIImage *)image{

@@ -65,12 +65,11 @@ static void *AVCamRecorderConnectionsObserverContext = &AVCamRecorderConnections
 {
     self = [super init];
     if (self != nil) {
-        AVCaptureMovieFileOutput *aMovieFileOutput = [[AVCaptureMovieFileOutput alloc] init];
+        AVCaptureMovieFileOutput *aMovieFileOutput = [[[AVCaptureMovieFileOutput alloc] init] autorelease];
 		[aMovieFileOutput addObserver:self forKeyPath:@"connections" options:0 context:AVCamRecorderConnectionsObserverContext];
         if ([aSession canAddOutput:aMovieFileOutput])
             [aSession addOutput:aMovieFileOutput];
         [self setMovieFileOutput:aMovieFileOutput];
-        [aMovieFileOutput release];
 		
 		[self setSession:aSession];
 		[self setOutputFileURL:anOutputFileURL];
@@ -82,10 +81,10 @@ static void *AVCamRecorderConnectionsObserverContext = &AVCamRecorderConnections
 - (void) dealloc
 {
     [[self session] removeOutput:[self movieFileOutput]];
-	[session release];
-	[outputFileURL release];
+	self.session = nil;
+	self.outputFileURL = nil;
 	[movieFileOutput removeObserver:self forKeyPath:@"connections"];
-	[movieFileOutput release];
+	self.movieFileOutput = nil;
     [super dealloc];
 }
 
@@ -100,7 +99,7 @@ static void *AVCamRecorderConnectionsObserverContext = &AVCamRecorderConnections
 		if (videoConnection) {
 			// Opt in for video stabilization
 			if ([videoConnection isVideoStabilizationSupported])
-				[videoConnection setEnablesVideoStabilizationWhenAvailable:YES];
+				[videoConnection setPreferredVideoStabilizationMode:AVCaptureVideoStabilizationModeAuto];
 		}
 	}
 }
