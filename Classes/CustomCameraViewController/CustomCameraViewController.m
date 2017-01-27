@@ -13,6 +13,9 @@
 @end
 
 @implementation CustomCameraViewController
+@synthesize captureManager;
+@synthesize videoPreviewView;
+@synthesize captureVideoPreviewLayer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -24,15 +27,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
     if (self.captureManager == nil) {
         AVCamCaptureManager* manager = [[AVCamCaptureManager alloc] init];
         [self setCaptureManager:manager];
         [manager release];
         
         //[self.captureManager setDelegate:self];
-        
+        self.captureManager.delegate = self;
         if (self.captureManager.setupSession) {
             // Create video preview layer and add it to the UI
             AVCaptureVideoPreviewLayer*newCaptureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureManager.session];
@@ -57,8 +58,6 @@
             });
         }
     }
-    
-
     // Do any additional setup after loading the view.
 }
 
@@ -77,16 +76,52 @@
     return YES;
 }
 
-- (void)dealloc
-{
-    [self removeObserver:self forKeyPath:@"captureManager.videoInput.device.focusMode"];
-    [self.captureManager release];
-    [self.captureVideoPreviewLayer release];
-    [self.videoPreviewView release];
-    [self.snapButton release];
+//- (void)dealloc
+//{
+//    [super dealloc];
+//    [captureManager release];
+//    [captureVideoPreviewLayer release];
+//    [videoPreviewView release];
+//}
+
+//-(void)viewDidDisappear:(BOOL)animated{
+//    [super viewDidDisappear:animated];
+//    if (self.delegate) {
+//        [self.delegate customCameraImageCaptured:self.capturedImage];
+//    }
+//}
+
+-(IBAction)captureStillImage:(id)sender {
+    // Capture a still image
+    @try {
+        [self.captureManager captureStillImage];
+    }
+    @catch(NSException* iae) {
+        NSLog(@"%@", iae.reason);
+    }
     
-    [super dealloc];
+    // Flash the screen white and fade it out to give UI feedback that a still image was taken
+    UIView *flashView = [[UIView alloc] initWithFrame:self.view.frame];
+    [flashView setBackgroundColor:[UIColor whiteColor]];
+    [self.view.window addSubview:flashView];
+    [UIView animateWithDuration:.4f
+                     animations:^{
+                         [flashView setAlpha:0.f];
+                     }
+                     completion:^(BOOL finished){
+                         [flashView removeFromSuperview];
+                         [flashView release];
+                     }
+     ];
 }
+
+- (void)captureManagerStillImageCaptured:(UIImage *)image{
+    self.capturedImage = image;
+    if (self.delegate) {
+        [self.delegate customCameraImageCaptured:self withCapturedImage:image];
+    }
+}
+
 
 /*
 #pragma mark - Navigation

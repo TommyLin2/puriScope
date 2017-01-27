@@ -276,39 +276,18 @@
     if ([stillImageConnection isVideoOrientationSupported])
         [stillImageConnection setVideoOrientation:orientation];
     
-//    [[self stillImageOutput] captureStillImageAsynchronouslyFromConnection:stillImageConnection
-//                                                         completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
-//															 
-//															 ALAssetsLibraryWriteImageCompletionBlock completionBlock = ^(NSURL *assetURL, NSError *error) {
-//																 if (error) {
-//                                                                     if ([[self delegate] respondsToSelector:@selector(captureManager:didFailWithError:)]) {
-//                                                                         [[self delegate] captureManager:self didFailWithError:error];
-//                                                                         }
-//																 }
-//															 };
-//															 
-//															 if (imageDataSampleBuffer != NULL) {
-//																 NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-//																 ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-//																 
-//                                                                 UIImage *image = [[UIImage alloc] initWithData:imageData];
-//                                                                 
-//                                                                 [image release];
-//																 
-//                                                                 
-//																 //[library writeImageToSavedPhotosAlbum:[image CGImage]
-//																	//					   orientation:(ALAssetOrientation)[image imageOrientation]
-//																	//				   completionBlock:completionBlock];
-//																 
-//																 //[library release];
-//                                                             }
-//															 else
-//																 completionBlock(nil, error);
-//															 
-//															 if ([[self delegate] respondsToSelector:@selector(captureManagerStillImageCaptured:)]) {
-//																 [[self delegate] captureManagerStillImageCaptured:self];
-//															 }
-//                                                         }];
+    [[self stillImageOutput] captureStillImageAsynchronouslyFromConnection:stillImageConnection
+                                                         completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
+
+															 if (imageDataSampleBuffer != NULL) {
+																 NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+                                                                 UIImage *image = [[UIImage alloc] initWithData:imageData];
+                                                                 if (delegate) {
+                                                                     [delegate captureManagerStillImageCaptured:image];
+                                                                 }
+                                                                 [image release];
+                                                             }
+                                                         }];
 }
 
 // Toggle between the front and back camera, if both are present.

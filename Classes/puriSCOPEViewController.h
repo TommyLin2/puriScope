@@ -7,10 +7,11 @@
 #import "OptionsViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TypeSomethingViewController.h"
+#import "CustomCameraViewController.h"
 
 extern NSMutableArray *dDate;
 
-@interface puriSCOPEViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, OptionsViewControllerDelegate,TypeSomethingViewControllerDelegate, UITextFieldDelegate, UIActionSheetDelegate>
+@interface puriSCOPEViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, OptionsViewControllerDelegate,TypeSomethingViewControllerDelegate, UITextFieldDelegate, UIActionSheetDelegate,CustomCameraViewControllerDelegate>
 {
     //UIImageView *imageView;
 	UISegmentedControl *libsegcam;

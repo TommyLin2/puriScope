@@ -1333,11 +1333,7 @@ if(textField!=res0lab)
 		
 		
 	}
-	
-	
-	[self.delegate OptionsViewControllerDidFinish:self];	
-	
-	
+	[self.delegate OptionsViewControllerDidFinish:self];
 }
 
 
