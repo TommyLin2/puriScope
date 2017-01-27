@@ -540,7 +540,8 @@ BOOL picorimg,optorpic;
 
 - (IBAction)showImagePicker:(id)sender
 {
-    CustomCameraViewController *controller = [[CustomCameraViewController alloc] initWithNibName:@"CustomCameraViewController" bundle:nil];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"customcamera" bundle:[NSBundle mainBundle]];
+    CustomCameraViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"CustomCameraViewController"];
     controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:controller animated:NO completion:nil];
     [controller release];

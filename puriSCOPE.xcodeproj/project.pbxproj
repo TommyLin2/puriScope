@@ -17,11 +17,11 @@
 		594893FF14618B5F00B39BC0 /* puriscope.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 594893FE14618B5F00B39BC0 /* puriscope.pdf */; };
 		8D7E29B21E387430003C6583 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E29B11E387430003C6583 /* Default-568h@2x.png */; };
 		8DCD8F291E39D1A70077CD9C /* CustomCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F281E39D1A70077CD9C /* CustomCameraViewController.m */; };
-		8DCD8F2B1E39D21B0077CD9C /* CustomCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DCD8F2A1E39D21B0077CD9C /* CustomCameraViewController.xib */; };
 		8DCD8F3A1E3AD12F0077CD9C /* AVCamCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F351E3AD12F0077CD9C /* AVCamCaptureManager.m */; };
 		8DCD8F3B1E3AD12F0077CD9C /* AVCamRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F371E3AD12F0077CD9C /* AVCamRecorder.m */; };
 		8DCD8F3C1E3AD12F0077CD9C /* AVCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F391E3AD12F0077CD9C /* AVCamViewController.m */; };
 		8DCD8F3F1E3AD38B0077CD9C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DCD8F251E39D14D0077CD9C /* AVFoundation.framework */; };
+		8DCD8F421E3AD92B0077CD9C /* customcamera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DCD8F411E3AD92B0077CD9C /* customcamera.storyboard */; };
 		E94743A1119D1983000FB9F4 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E94743A0119D1983000FB9F4 /* icon.png */; };
 		E95585DE11895E05005BC2B7 /* Capture.png in Resources */ = {isa = PBXBuildFile; fileRef = E95585D711895E05005BC2B7 /* Capture.png */; };
 		E95585DF11895E05005BC2B7 /* DeleteReport.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E95585D811895E05005BC2B7 /* DeleteReport.jpg */; };
@@ -72,7 +72,6 @@
 		8DCD8F251E39D14D0077CD9C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8DCD8F271E39D1A70077CD9C /* CustomCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCameraViewController.h; path = CustomCameraViewController/CustomCameraViewController.h; sourceTree = "<group>"; };
 		8DCD8F281E39D1A70077CD9C /* CustomCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCameraViewController.m; path = CustomCameraViewController/CustomCameraViewController.m; sourceTree = "<group>"; };
-		8DCD8F2A1E39D21B0077CD9C /* CustomCameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomCameraViewController.xib; path = Resources/XIB/CustomCameraViewController.xib; sourceTree = "<group>"; };
 		8DCD8F341E3AD12F0077CD9C /* AVCamCaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AVCamCaptureManager.h; path = AVCam/AVCamCaptureManager.h; sourceTree = "<group>"; };
 		8DCD8F351E3AD12F0077CD9C /* AVCamCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AVCamCaptureManager.m; path = AVCam/AVCamCaptureManager.m; sourceTree = "<group>"; };
 		8DCD8F361E3AD12F0077CD9C /* AVCamRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AVCamRecorder.h; path = AVCam/AVCamRecorder.h; sourceTree = "<group>"; };
@@ -80,6 +79,7 @@
 		8DCD8F381E3AD12F0077CD9C /* AVCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AVCamViewController.h; path = AVCam/AVCamViewController.h; sourceTree = "<group>"; };
 		8DCD8F391E3AD12F0077CD9C /* AVCamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AVCamViewController.m; path = AVCam/AVCamViewController.m; sourceTree = "<group>"; };
 		8DCD8F3D1E3AD2ED0077CD9C /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		8DCD8F411E3AD92B0077CD9C /* customcamera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = customcamera.storyboard; path = Resources/storyboard/customcamera.storyboard; sourceTree = "<group>"; };
 		E94743A0119D1983000FB9F4 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		E95585D711895E05005BC2B7 /* Capture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Capture.png; path = Resources/Images/Capture.png; sourceTree = "<group>"; };
 		E95585D811895E05005BC2B7 /* DeleteReport.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = DeleteReport.jpg; path = Resources/Images/DeleteReport.jpg; sourceTree = "<group>"; };
@@ -194,6 +194,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8DCD8F401E3AD9050077CD9C /* storyboard */,
 				594893FE14618B5F00B39BC0 /* puriscope.pdf */,
 				E94743A0119D1983000FB9F4 /* icon.png */,
 				E95585FE11895E5C005BC2B7 /* Default.png */,
@@ -232,10 +233,17 @@
 			name = AVCam;
 			sourceTree = "<group>";
 		};
+		8DCD8F401E3AD9050077CD9C /* storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				8DCD8F411E3AD92B0077CD9C /* customcamera.storyboard */,
+			);
+			name = storyboard;
+			sourceTree = "<group>";
+		};
 		E95585C511895C21005BC2B7 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
-				8DCD8F2A1E39D21B0077CD9C /* CustomCameraViewController.xib */,
 				E9B7569E1199E352001F5015 /* OptionsView.xib */,
 				E9A50C841191B21A0082EA4B /* PDFView.xib */,
 				E95585E511895E16005BC2B7 /* MainWindow.xib */,
@@ -326,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E95585DE11895E05005BC2B7 /* Capture.png in Resources */,
+				8DCD8F421E3AD92B0077CD9C /* customcamera.storyboard in Resources */,
 				E95585DF11895E05005BC2B7 /* DeleteReport.jpg in Resources */,
 				E95585E011895E05005BC2B7 /* dgrayslide.png in Resources */,
 				E95585E111895E05005BC2B7 /* info.png in Resources */,
@@ -339,7 +348,6 @@
 				8D7E29B21E387430003C6583 /* Default-568h@2x.png in Resources */,
 				E975B8DF1189CFA000062D4D /* slidemenu.png in Resources */,
 				E975B8EE1189D17600062D4D /* slider_ball.png in Resources */,
-				8DCD8F2B1E39D21B0077CD9C /* CustomCameraViewController.xib in Resources */,
 				E975B8EF1189D17600062D4D /* Smiley_green.png in Resources */,
 				E975B8F01189D17600062D4D /* Smiley_pink.png in Resources */,
 				E975B8F11189D17600062D4D /* Smiley_yellow.png in Resources */,

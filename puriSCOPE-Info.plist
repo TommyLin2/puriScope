@@ -46,6 +46,8 @@
 	<string>$(PRODUCT_NAME) uses camera</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) uses photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) uses photos</string>
 	<key>UIFileSharingEnabled</key>

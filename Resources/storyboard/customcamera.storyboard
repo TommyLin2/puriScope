@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Custom Camera View Controller-->
+        <scene sceneID="Rgx-3U-oZy">
+            <objects>
+                <viewController storyboardIdentifier="CustomCameraViewController" id="H6W-UW-kON" customClass="CustomCameraViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="25H-h1-6gB"/>
+                        <viewControllerLayoutGuide type="bottom" id="cLm-Lq-N5A"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="s5i-np-ucJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZJQ-Xx-sqt">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zKr-K4-EPw">
+                                        <rect key="frame" x="170" y="599" width="34" height="30"/>
+                                        <state key="normal" title="Start"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="zKr-K4-EPw" firstAttribute="centerX" secondItem="ZJQ-Xx-sqt" secondAttribute="centerX" id="1ca-nT-3UY"/>
+                                    <constraint firstAttribute="bottom" secondItem="zKr-K4-EPw" secondAttribute="bottom" constant="38" id="P7d-nn-l45"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZJQ-Xx-sqt" firstAttribute="leading" secondItem="s5i-np-ucJ" secondAttribute="leading" id="4m6-3j-us1"/>
+                            <constraint firstItem="cLm-Lq-N5A" firstAttribute="top" secondItem="ZJQ-Xx-sqt" secondAttribute="bottom" id="TiX-0h-RYi"/>
+                            <constraint firstAttribute="trailing" secondItem="ZJQ-Xx-sqt" secondAttribute="trailing" id="n5s-Tk-v4n"/>
+                            <constraint firstItem="ZJQ-Xx-sqt" firstAttribute="top" secondItem="s5i-np-ucJ" secondAttribute="top" id="oHI-IG-16Y"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="videoPreviewView" destination="ZJQ-Xx-sqt" id="0VB-rZ-AtV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ARD-lu-6UT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="357.60000000000002" y="179.46026986506749"/>
+        </scene>
+    </scenes>
+</document>
