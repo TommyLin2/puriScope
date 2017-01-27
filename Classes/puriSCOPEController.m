@@ -735,8 +735,7 @@ BOOL picorimg,optorpic;
 	personLabel.text=pperson;
 	namelabel.text=pperson;
 	vwslidemenu.hidden=TRUE;
-    [self dismissModalViewControllerAnimated:YES];    
-	
+    [self dismissViewControllerAnimated:YES completion:nil];
 	if([[NSUserDefaults standardUserDefaults] boolForKey:@"savereport"]==TRUE)
 	{
 	
@@ -759,7 +758,7 @@ BOOL picorimg,optorpic;
 		UIImageWriteToSavedPhotosAlbum(viewImage, self, nil, nil); 
 		[self alertDone];
 		
-		getImage.hidden=FALSE;;
+		getImage.hidden=FALSE;
 		getPhoto.hidden=FALSE;
 		save.hidden=FALSE;
 		btnoptions.hidden=FALSE;
@@ -789,7 +788,6 @@ BOOL picorimg,optorpic;
 		pperson=@"";
 		nname=@"";
 	}
-	
 
 	NSString *ddate = [timeLabel.text stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
 	NSString *dcustomer = [pperson stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
@@ -841,7 +839,7 @@ BOOL picorimg,optorpic;
 	{dugormg = @"-";
 	}else
     {
-dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
+        dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
     }
 	
 	NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
@@ -883,7 +881,7 @@ dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
 	firstrun=0;
 	TypeSomethingViewController *typeSomethingViewController = [[TypeSomethingViewController alloc] init];
 	typeSomethingViewController.delegate = self;
-	[self presentModalViewController:typeSomethingViewController animated:YES];
+    [self presentViewController:typeSomethingViewController animated:YES completion:nil];
 	[typeSomethingViewController release];
 }
 
@@ -893,8 +891,7 @@ dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
 	controller.delegate = self;
 	
 	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self presentModalViewController:controller animated:YES];
-	
+    [self presentViewController:controller animated:YES completion:nil];
 	[controller release];
 }
 
@@ -913,7 +910,7 @@ dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
         controller.delegate = self;
 	
         controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentModalViewController:controller animated:YES];
+        [self presentViewController:controller animated:YES completion:nil];
 	
         [controller release];
         if( ugormg==0)
@@ -985,8 +982,7 @@ dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
 }
 
 - (void)OptionsViewControllerDidFinish:(OptionsViewController *)controller {
-    
-	[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 	if( ugormg==FALSE)
 	{
         lblugormg.text = @"ug/cm2 Organic";
@@ -1439,9 +1435,8 @@ dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
     }	
 
 	
-
-	[self dismissModalViewControllerAnimated:YES];
-	CGContextRelease(bitmapcrop1); 
+    [self dismissViewControllerAnimated:YES completion:nil];
+	CGContextRelease(bitmapcrop1);
 	//CGImageRelease(ref);
 	//[picker release];
 }
@@ -1453,7 +1448,7 @@ dugormg = [NSString stringWithFormat:@"\"%@\"",dugormg];
     
 	//[[picker parentViewController]dismissModalViewControllerAnimated:YES];
 
-	[self dismissModalViewControllerAnimated:YES];    
+    [self dismissViewControllerAnimated:YES completion:nil];
 	
 	//[picker release];
 }
