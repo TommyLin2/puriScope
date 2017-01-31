@@ -20,11 +20,14 @@
 		8D1E00391E40669400583F53 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1E00381E40669400583F53 /* Accelerate.framework */; };
 		8D1E003B1E4075FF00583F53 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1E003A1E4075FF00583F53 /* CoreVideo.framework */; };
 		8D1E003D1E40760A00583F53 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1E003C1E40760A00583F53 /* CoreMedia.framework */; };
+		8D1E00481E409C4800583F53 /* Inception3Net.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1E00461E409C4800583F53 /* Inception3Net.swift */; };
+		8D1E00491E409C4800583F53 /* Inception3Net+result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1E00471E409C4800583F53 /* Inception3Net+result.swift */; };
+		8D1E004D1E409D4800583F53 /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1E004B1E409D4800583F53 /* DrawView.swift */; };
+		8D1E004E1E409D4800583F53 /* SlimMPSCNN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1E004C1E409D4800583F53 /* SlimMPSCNN.swift */; };
 		8D7E29B21E387430003C6583 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E29B11E387430003C6583 /* Default-568h@2x.png */; };
 		8DCD8F291E39D1A70077CD9C /* CustomCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F281E39D1A70077CD9C /* CustomCameraViewController.m */; };
 		8DCD8F3A1E3AD12F0077CD9C /* AVCamCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F351E3AD12F0077CD9C /* AVCamCaptureManager.m */; };
 		8DCD8F3B1E3AD12F0077CD9C /* AVCamRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F371E3AD12F0077CD9C /* AVCamRecorder.m */; };
-		8DCD8F3C1E3AD12F0077CD9C /* AVCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F391E3AD12F0077CD9C /* AVCamViewController.m */; };
 		8DCD8F3F1E3AD38B0077CD9C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DCD8F251E39D14D0077CD9C /* AVFoundation.framework */; };
 		8DCD8F421E3AD92B0077CD9C /* customcamera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DCD8F411E3AD92B0077CD9C /* customcamera.storyboard */; };
 		E94743A1119D1983000FB9F4 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E94743A0119D1983000FB9F4 /* icon.png */; };
@@ -78,6 +81,11 @@
 		8D1E00381E40669400583F53 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		8D1E003A1E4075FF00583F53 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		8D1E003C1E40760A00583F53 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		8D1E00451E409C4700583F53 /* puriSCOPE-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "puriSCOPE-Bridging-Header.h"; sourceTree = "<group>"; };
+		8D1E00461E409C4800583F53 /* Inception3Net.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Inception3Net.swift; path = Vendor/ImageRecognition/Inception3Net.swift; sourceTree = "<group>"; };
+		8D1E00471E409C4800583F53 /* Inception3Net+result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Inception3Net+result.swift"; path = "Vendor/ImageRecognition/Inception3Net+result.swift"; sourceTree = "<group>"; };
+		8D1E004B1E409D4800583F53 /* DrawView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawView.swift; path = Vendor/ImageRecognition/MetalCNNBasicApple/DrawView.swift; sourceTree = "<group>"; };
+		8D1E004C1E409D4800583F53 /* SlimMPSCNN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlimMPSCNN.swift; path = Vendor/ImageRecognition/MetalCNNBasicApple/SlimMPSCNN.swift; sourceTree = "<group>"; };
 		8D7E29B11E387430003C6583 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8DCD8F251E39D14D0077CD9C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8DCD8F271E39D1A70077CD9C /* CustomCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCameraViewController.h; path = CustomCameraViewController/CustomCameraViewController.h; sourceTree = "<group>"; };
@@ -86,8 +94,6 @@
 		8DCD8F351E3AD12F0077CD9C /* AVCamCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AVCamCaptureManager.m; path = AVCam/AVCamCaptureManager.m; sourceTree = "<group>"; };
 		8DCD8F361E3AD12F0077CD9C /* AVCamRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AVCamRecorder.h; path = AVCam/AVCamRecorder.h; sourceTree = "<group>"; };
 		8DCD8F371E3AD12F0077CD9C /* AVCamRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AVCamRecorder.m; path = AVCam/AVCamRecorder.m; sourceTree = "<group>"; };
-		8DCD8F381E3AD12F0077CD9C /* AVCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AVCamViewController.h; path = AVCam/AVCamViewController.h; sourceTree = "<group>"; };
-		8DCD8F391E3AD12F0077CD9C /* AVCamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AVCamViewController.m; path = AVCam/AVCamViewController.m; sourceTree = "<group>"; };
 		8DCD8F3D1E3AD2ED0077CD9C /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		8DCD8F411E3AD92B0077CD9C /* customcamera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = customcamera.storyboard; path = Resources/storyboard/customcamera.storyboard; sourceTree = "<group>"; };
 		E94743A0119D1983000FB9F4 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -184,7 +190,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				8DCD8F331E3ACFAE0077CD9C /* AVCam */,
+				8D1E00441E409BF400583F53 /* Vendor */,
 				8D7E29B11E387430003C6583 /* Default-568h@2x.png */,
 				590DCB321467F3B200549041 /* Default@2x.png */,
 				590DCB2D1467ED3300549041 /* puriSCOPE_114.png */,
@@ -240,6 +246,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8D1E00421E40999300583F53 /* ImageRecognition */ = {
+			isa = PBXGroup;
+			children = (
+				8D1E004A1E409C9000583F53 /* Common */,
+				8D1E00461E409C4800583F53 /* Inception3Net.swift */,
+				8D1E00471E409C4800583F53 /* Inception3Net+result.swift */,
+				8D1E00451E409C4700583F53 /* puriSCOPE-Bridging-Header.h */,
+			);
+			name = ImageRecognition;
+			sourceTree = "<group>";
+		};
+		8D1E00441E409BF400583F53 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				8D1E00421E40999300583F53 /* ImageRecognition */,
+				8DCD8F331E3ACFAE0077CD9C /* AVCam */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		8D1E004A1E409C9000583F53 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8D1E004B1E409D4800583F53 /* DrawView.swift */,
+				8D1E004C1E409D4800583F53 /* SlimMPSCNN.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		8DCD8F331E3ACFAE0077CD9C /* AVCam */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,8 +282,6 @@
 				8DCD8F351E3AD12F0077CD9C /* AVCamCaptureManager.m */,
 				8DCD8F361E3AD12F0077CD9C /* AVCamRecorder.h */,
 				8DCD8F371E3AD12F0077CD9C /* AVCamRecorder.m */,
-				8DCD8F381E3AD12F0077CD9C /* AVCamViewController.h */,
-				8DCD8F391E3AD12F0077CD9C /* AVCamViewController.m */,
 			);
 			name = AVCam;
 			sourceTree = "<group>";
@@ -325,6 +358,7 @@
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = 8H9MRT29Y9;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -393,12 +427,15 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				8DCD8F3A1E3AD12F0077CD9C /* AVCamCaptureManager.m in Sources */,
+				8D1E004D1E409D4800583F53 /* DrawView.swift in Sources */,
 				1D3623260D0F684500981E51 /* puriSCOPEAppDelegate.m in Sources */,
 				8DCD8F291E39D1A70077CD9C /* CustomCameraViewController.m in Sources */,
 				8DCD8F3B1E3AD12F0077CD9C /* AVCamRecorder.m in Sources */,
+				8D1E00481E409C4800583F53 /* Inception3Net.swift in Sources */,
 				E95585F611895E3E005BC2B7 /* OptionsViewController.m in Sources */,
+				8D1E004E1E409D4800583F53 /* SlimMPSCNN.swift in Sources */,
 				E95585F711895E3E005BC2B7 /* puriSCOPEController.m in Sources */,
-				8DCD8F3C1E3AD12F0077CD9C /* AVCamViewController.m in Sources */,
+				8D1E00491E409C4800583F53 /* Inception3Net+result.swift in Sources */,
 				E95585F911895E3E005BC2B7 /* TypeSomethingViewController.m in Sources */,
 				E95585FA11895E3E005BC2B7 /* UIDeviceHardware.m in Sources */,
 				E9A50C24119197F40082EA4B /* PDFViewController.m in Sources */,
@@ -413,6 +450,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -423,12 +461,16 @@
 				GCC_PREFIX_HEADER = puriSCOPE_Prefix.pch;
 				INFOPLIST_FILE = "puriSCOPE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_BUNDLE_IDENTIFIER = net.thonhauser.puriscope.test;
 				PRODUCT_NAME = puriSCOPE;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "puriSCOPE-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -438,6 +480,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -446,12 +489,15 @@
 				GCC_PREFIX_HEADER = puriSCOPE_Prefix.pch;
 				INFOPLIST_FILE = "puriSCOPE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_BUNDLE_IDENTIFIER = net.thonhauser.puriscope.test;
 				PRODUCT_NAME = puriSCOPE;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "puriSCOPE-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -515,6 +561,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -523,12 +570,15 @@
 				GCC_PREFIX_HEADER = puriSCOPE_Prefix.pch;
 				INFOPLIST_FILE = "puriSCOPE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_BUNDLE_IDENTIFIER = net.thonhauser.puriscope.test;
 				PRODUCT_NAME = puriSCOPE;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "puriSCOPE-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Distribution;
