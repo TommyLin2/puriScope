@@ -9,6 +9,7 @@
 #import "CustomCameraViewController.h"
 
 @interface CustomCameraViewController ()
+- (Inception3Net *)returnSwiftClassInstance;
 
 @end
 
@@ -118,38 +119,12 @@
 
 - (void)initMTLDevice{
     self.device = MTLCreateSystemDefaultDevice();
-//    guard MPSSupportsMTLDevice(device) else {
-//        showAlert(title: "Not Supported", message: "MetalPerformanceShaders is not supported on current device", handler: { (action) in
-//            self.navigationController!.popViewController(animated: true)
-//        })
-//        return
-//    }
-//    
-//    let spec = VideoSpec(fps: 3, size: CGSize(width: 1280, height: 720))
-//    videoCapture = VideoCapture(cameraType: .back,
-//                                preferredSpec: spec,
-//                                previewContainer: previewView.layer)
-//    videoCapture.imageBufferHandler = {[unowned self] (imageBuffer, timestamp, outputBuffer) in
-//        let ciImage = CIImage(cvPixelBuffer: imageBuffer)
-//        guard let cgImage = self.ciContext.createCGImage(ciImage, from: ciImage.extent) else {return}
-//        
-//        // get a texture from this CGImage
-//        do {
-//            self.sourceTexture = try self.textureLoader.newTexture(with: cgImage, options: [:])
-//        }
-//        catch let error as NSError {
-//            fatalError("Unexpected error ocurred: \(error.localizedDescription).")
-//        }
-//        // run inference neural network to get predictions and display them
-//        self.runNetwork()
-//    }
-//    
-//    // Load any resources required for rendering.
-//    
-//    // Create new command queue.
-//    commandQueue = device!.makeCommandQueue()
-//    
-//    // make a textureLoader to get our input images as MTLTextures
+    
+    self.commandQueue = [self.device newCommandQueue];
+    self.textureLoader = [MTKTextureLoader init];
+    [self.textureLoader initWithDevice:self.device];
+    
+    // make a textureLoader to get our input images as MTLTextures
 //    textureLoader = MTKTextureLoader(device: device!)
 //    
 //    // Load the appropriate Network
@@ -157,7 +132,7 @@
 //    
 //    // we use this CIContext as one of the steps to get a MTLTexture
 //    ciContext = CIContext.init(mtlDevice: device)
-
+    self.ciContext = [CIContext contextWithMTLDevice:self.device];
 }
 
 

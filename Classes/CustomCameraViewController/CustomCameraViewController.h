@@ -11,6 +11,9 @@
 #import <MetalKit/MetalKit.h>
 #import <Metal/Metal.h>
 #import <MetalPerformanceShaders/MetalPerformanceShaders.h>
+#import "AVCamCaptureManager.h"
+
+@class Inception3Net;
 
 @class CustomCameraViewController;
 @protocol CustomCameraViewControllerDelegate <NSObject>
@@ -18,6 +21,7 @@
 @end
 
 @interface CustomCameraViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,AVCamCaptureManagerDelegate,AVCaptureVideoDataOutputSampleBufferDelegate> {
+
 }
 
 
@@ -29,9 +33,12 @@
 @property (nonatomic, assign) id <CustomCameraViewControllerDelegate> delegate;
 @property (strong, nonatomic) UIImage *capturedImage;
 
+@property (strong, nonatomic) Inception3Net *inception3Net;
+
 @property (nonatomic, assign) id <MTLDevice> device;
+
 @property (nonatomic, assign) id <MTLCommandQueue> commandQueue;
-@property (nonatomic, strong) MTKTextureLoader *MTKTextureLoader;
+@property (nonatomic, strong) MTKTextureLoader *textureLoader;
 
 @property (nonatomic, strong) CIContext *ciContext;
 @property (nonatomic, assign) id <MTLTexture> sourceTexture;

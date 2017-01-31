@@ -27,8 +27,8 @@ let textureFormat = MPSImageFeatureChannelFormat.float16
     * [Original Inception_v3 Network Paper](http://arxiv.org/pdf/1512.00567v3.pdf)
  
  */
-class Inception3Net{
-    
+  class  Inception3Net{
+
     // we keep the MTLDevice and MTLCommandQueue objects around for ease of use
     var device : MTLDevice!
     var commandQueue : MTLCommandQueue
