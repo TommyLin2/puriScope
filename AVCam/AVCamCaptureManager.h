@@ -51,11 +51,12 @@
 @class AVCamRecorder;
 @protocol AVCamCaptureManagerDelegate;
 
-@interface AVCamCaptureManager : NSObject {
+@interface AVCamCaptureManager : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate> {
 }
 
 @property (nonatomic,retain) AVCaptureSession *session;
 @property (nonatomic,assign) AVCaptureVideoOrientation orientation;
+@property (nonatomic,retain) AVCaptureVideoDataOutput *videoOutput;
 @property (nonatomic,retain) AVCaptureDeviceInput *videoInput;
 @property (nonatomic,retain) AVCaptureDeviceInput *audioInput;
 @property (nonatomic,retain) AVCaptureStillImageOutput *stillImageOutput;
@@ -64,6 +65,8 @@
 @property (nonatomic,assign) id deviceDisconnectedObserver;
 @property (nonatomic,assign) UIBackgroundTaskIdentifier backgroundRecordingID;
 @property (nonatomic,assign) id <AVCamCaptureManagerDelegate> delegate;
+
+@property (nonatomic,retain) AVCaptureDevice *videoDevice;
 
 
 
@@ -76,6 +79,7 @@
 - (NSUInteger) micCount;
 - (void) autoFocusAtPoint:(CGPoint)point;
 - (void) continuousFocusAtPoint:(CGPoint)point;
+- (void)setupCaptureSession;
 
 @end
 

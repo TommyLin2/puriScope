@@ -24,40 +24,13 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-    if (self.captureManager == nil) {
-        AVCamCaptureManager* manager = [[[AVCamCaptureManager alloc] init] autorelease];
-        [self setCaptureManager:manager];
-        
-        //[self.captureManager setDelegate:self];
-        self.captureManager.delegate = self;
-        if (self.captureManager.setupSession) {
-            // Create video preview layer and add it to the UI
-            AVCaptureVideoPreviewLayer*newCaptureVideoPreviewLayer = [[[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureManager.session] autorelease];
-            UIView* view = self.videoPreviewView;
-            CALayer* viewLayer = view.layer;
-            //[viewLayer setMasksToBounds:YES];
-            
-            CGRect bounds = view.bounds;
-            [newCaptureVideoPreviewLayer setFrame:bounds];
-            
-            [newCaptureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-            
-            [viewLayer insertSublayer:newCaptureVideoPreviewLayer
-                                below:[viewLayer.sublayers objectAtIndex:0]];
-            
-            [self setCaptureVideoPreviewLayer:newCaptureVideoPreviewLayer];
-            
-            // Start the session. This is done asychronously since -startRunning doesn't return until the session is running.
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [[self.captureManager session] startRunning];
-                [self initCaptureDevice];
-            });
-        }
-    }
+    [self initVideoCaptureSession];
     // Do any additional setup after loading the view.
 }
 
@@ -80,7 +53,6 @@
 {
     self.captureManager = nil;
     self.captureVideoPreviewLayer = nil;
-
     [super dealloc];
 }
 
@@ -118,6 +90,31 @@
     });
 }
 
+- (void)initVideoCaptureSession{
+    if (self.captureManager == nil) {
+        AVCamCaptureManager* manager = [[[AVCamCaptureManager alloc] init] autorelease];
+        [self setCaptureManager:manager];
+        self.captureManager.delegate = self;
+        [self.captureManager setupCaptureSession];
+        AVCaptureVideoPreviewLayer*newCaptureVideoPreviewLayer = [[[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureManager.session] autorelease];
+        UIView* view = self.videoPreviewView;
+        CALayer* viewLayer = view.layer;
+        //[viewLayer setMasksToBounds:YES];
+        CGRect bounds = view.bounds;
+        [newCaptureVideoPreviewLayer setFrame:bounds];
+        
+        [newCaptureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+        
+        [viewLayer insertSublayer:newCaptureVideoPreviewLayer
+                            below:[viewLayer.sublayers objectAtIndex:0]];
+        
+        [self setCaptureVideoPreviewLayer:newCaptureVideoPreviewLayer];
+        // Start the session. This is done asychronously since -startRunning doesn't return until the session is running.
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [[self.captureManager session] startRunning];
+        });
+    }
+}
 
 - (void)initMTLDevice{
     self.device = MTLCreateSystemDefaultDevice();
@@ -163,75 +160,6 @@
 
 }
 
--(void)initCaptureDevice{
-    
-    AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
-    output.alwaysDiscardsLateVideoFrames = true;
-    
-    // Configure your output.
-    dispatch_queue_t queue = dispatch_queue_create("myQueue", NULL);
-    [output setSampleBufferDelegate:self queue:queue];
-    if (![self.captureManager.session canAddOutput:output]) {
-        NSLog(@"error: cannot Add output");
-        return;
-    }
-    [self.captureManager.session addOutput:output];
-    // Specify the pixel format
-    output.videoSettings =
-    [NSDictionary dictionaryWithObject:
-     [NSNumber numberWithInt:kCVPixelFormatType_32BGRA]
-                                forKey:(id)kCVPixelBufferPixelFormatTypeKey];
-
-}
-
-- (void)captureOutput:(AVCaptureOutput *)captureOutput
-didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
-       fromConnection:(AVCaptureConnection *)connection
-{
-    // Create a UIImage from the sample buffer data
-    [connection setVideoOrientation:AVCaptureVideoOrientationLandscapeLeft];
-//    UIImage *image = [self imageFromSampleBuffer:sampleBuffer];
-}
-// Create a UIImage from sample buffer data
-//- (UIImage *) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer
-//{
-    // Get a CMSampleBuffer's Core Video image buffer for the media data
-//    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-//    // Lock the base address of the pixel buffer
-//    CVPixelBufferLockBaseAddress(imageBuffer, 0);
-//    
-//    // Get the number of bytes per row for the pixel buffer
-//    void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
-//    
-//    // Get the number of bytes per row for the pixel buffer
-//    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-//    // Get the pixel buffer width and height
-//    size_t width = CVPixelBufferGetWidth(imageBuffer);
-//    size_t height = CVPixelBufferGetHeight(imageBuffer);
-//    
-//    // Create a device-dependent RGB color space
-//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-//    
-//    // Create a bitmap graphics context with the sample buffer data
-//    CGContextRef context = CGBitmapContextCreate(baseAddress, width, height, 8,
-//                                                 bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
-//    // Create a Quartz image from the pixel data in the bitmap graphics context
-//    CGImageRef quartzImage = CGBitmapContextCreateImage(context);
-//    // Unlock the pixel buffer
-//    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
-//    
-//    // Free up the context and color space
-//    CGContextRelease(context);
-//    CGColorSpaceRelease(colorSpace);
-//    
-//    // Create an image object from the Quartz image
-//    UIImage *image = [UIImage imageWithCGImage:quartzImage];
-//    
-//    // Release the Quartz image
-//    CGImageRelease(quartzImage);
-    
-//    return (image);
-//}
 
 
 /*
