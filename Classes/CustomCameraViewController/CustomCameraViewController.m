@@ -161,6 +161,9 @@
 }
 
 
+- (void) captureManagerRealTimeImageCaptured:(CVImageBufferRef )imageBuffer withTimeStamp:(CMTime)timeStamp{
+
+}
 
 /*
 #pragma mark - Navigation

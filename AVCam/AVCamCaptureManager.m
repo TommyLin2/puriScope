@@ -80,6 +80,7 @@
 @synthesize deviceDisconnectedObserver;
 @synthesize backgroundRecordingID;
 @synthesize delegate;
+@synthesize videoConnection;
 
 - (id) init
 {
@@ -285,7 +286,8 @@
      [NSNumber numberWithInt:kCVPixelFormatType_32BGRA]
                                 forKey:(id)kCVPixelBufferPixelFormatTypeKey];
     
-    
+    videoConnection = [output connectionWithMediaType:AVMediaTypeVideo];
+
     // If you wish to cap the frame rate to a known value, such as 15 fps, set
     // minFrameDuration.
     output.minFrameDuration = CMTimeMake(1, 15);
@@ -302,8 +304,14 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection
 {
     // Create a UIImage from the sample buffer data
-    UIImage *image = [self imageFromSampleBuffer:sampleBuffer];
-    
+//    UIImage *image = [self imageFromSampleBuffer:sampleBuffer];
+    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    CMTime timeStamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
+//    ReaTimeVideoCaptureData *realTimeVideoCaptureData = [[ReaTimeVideoCaptureData init] autorelease];
+//    realTimeVideoCaptureData = [realTimeVideoCaptureData initWithImageBuffer:imageBuffer andOutputBuffer:nil andTimeStamp:timeStamp];
+    if(self.delegate){
+        [self.delegate captureManagerRealTimeImageCaptured:imageBuffer withTimeStamp:timeStamp];
+    }
 }
 
 - (UIImage *) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer

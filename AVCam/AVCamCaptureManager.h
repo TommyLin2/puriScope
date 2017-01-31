@@ -67,8 +67,7 @@
 @property (nonatomic,assign) id <AVCamCaptureManagerDelegate> delegate;
 
 @property (nonatomic,retain) AVCaptureDevice *videoDevice;
-
-
+@property (nonatomic,retain) AVCaptureConnection *videoConnection;
 
 - (BOOL) setupSession;
 - (void) startRecording;
@@ -79,7 +78,7 @@
 - (NSUInteger) micCount;
 - (void) autoFocusAtPoint:(CGPoint)point;
 - (void) continuousFocusAtPoint:(CGPoint)point;
-- (void)setupCaptureSession;
+- (void) setupCaptureSession;
 
 @end
 
@@ -91,4 +90,5 @@
 - (void) captureManagerRecordingFinished:(AVCamCaptureManager *)captureManager;
 - (void) captureManagerStillImageCaptured:(UIImage *)image;
 - (void) captureManagerDeviceConfigurationChanged:(AVCamCaptureManager *)captureManager;
+- (void) captureManagerRealTimeImageCaptured:(CVImageBufferRef )imageBuffer withTimeStamp:(CMTime)timeStamp;
 @end
