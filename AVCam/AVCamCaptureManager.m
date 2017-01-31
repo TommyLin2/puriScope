@@ -466,7 +466,6 @@ bail:
 
 @end
 
-
 #pragma mark -
 @implementation AVCamCaptureManager (RecorderDelegate)
 
