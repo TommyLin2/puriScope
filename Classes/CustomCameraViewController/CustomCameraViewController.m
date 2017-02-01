@@ -7,9 +7,13 @@
 //
 
 #import "CustomCameraViewController.h"
+#import "puriSCOPE-Swift.h"
+
+@class Inception3Net;
 
 @interface CustomCameraViewController ()
-- (Inception3Net *)returnSwiftClassInstance;
+
+@property (strong, nonatomic) Inception3Net *inception3Net;
 
 @end
 
@@ -27,11 +31,12 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self initVideoCaptureSession];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initVideoCaptureSession];
+    [self initMTLDevice];
     // Do any additional setup after loading the view.
 }
 
@@ -121,26 +126,83 @@
     self.device = MTLCreateSystemDefaultDevice();
     
     self.commandQueue = [self.device newCommandQueue];
-    self.textureLoader = [MTKTextureLoader init];
-    [self.textureLoader initWithDevice:self.device];
+    self.textureLoader = [[MTKTextureLoader alloc] initWithDevice:self.device];
     
-    // make a textureLoader to get our input images as MTLTextures
-//    textureLoader = MTKTextureLoader(device: device!)
-//    
-//    // Load the appropriate Network
-//    inception3Net = Inception3Net(withCommandQueue: commandQueue)
-//    
-//    // we use this CIContext as one of the steps to get a MTLTexture
-//    ciContext = CIContext.init(mtlDevice: device)
+    self.inception3Net = [[Inception3Net alloc] initWithCommandQueue:self.commandQueue];
+    
     self.ciContext = [CIContext contextWithMTLDevice:self.device];
 }
 
-
 - (void) captureManagerRealTimeImageCaptured:(CVImageBufferRef )imageBuffer withTimeStamp:(CMTime)timeStamp{
+    CIImage *ciImage = [[[CIImage alloc] initWithCVImageBuffer:imageBuffer] autorelease];
+    CGImageRef cgImageRef = [self.ciContext createCGImage:ciImage fromRect:ciImage.extent];
+    if (cgImageRef) {
+        self.sourceTexture = [self.textureLoader newTextureWithCGImage:cgImageRef options:nil error:nil];
+    }
+    else{
+        return;
+    }
 
+    [self runNetWork];
 }
 
-- (void)runNetWork{    
+- (void)runNetWork{
+//    let startTime = CACurrentMediaTime()
+//    
+//    // to deliver optimal performance we leave some resources used in MPSCNN to be released at next call of autoreleasepool,
+//    // so the user can decide the appropriate time to release this
+//    autoreleasepool{
+//        // encoding command buffer
+//        let commandBuffer = commandQueue.makeCommandBuffer()
+//        
+//        // encode all layers of network on present commandBuffer, pass in the input image MTLTexture
+//        inception3Net.forward(commandBuffer: commandBuffer, sourceTexture: sourceTexture)
+//        
+//        // commit the commandBuffer and wait for completion on CPU
+//        commandBuffer.commit()
+//        commandBuffer.waitUntilCompleted()
+//        
+//        // display top-5 predictions for what the object should be labelled
+//        var resultStr = ""
+//        inception3Net.getResults().forEach({ (label, prob) in
+//            resultStr = resultStr + label + "\t" + String(format: "%.1f", prob * 100) + "%\n\n"
+//        })
+//        
+//        DispatchQueue.main.async {
+//            self.predictLabel.text = resultStr
+//        }
+//    }
+//    
+//    let endTime = CACurrentMediaTime()
+//    print("Running Time: \(endTime - startTime) [sec]")
+    
+    @autoreleasepool {
+        id<MTLCommandBuffer> commandBuffer = [self.commandQueue commandBuffer];
+        [self.inception3Net forwardWithCommandBuffer:commandBuffer sourceTexture:self.sourceTexture];
+        [commandBuffer commit];
+        [commandBuffer waitUntilCompleted];
+        
+        NSArray* array = self.inception3Net.getResults;
+        NSLog(@"result - %@", array);
+
+        /*
+         commandBuffer.commit()
+         commandBuffer.waitUntilCompleted()
+         
+         // display top-5 predictions for what the object should be labelled
+         var resultStr = ""
+         inception3Net.getResults().forEach({ (label, prob) in
+         resultStr = resultStr + label + "\t" + String(format: "%.1f", prob * 100) + "%\n\n"
+         })
+         
+         DispatchQueue.main.async {
+         self.predictLabel.text = resultStr
+         }
+         
+         */
+        
+    }
+    
 }
 
 /*

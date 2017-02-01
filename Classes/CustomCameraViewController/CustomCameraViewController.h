@@ -13,8 +13,6 @@
 #import <MetalPerformanceShaders/MetalPerformanceShaders.h>
 #import "AVCamCaptureManager.h"
 
-@class Inception3Net;
-
 @class CustomCameraViewController;
 @protocol CustomCameraViewControllerDelegate <NSObject>
 - (void)customCameraImageCaptured:(CustomCameraViewController*)controller withCapturedImage:(UIImage *)image;
@@ -32,8 +30,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *snapButton;
 @property (nonatomic, assign) id <CustomCameraViewControllerDelegate> delegate;
 @property (strong, nonatomic) UIImage *capturedImage;
-
-@property (strong, nonatomic) Inception3Net *inception3Net;
 
 @property (nonatomic, assign) id <MTLDevice> device;
 
