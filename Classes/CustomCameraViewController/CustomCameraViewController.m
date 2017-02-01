@@ -124,12 +124,9 @@
 
 - (void)initMTLDevice{
     self.device = MTLCreateSystemDefaultDevice();
-    
     self.commandQueue = [self.device newCommandQueue];
     self.textureLoader = [[MTKTextureLoader alloc] initWithDevice:self.device];
-    
     self.inception3Net = [[Inception3Net alloc] initWithCommandQueue:self.commandQueue];
-    
     self.ciContext = [CIContext contextWithMTLDevice:self.device];
 }
 
@@ -142,40 +139,11 @@
     else{
         return;
     }
-
     [self runNetWork];
 }
 
 - (void)runNetWork{
-//    let startTime = CACurrentMediaTime()
-//    
-//    // to deliver optimal performance we leave some resources used in MPSCNN to be released at next call of autoreleasepool,
-//    // so the user can decide the appropriate time to release this
-//    autoreleasepool{
-//        // encoding command buffer
-//        let commandBuffer = commandQueue.makeCommandBuffer()
-//        
-//        // encode all layers of network on present commandBuffer, pass in the input image MTLTexture
-//        inception3Net.forward(commandBuffer: commandBuffer, sourceTexture: sourceTexture)
-//        
-//        // commit the commandBuffer and wait for completion on CPU
-//        commandBuffer.commit()
-//        commandBuffer.waitUntilCompleted()
-//        
-//        // display top-5 predictions for what the object should be labelled
-//        var resultStr = ""
-//        inception3Net.getResults().forEach({ (label, prob) in
-//            resultStr = resultStr + label + "\t" + String(format: "%.1f", prob * 100) + "%\n\n"
-//        })
-//        
-//        DispatchQueue.main.async {
-//            self.predictLabel.text = resultStr
-//        }
-//    }
-//    
-//    let endTime = CACurrentMediaTime()
-//    print("Running Time: \(endTime - startTime) [sec]")
-    
+
     @autoreleasepool {
         id<MTLCommandBuffer> commandBuffer = [self.commandQueue commandBuffer];
         [self.inception3Net forwardWithCommandBuffer:commandBuffer sourceTexture:self.sourceTexture];
@@ -184,35 +152,33 @@
         
         NSArray* array = self.inception3Net.getResults;
         NSLog(@"result - %@", array);
+        NSString *displayTestString = @"";
 
-        /*
-         commandBuffer.commit()
-         commandBuffer.waitUntilCompleted()
-         
-         // display top-5 predictions for what the object should be labelled
-         var resultStr = ""
-         inception3Net.getResults().forEach({ (label, prob) in
-         resultStr = resultStr + label + "\t" + String(format: "%.1f", prob * 100) + "%\n\n"
-         })
-         
-         DispatchQueue.main.async {
-         self.predictLabel.text = resultStr
-         }
-         
-         */
-        
+        for (int i =0; i<5; i++) {
+            NSMutableDictionary *dictionary  = [array objectAtIndex:i];
+            NSArray*keys=[dictionary allKeys];
+            NSString *objectName = keys[0];
+            NSString *objectPosition = [dictionary objectForKey:objectName];
+            
+            if ([objectName isEqualToString:@"mouse, computer mouse"]) {
+                if ([objectPosition floatValue]>OBJECT_SCREEN_RATE) {
+                    [self shootImage];
+                    return;
+                }
+            }
+            NSString *testString = [NSString stringWithFormat:@"%@ = %@",objectName,objectPosition];
+            
+            displayTestString = [NSString stringWithFormat:@"%@\n%@",displayTestString,testString];
+            
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.objectLabel1 setText: displayTestString];
+        });
     }
+}
+
+- (void)shootImage{
     
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -13,6 +13,8 @@
 #import <MetalPerformanceShaders/MetalPerformanceShaders.h>
 #import "AVCamCaptureManager.h"
 
+#define OBJECT_SCREEN_RATE 0.7
+
 @class CustomCameraViewController;
 @protocol CustomCameraViewControllerDelegate <NSObject>
 - (void)customCameraImageCaptured:(CustomCameraViewController*)controller withCapturedImage:(UIImage *)image;
@@ -27,6 +29,9 @@
 @property (nonatomic,retain) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
 
 @property (strong, nonatomic) IBOutlet UIView *videoPreviewView;
+@property (retain, nonatomic) IBOutlet UILabel *objectLabel1;
+
+
 @property (strong, nonatomic) IBOutlet UIButton *snapButton;
 @property (nonatomic, assign) id <CustomCameraViewControllerDelegate> delegate;
 @property (strong, nonatomic) UIImage *capturedImage;

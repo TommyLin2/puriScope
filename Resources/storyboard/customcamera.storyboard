@@ -24,18 +24,27 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZJQ-Xx-sqt">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zKr-K4-EPw">
-                                        <rect key="frame" x="170" y="599" width="34" height="30"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zKr-K4-EPw">
+                                        <rect key="frame" x="170.5" y="599" width="34" height="30"/>
                                         <state key="normal" title="Start"/>
                                         <connections>
                                             <action selector="captureStillImage:" destination="H6W-UW-kON" eventType="touchUpInside" id="xwP-7B-iin"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgL-ad-m3M">
+                                        <rect key="frame" x="21" y="622" width="346" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.9466945856539829" green="0.93266240694521807" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="zKr-K4-EPw" firstAttribute="centerX" secondItem="ZJQ-Xx-sqt" secondAttribute="centerX" id="1ca-nT-3UY"/>
                                     <constraint firstAttribute="bottom" secondItem="zKr-K4-EPw" secondAttribute="bottom" constant="38" id="P7d-nn-l45"/>
+                                    <constraint firstAttribute="trailing" secondItem="wgL-ad-m3M" secondAttribute="trailing" constant="8" id="ckA-Vl-iXc"/>
+                                    <constraint firstItem="wgL-ad-m3M" firstAttribute="leading" secondItem="ZJQ-Xx-sqt" secondAttribute="leading" constant="21" id="dMj-j9-7sE"/>
+                                    <constraint firstAttribute="bottom" secondItem="wgL-ad-m3M" secondAttribute="bottom" constant="24" id="wgd-JY-3s2"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -48,6 +57,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="objectLabel1" destination="wgL-ad-m3M" id="cT4-Ik-FfQ"/>
                         <outlet property="videoPreviewView" destination="ZJQ-Xx-sqt" id="0VB-rZ-AtV"/>
                     </connections>
                 </viewController>

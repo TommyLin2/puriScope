@@ -556,7 +556,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8D1E004F1E41D55700583F53 /* network_params */,
 				E95585ED11895E3E005BC2B7 /* OptionsViewController.h */,
 				E95585EE11895E3E005BC2B7 /* OptionsViewController.m */,
 				E95585EF11895E3E005BC2B7 /* puriSCOPEViewController.h */,
@@ -612,6 +611,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8D1E004F1E41D55700583F53 /* network_params */,
 				8DCD8F401E3AD9050077CD9C /* storyboard */,
 				594893FE14618B5F00B39BC0 /* puriscope.pdf */,
 				E94743A0119D1983000FB9F4 /* icon.png */,
@@ -678,7 +678,8 @@
 				8D1E00501E41D55700583F53 /* batch_normalized_binaries */,
 				8D1E010F1E41D55700583F53 /* deep_weights */,
 			);
-			path = network_params;
+			name = network_params;
+			path = Classes/network_params;
 			sourceTree = "<group>";
 		};
 		8D1E00501E41D55700583F53 /* batch_normalized_binaries */ = {
