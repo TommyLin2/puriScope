@@ -39,6 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initMTLDevice];
+    [self setParameter];
     // Do any additional setup after loading the view.
 }
 
@@ -62,6 +63,11 @@
     self.captureManager = nil;
     self.captureVideoPreviewLayer = nil;
     [super dealloc];
+}
+
+-(void)setParameter{
+    self.object_screen_rate = OBJECT_SCREEN_RATE;
+    self.object_name = OBJECT_NAME;
 }
 
 -(void)initPhotoCaptureSeesion{
@@ -146,7 +152,6 @@
         self.captureManager = nil;
         [self.captureVideoPreviewLayer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
         [self initPhotoCaptureSeesion];
-//        [self shootImage];
     });
 }
 
@@ -186,18 +191,17 @@
         NSLog(@"result - %@", array);
         NSString *displayTestString = @"";
 
-        for (int i =0; i<5; i++) {
+        for (int i =0; i<1; i++) {
             NSMutableDictionary *dictionary  = [array objectAtIndex:i];
             NSArray*keys=[dictionary allKeys];
             NSString *objectName = keys[0];
             NSString *objectPosition = [dictionary objectForKey:objectName];
             
-            if ([objectName isEqualToString:@"mouse, computer mouse"]) {
-                if ([objectPosition floatValue]>OBJECT_SCREEN_RATE) {
+            if ([objectName isEqualToString:self.object_name]) {
+                if ([objectPosition floatValue]>self.object_screen_rate) {
                         if (!self.isShooting) {
                             self.isShooting = true;
                             [self setPhotoCaptureSession];
-
                         }
                 }
             }

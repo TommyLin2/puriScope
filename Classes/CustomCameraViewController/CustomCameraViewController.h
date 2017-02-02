@@ -13,7 +13,9 @@
 #import <MetalPerformanceShaders/MetalPerformanceShaders.h>
 #import "AVCamCaptureManager.h"
 
-#define OBJECT_SCREEN_RATE 0.7
+#define OBJECT_SCREEN_RATE 0.9
+#define OBJECT_NAME @"mouse, 444    computer mouse"
+
 
 @class CustomCameraViewController;
 @protocol CustomCameraViewControllerDelegate <NSObject>
