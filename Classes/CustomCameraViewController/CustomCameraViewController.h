@@ -44,4 +44,8 @@
 @property (nonatomic, strong) CIContext *ciContext;
 @property (nonatomic, assign) id <MTLTexture> sourceTexture;
 
+@property (nonatomic, assign) float object_screen_rate;
+@property (nonatomic, strong) NSString *object_name;
+
+
 @end

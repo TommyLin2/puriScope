@@ -381,7 +381,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     AVCaptureConnection *stillImageConnection = [[self stillImageOutput] connectionWithMediaType:AVMediaTypeVideo];
     if ([stillImageConnection isVideoOrientationSupported])
         [stillImageConnection setVideoOrientation:orientation];
-    
     [[self stillImageOutput] captureStillImageAsynchronouslyFromConnection:stillImageConnection
                                                          completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
 

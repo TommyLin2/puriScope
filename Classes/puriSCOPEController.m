@@ -1007,14 +1007,12 @@ BOOL picorimg,optorpic;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
     firstrun=1;
-	//imageView.image = image;
-	//UIColor* color=nil;
     [self imageProcess:image];
 }
 
 - (void)customCameraImageCaptured:(CustomCameraViewController*)controller withCapturedImage:(UIImage *)image{
     [self dismissViewControllerAnimated:YES completion:nil];
-//    [self imageProcess:image];
+    [self imageProcess:image];
 }
 
 -(void)imageProcess:(UIImage *)image{
