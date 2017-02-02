@@ -50,4 +50,11 @@
 @property (nonatomic, strong) NSString *object_name;
 
 
+////////////////////////To test to set Parameters /////////////////////////////////////
+@property (strong, nonatomic) IBOutlet UITextField *objectNameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *objectValueTextField;
+
+@property (nonatomic, assign) float display_object_screen_rate;
+@property (nonatomic, strong) NSString *display_object_name;
+
 @end

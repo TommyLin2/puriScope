@@ -138,13 +138,22 @@
 }
 
 
--(IBAction)captureStillImage:(id)sender {
-    [self shootImage];
+//-(IBAction)captureStillImage:(id)sender {
+//    [self shootImage];
+//}
+//
+//- (IBAction)test{
+//    [self setPhotoCaptureSession];
+//}
+
+- (IBAction)setPartmeterTotest{
+    self.object_name = self.display_object_name;
+    self.object_screen_rate = self.display_object_screen_rate;
+    
+    self.objectNameTextField.text =self.object_name;
+    self.objectValueTextField.text =[NSString stringWithFormat:@"%f",self.object_screen_rate];
 }
 
-- (IBAction)test{
-    [self setPhotoCaptureSession];
-}
 
 - (void)setPhotoCaptureSession{
     [[self.captureManager session] stopRunning];
@@ -176,10 +185,10 @@
     else{
         return;
     }
-    [self runNetWork];
+    [self runNetWork:imageBuffer];
 }
 
-- (void)runNetWork{
+- (void)runNetWork:(CVImageBufferRef )imageBuffer{
 
     @autoreleasepool {
         id<MTLCommandBuffer> commandBuffer = [self.commandQueue commandBuffer];
@@ -194,18 +203,21 @@
         for (int i =0; i<1; i++) {
             NSMutableDictionary *dictionary  = [array objectAtIndex:i];
             NSArray*keys=[dictionary allKeys];
-            NSString *objectName = keys[0];
-            NSString *objectPosition = [dictionary objectForKey:objectName];
+            self.display_object_name = keys[0];
+            self.display_object_screen_rate = [[dictionary objectForKey:self.display_object_name] floatValue];
             
-            if ([objectName isEqualToString:self.object_name]) {
-                if ([objectPosition floatValue]>self.object_screen_rate) {
+            if ([self.display_object_name isEqualToString:self.object_name]) {
+                if (self.display_object_screen_rate>self.object_screen_rate) {
                         if (!self.isShooting) {
                             self.isShooting = true;
-                            [self setPhotoCaptureSession];
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [self getCapturedImage:imageBuffer];
+                            });
+
                         }
                 }
             }
-            NSString *testString = [NSString stringWithFormat:@"%@ = %@",objectName,objectPosition];
+            NSString *testString = [NSString stringWithFormat:@"%@ = %f",self.display_object_name,self.display_object_screen_rate];
             
             displayTestString = [NSString stringWithFormat:@"%@\n%@",displayTestString,testString];
             
@@ -216,29 +228,61 @@
     }
 }
 
-- (void)shootImage{
-    if([self.captureManager.session isRunning]){
-        CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^(void) {
-            @try {
-                [self.captureManager captureStillImage];
-            }
-            @catch(NSException* iae) {
-                NSLog(@"%@", iae.reason);
-            }
-        // Flash the screen white and fade it out to give UI feedback that a still image was taken
-            UIView *flashView = [[[UIView alloc] initWithFrame:self.view.frame] autorelease];
-            [flashView setBackgroundColor:[UIColor whiteColor]];
-            [self.view.window addSubview:flashView];
-            [UIView animateWithDuration:.4f
-                         animations:^{
-                             [flashView setAlpha:0.f];
-                         }
-                         completion:^(BOOL finished){
-                             [flashView removeFromSuperview];
-                         }
-             ];
-        });
-    }
+- (void)getCapturedImage:(CVImageBufferRef )imageBuffer{
+    [[self.captureManager session] stopRunning];
+    [self addFlashView];
+//    CIImage *ciImage = [[[CIImage alloc] initWithCVImageBuffer:imageBuffer] autorelease];
+//    UIImage *image = [[UIImage alloc] initWithCIImage:ciImage];
+    
+//    if (self.delegate) {
+//        [self.delegate customCameraImageCaptured:self withCapturedImage:image];
+//    }
 }
+
+-(void)addFlashView{
+    UIView *flashView = [[[UIView alloc] initWithFrame:self.view.frame] autorelease];
+    [flashView setBackgroundColor:[UIColor whiteColor]];
+    [self.view.window addSubview:flashView];
+    [UIView animateWithDuration:.4f
+                             animations:^{
+                                 [flashView setAlpha:0.f];
+                             }
+                             completion:^(BOOL finished){
+                                 [flashView removeFromSuperview];
+                             }
+    ];
+}
+
+-(IBAction)startCameraSession{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[self.captureManager session] startRunning];
+        self.isShooting = false;
+    });
+}
+
+//- (void)shootImage{
+//    if([self.captureManager.session isRunning]){
+//        CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^(void) {
+//            @try {
+//                [self.captureManager captureStillImage];
+//            }
+//            @catch(NSException* iae) {
+//                NSLog(@"%@", iae.reason);
+//            }
+//        // Flash the screen white and fade it out to give UI feedback that a still image was taken
+//            UIView *flashView = [[[UIView alloc] initWithFrame:self.view.frame] autorelease];
+//            [flashView setBackgroundColor:[UIColor whiteColor]];
+//            [self.view.window addSubview:flashView];
+//            [UIView animateWithDuration:.4f
+//                         animations:^{
+//                             [flashView setAlpha:0.f];
+//                         }
+//                         completion:^(BOOL finished){
+//                             [flashView removeFromSuperview];
+//                         }
+//             ];
+//        });
+//    }
+//}
 
 @end
