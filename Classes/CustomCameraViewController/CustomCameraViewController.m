@@ -166,7 +166,6 @@
 
 - (void)captureManagerStillImageCaptured:(UIImage *)image {
     [[self.captureManager session] stopRunning];
-    self.capturedImage = image;
 
     CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^(void) {
         self.isShooting = false;
@@ -185,10 +184,10 @@
     else{
         return;
     }
-    [self runNetWork:imageBuffer];
+    [self runNetWork:ciImage];
 }
 
-- (void)runNetWork:(CVImageBufferRef )imageBuffer{
+- (void)runNetWork:(CIImage *)ciImage{
 
     @autoreleasepool {
         id<MTLCommandBuffer> commandBuffer = [self.commandQueue commandBuffer];
@@ -211,16 +210,15 @@
                         if (!self.isShooting) {
                             self.isShooting = true;
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                [self getCapturedImage:imageBuffer];
+                                [[self.captureManager session] stopRunning];
+                                self.capturedImage = [self imageFromCIImage:ciImage];
+                                [self getCapturedImage:self.capturedImage];
                             });
-
                         }
                 }
             }
             NSString *testString = [NSString stringWithFormat:@"%@ = %f",self.display_object_name,self.display_object_screen_rate];
-            
             displayTestString = [NSString stringWithFormat:@"%@\n%@",displayTestString,testString];
-            
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.objectLabel1 setText: displayTestString];
@@ -228,15 +226,11 @@
     }
 }
 
-- (void)getCapturedImage:(CVImageBufferRef )imageBuffer{
-    [[self.captureManager session] stopRunning];
+- (void)getCapturedImage:(UIImage *)image{
     [self addFlashView];
-//    CIImage *ciImage = [[[CIImage alloc] initWithCVImageBuffer:imageBuffer] autorelease];
-//    UIImage *image = [[UIImage alloc] initWithCIImage:ciImage];
-    
-//    if (self.delegate) {
-//        [self.delegate customCameraImageCaptured:self withCapturedImage:image];
-//    }
+    if (self.delegate) {
+        [self.delegate customCameraImageCaptured:self withCapturedImage:self.capturedImage];
+    }
 }
 
 -(void)addFlashView{
@@ -259,6 +253,15 @@
         self.isShooting = false;
     });
 }
+
+- (UIImage *)imageFromCIImage:(CIImage *)ciImage {
+    CIContext *ciContext = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [ciContext createCGImage:ciImage fromRect:[ciImage extent]];
+    UIImage *image = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+    return image;
+}
+
 
 //- (void)shootImage{
 //    if([self.captureManager.session isRunning]){
