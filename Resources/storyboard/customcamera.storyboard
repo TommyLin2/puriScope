@@ -69,30 +69,30 @@
                                                     <action selector="setPartmeterTotest" destination="H6W-UW-kON" eventType="touchUpInside" id="Nin-BC-yS1"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9np-Ro-h9S">
-                                                <rect key="frame" x="97.5" y="142" width="93" height="30"/>
-                                                <state key="normal" title="Start Capture"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Td-vd-Owt">
+                                                <rect key="frame" x="88.5" y="142" width="111" height="30"/>
+                                                <state key="normal" title="Clear Parameter"/>
                                                 <connections>
-                                                    <action selector="startCameraSession" destination="H6W-UW-kON" eventType="touchUpInside" id="naI-BB-Ajn"/>
+                                                    <action selector="clearParameter" destination="H6W-UW-kON" eventType="touchUpInside" id="cYD-9B-ZAg"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="9np-Ro-h9S" secondAttribute="bottom" constant="8" id="41g-El-J1o"/>
                                             <constraint firstItem="mmM-vM-M70" firstAttribute="leading" secondItem="yj5-qL-TR1" secondAttribute="trailing" constant="8" id="4Cb-ws-b9V"/>
                                             <constraint firstItem="eVG-sD-auP" firstAttribute="width" secondItem="mmM-vM-M70" secondAttribute="width" id="4Gk-rD-aze"/>
                                             <constraint firstItem="MC4-Nl-5Ti" firstAttribute="centerX" secondItem="zhN-q0-7Yv" secondAttribute="centerX" id="8VC-y1-4kl"/>
                                             <constraint firstAttribute="bottom" secondItem="MC4-Nl-5Ti" secondAttribute="bottom" constant="40" id="CER-EL-Ojy"/>
                                             <constraint firstAttribute="width" constant="288" id="DO4-iI-XTk"/>
                                             <constraint firstItem="yj5-qL-TR1" firstAttribute="top" secondItem="zhN-q0-7Yv" secondAttribute="top" constant="25" id="OLe-05-UGb"/>
+                                            <constraint firstItem="4Td-vd-Owt" firstAttribute="centerX" secondItem="zhN-q0-7Yv" secondAttribute="centerX" id="W6R-XE-XFx"/>
                                             <constraint firstItem="eVG-sD-auP" firstAttribute="height" secondItem="mmM-vM-M70" secondAttribute="height" id="WLJ-6a-6kH"/>
-                                            <constraint firstItem="9np-Ro-h9S" firstAttribute="centerX" secondItem="zhN-q0-7Yv" secondAttribute="centerX" id="aEv-gj-hxo"/>
                                             <constraint firstItem="6XN-q0-olh" firstAttribute="leading" secondItem="zhN-q0-7Yv" secondAttribute="leading" constant="4" id="biU-TK-yS2"/>
                                             <constraint firstItem="mmM-vM-M70" firstAttribute="top" secondItem="zhN-q0-7Yv" secondAttribute="top" constant="26" id="dc0-Va-blZ"/>
                                             <constraint firstAttribute="height" constant="180" id="iDB-8N-JwC"/>
                                             <constraint firstItem="6XN-q0-olh" firstAttribute="top" secondItem="yj5-qL-TR1" secondAttribute="bottom" constant="22" id="mRu-sa-9vY"/>
                                             <constraint firstItem="eVG-sD-auP" firstAttribute="top" secondItem="mmM-vM-M70" secondAttribute="bottom" constant="21" id="pqN-UV-8bF"/>
+                                            <constraint firstAttribute="bottom" secondItem="4Td-vd-Owt" secondAttribute="bottom" constant="8" id="wdQ-Dy-dVa"/>
                                             <constraint firstItem="yj5-qL-TR1" firstAttribute="leading" secondItem="zhN-q0-7Yv" secondAttribute="leading" constant="12" id="yLv-5X-bTK"/>
                                             <constraint firstItem="eVG-sD-auP" firstAttribute="leading" secondItem="mmM-vM-M70" secondAttribute="leading" id="zGH-gn-oLi"/>
                                         </constraints>

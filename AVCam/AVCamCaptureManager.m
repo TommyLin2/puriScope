@@ -213,13 +213,10 @@
         [newCaptureSession addOutput:newStillImageOutput];
     }
     
-    
-    
     [self setStillImageOutput:newStillImageOutput];
     [self setVideoInput:newVideoInput];
     [self setAudioInput:newAudioInput];
     [self setSession:newCaptureSession];
-    
 	// Set up the movie file output
     NSURL *outputFileURL = [self tempFileURL];
     AVCamRecorder *newRecorder = [[[AVCamRecorder alloc] initWithSession:[self session] outputFileURL:outputFileURL] autorelease];
@@ -285,7 +282,6 @@
     [NSDictionary dictionaryWithObject:
      [NSNumber numberWithInt:kCVPixelFormatType_32BGRA]
                                 forKey:(id)kCVPixelBufferPixelFormatTypeKey];
-    
     videoConnection = [output connectionWithMediaType:AVMediaTypeVideo];
 
     // If you wish to cap the frame rate to a known value, such as 15 fps, set

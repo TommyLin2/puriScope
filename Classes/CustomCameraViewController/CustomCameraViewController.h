@@ -12,10 +12,9 @@
 #import <Metal/Metal.h>
 #import <MetalPerformanceShaders/MetalPerformanceShaders.h>
 #import "AVCamCaptureManager.h"
+#import "ParameterDataModel.h"
 
-#define OBJECT_SCREEN_RATE 0.9
-#define OBJECT_NAME @"mouse, 444    computer mouse"
-
+#define RATE_RANGE 0.1
 
 @class CustomCameraViewController;
 @protocol CustomCameraViewControllerDelegate <NSObject>
@@ -26,13 +25,11 @@
 
 }
 
-
 @property (nonatomic,retain) AVCamCaptureManager *captureManager;
 @property (nonatomic,retain) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
 
 @property (strong, nonatomic) IBOutlet UIView *videoPreviewView;
 @property (retain, nonatomic) IBOutlet UILabel *objectLabel1;
-
 
 @property (strong, nonatomic) IBOutlet UIButton *snapButton;
 @property (nonatomic, assign) id <CustomCameraViewControllerDelegate> delegate;
@@ -46,10 +43,6 @@
 @property (nonatomic, strong) CIContext *ciContext;
 @property (nonatomic, assign) id <MTLTexture> sourceTexture;
 
-@property (nonatomic, assign) float object_screen_rate;
-@property (nonatomic, strong) NSString *object_name;
-
-
 ////////////////////////To test to set Parameters /////////////////////////////////////
 @property (strong, nonatomic) IBOutlet UITextField *objectNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *objectValueTextField;
@@ -57,4 +50,5 @@
 @property (nonatomic, assign) float display_object_screen_rate;
 @property (nonatomic, strong) NSString *display_object_name;
 
+@property (nonatomic, strong) ParameterDataModel *parameterDataModel;
 @end

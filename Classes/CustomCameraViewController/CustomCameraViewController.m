@@ -14,7 +14,6 @@
 @interface CustomCameraViewController ()
 
 @property (strong, nonatomic) Inception3Net *inception3Net;
-@property bool isShooting;
 
 @end
 
@@ -33,7 +32,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self initVideoCaptureSession];
-    self.isShooting = false;
 }
 
 - (void)viewDidLoad {
@@ -66,8 +64,10 @@
 }
 
 -(void)setParameter{
-    self.object_screen_rate = OBJECT_SCREEN_RATE;
-    self.object_name = OBJECT_NAME;
+    self.parameterDataModel = [[ParameterDataModel alloc] init];
+    [self.parameterDataModel setParmetersFromKey];
+    self.objectNameTextField.text = [self.parameterDataModel getObjectName];
+    self.objectValueTextField.text =[NSString stringWithFormat:@"%f",[self.parameterDataModel getObjectValue]];
 }
 
 -(void)initPhotoCaptureSeesion{
@@ -97,7 +97,6 @@
             // Start the session. This is done asychronously since -startRunning doesn't return until the session is running.
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [[self.captureManager session] startRunning];
-                [self shootImage];
             });
         }
     }
@@ -138,22 +137,17 @@
 }
 
 
-//-(IBAction)captureStillImage:(id)sender {
-//    [self shootImage];
-//}
-//
-//- (IBAction)test{
-//    [self setPhotoCaptureSession];
-//}
-
 - (IBAction)setPartmeterTotest{
-    self.object_name = self.display_object_name;
-    self.object_screen_rate = self.display_object_screen_rate;
-    
-    self.objectNameTextField.text =self.object_name;
-    self.objectValueTextField.text =[NSString stringWithFormat:@"%f",self.object_screen_rate];
+    [self.parameterDataModel setWithObjectNameWithValue:self.display_object_name withObjectValue:self.display_object_screen_rate];
+    [self.parameterDataModel storeParmeters];
+    self.objectNameTextField.text =self.display_object_name;
+    self.objectValueTextField.text =[NSString stringWithFormat:@"%f",self.display_object_screen_rate];
 }
 
+- (IBAction)clearParameter{
+    [self.parameterDataModel setWithObjectNameWithValue:@"" withObjectValue:0.0];
+    [self.parameterDataModel storeParmeters];
+}
 
 - (void)setPhotoCaptureSession{
     [[self.captureManager session] stopRunning];
@@ -164,16 +158,15 @@
     });
 }
 
-- (void)captureManagerStillImageCaptured:(UIImage *)image {
-    [[self.captureManager session] stopRunning];
-
-    CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^(void) {
-        self.isShooting = false;
-        if (self.delegate) {
-            [self.delegate customCameraImageCaptured:self withCapturedImage:self.capturedImage];
-        }
-    });
-}
+//- (void)captureManagerStillImageCaptured:(UIImage *)image {
+//    [[self.captureManager session] stopRunning];
+//
+//    CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^(void) {
+//        if (self.delegate) {
+//            [self.delegate customCameraImageCaptured:self withCapturedImage:self.capturedImage];
+//        }
+//    });
+//}
 
 - (void) captureManagerRealTimeImageCaptured:(CVImageBufferRef )imageBuffer withTimeStamp:(CMTime)timeStamp{
     CIImage *ciImage = [[[CIImage alloc] initWithCVImageBuffer:imageBuffer] autorelease];
@@ -205,16 +198,13 @@
             self.display_object_name = keys[0];
             self.display_object_screen_rate = [[dictionary objectForKey:self.display_object_name] floatValue];
             
-            if ([self.display_object_name isEqualToString:self.object_name]) {
-                if (self.display_object_screen_rate>self.object_screen_rate) {
-                        if (!self.isShooting) {
-                            self.isShooting = true;
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [[self.captureManager session] stopRunning];
-                                self.capturedImage = [self imageFromCIImage:ciImage];
-                                [self getCapturedImage:self.capturedImage];
-                            });
-                        }
+            if ([self.display_object_name isEqualToString:[self.parameterDataModel getObjectName] ]) {
+                if ((self.display_object_screen_rate>[self.parameterDataModel getObjectValue]-RATE_RANGE)&&(self.display_object_screen_rate<[self.parameterDataModel getObjectValue]+RATE_RANGE)) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [[self.captureManager session] stopRunning];
+                            self.capturedImage = [self imageFromCIImage:ciImage];
+                            [self getCapturedImage:self.capturedImage];
+                        });
                 }
             }
             NSString *testString = [NSString stringWithFormat:@"%@ = %f",self.display_object_name,self.display_object_screen_rate];
@@ -247,12 +237,12 @@
     ];
 }
 
--(IBAction)startCameraSession{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [[self.captureManager session] startRunning];
-        self.isShooting = false;
-    });
-}
+//-(IBAction)startCameraSession{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        [[self.captureManager session] startRunning];
+//        self.isShooting = false;
+//    });
+//}
 
 - (UIImage *)imageFromCIImage:(CIImage *)ciImage {
     CIContext *ciContext = [CIContext contextWithOptions:nil];
@@ -261,7 +251,6 @@
     CGImageRelease(cgImage);
     return image;
 }
-
 
 //- (void)shootImage{
 //    if([self.captureManager.session isRunning]){
