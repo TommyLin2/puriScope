@@ -219,20 +219,24 @@
         
 //        }
         
-//        if ([self.display_object_name isEqualToString:[self.parameterDataModel getObjectName] ]) {
-//            if ((self.display_object_screen_rate>[se]-RATE_RANGE)&&(self.display_object_screen_rate<[self.parameterDataModel getObjectValue]+RATE_RANGE)) {
-//                self.isFirstObject = true;
-//            }
-//        }
-//        
-//        if (self.isFirstObject) {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [[self.captureManager session] stopRunning];
-//                self.capturedImage = [self imageFromCIImage:ciImage];
-//                [self getCapturedImage:self.capturedImage];
-//            });
-//        }
-//        
+        if ([self.display_object_name isEqualToString:self.firstObjectParameter.objectName]) {
+            if ((self.display_object_screen_rate>(self.firstObjectParameter.objectValue-RATE_RANGE))&&(self.display_object_screen_rate<(self.firstObjectParameter.objectValue+RATE_RANGE))) {
+                self.isFirstObject = true;
+            }
+        }
+        if ([self.second_display_object_name isEqualToString:self.secondObjectParameter.objectName]) {
+            if ((self.second_display_object_screen_rate>(self.secondObjectParameter.objectValue-RATE_RANGE))&&(self.second_display_object_screen_rate<(self.secondObjectParameter.objectValue+RATE_RANGE))) {
+                self.isSecondObject = true;
+            }
+        }
+        
+        if (self.isFirstObject&&self.isSecondObject) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[self.captureManager session] stopRunning];
+                self.capturedImage = [self imageFromCIImage:ciImage];
+                [self getCapturedImage:self.capturedImage];
+            });
+        }
 
         NSString *testString = [NSString stringWithFormat:@"%@ = %f",self.display_object_name,self.display_object_screen_rate];
         displayTestString = [NSString stringWithFormat:@"%@\n%@",displayTestString,testString];
