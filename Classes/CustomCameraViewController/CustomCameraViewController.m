@@ -37,7 +37,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initMTLDevice];
-    [self setParameter];
+    
+    
+    [self initParameter];
+    [self setParameterToTextField];
+
     // Do any additional setup after loading the view.
 }
 
@@ -63,11 +67,19 @@
     [super dealloc];
 }
 
--(void)setParameter{
-    self.parameterDataModel = [[ParameterDataModel alloc] init];
-    [self.parameterDataModel setParmetersFromKey];
-    self.objectNameTextField.text = [self.parameterDataModel getObjectName];
-    self.objectValueTextField.text =[NSString stringWithFormat:@"%f",[self.parameterDataModel getObjectValue]];
+-(void)initParameter{
+    self.firstObjectParameter = [[ParameterDataModel alloc] init];
+    self.secondObjectParameter = [[ParameterDataModel alloc] init];
+    [self.firstObjectParameter setValueWithNameKey:FIRST_OBJECT_NAME withValueKey:FIRST_OBJECT_VALUE];
+    [self.secondObjectParameter setValueWithNameKey:SECOND_OBJECT_NAME withValueKey:SECOND_OBJECT_VALUE];
+}
+
+-(void)setParameterToTextField{
+    self.firstObjectNameTextField.text =self.firstObjectParameter.objectName;
+    self.firstObjectValueTextField.text =[NSString stringWithFormat:@"%f",self.firstObjectParameter.objectValue];
+    
+    self.secondObjectNameTextField.text =self.secondObjectParameter.objectName;
+    self.secondObjectValueTextField.text =[NSString stringWithFormat:@"%f",self.secondObjectParameter.objectValue];
 }
 
 -(void)initPhotoCaptureSeesion{
@@ -138,15 +150,16 @@
 
 
 - (IBAction)setPartmeterTotest{
-    [self.parameterDataModel setWithObjectNameWithValue:self.display_object_name withObjectValue:self.display_object_screen_rate];
-    [self.parameterDataModel storeParmeters];
-    self.objectNameTextField.text =self.display_object_name;
-    self.objectValueTextField.text =[NSString stringWithFormat:@"%f",self.display_object_screen_rate];
+    [self.firstObjectParameter saveWithObjectNameWithValue:self.display_object_name withObjectValue:self.display_object_screen_rate withNameKey:FIRST_OBJECT_NAME withvalueKey:FIRST_OBJECT_VALUE];
+    [self.secondObjectParameter saveWithObjectNameWithValue:self.second_display_object_name withObjectValue:self.second_display_object_screen_rate withNameKey:SECOND_OBJECT_NAME withvalueKey:SECOND_OBJECT_VALUE];
+
+    [self setParameterToTextField];
 }
 
 - (IBAction)clearParameter{
-    [self.parameterDataModel setWithObjectNameWithValue:@"" withObjectValue:0.0];
-    [self.parameterDataModel storeParmeters];
+    [self.firstObjectParameter saveWithObjectNameWithValue:@"" withObjectValue:0.0f withNameKey:FIRST_OBJECT_NAME withvalueKey:FIRST_OBJECT_VALUE];
+    [self.secondObjectParameter saveWithObjectNameWithValue:@"" withObjectValue:0.0f withNameKey:SECOND_OBJECT_NAME withvalueKey:SECOND_OBJECT_VALUE];
+    [self setParameterToTextField];
 }
 
 - (void)setPhotoCaptureSession{
@@ -192,24 +205,38 @@
         NSLog(@"result - %@", array);
         NSString *displayTestString = @"";
 
-        for (int i =0; i<1; i++) {
-            NSMutableDictionary *dictionary  = [array objectAtIndex:i];
-            NSArray*keys=[dictionary allKeys];
-            self.display_object_name = keys[0];
-            self.display_object_screen_rate = [[dictionary objectForKey:self.display_object_name] floatValue];
-            
-            if ([self.display_object_name isEqualToString:[self.parameterDataModel getObjectName] ]) {
-                if ((self.display_object_screen_rate>[self.parameterDataModel getObjectValue]-RATE_RANGE)&&(self.display_object_screen_rate<[self.parameterDataModel getObjectValue]+RATE_RANGE)) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [[self.captureManager session] stopRunning];
-                            self.capturedImage = [self imageFromCIImage:ciImage];
-                            [self getCapturedImage:self.capturedImage];
-                        });
-                }
-            }
-            NSString *testString = [NSString stringWithFormat:@"%@ = %f",self.display_object_name,self.display_object_screen_rate];
-            displayTestString = [NSString stringWithFormat:@"%@\n%@",displayTestString,testString];
-        }
+//        for (int i =0; i<2; i++) {
+            NSMutableDictionary *dictionary1  = [array objectAtIndex:0];
+            NSArray *keys1=[dictionary1 allKeys];
+            self.display_object_name = keys1[0];
+            self.display_object_screen_rate = [[dictionary1 objectForKey:self.display_object_name] floatValue];
+        
+        NSMutableDictionary *dictionary2  = [array objectAtIndex:1];
+        NSArray *keys2=[dictionary2 allKeys];
+        self.second_display_object_name = keys2[0];
+        self.second_display_object_screen_rate = [[dictionary2 objectForKey:self.second_display_object_name] floatValue];
+
+        
+//        }
+        
+//        if ([self.display_object_name isEqualToString:[self.parameterDataModel getObjectName] ]) {
+//            if ((self.display_object_screen_rate>[se]-RATE_RANGE)&&(self.display_object_screen_rate<[self.parameterDataModel getObjectValue]+RATE_RANGE)) {
+//                self.isFirstObject = true;
+//            }
+//        }
+//        
+//        if (self.isFirstObject) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [[self.captureManager session] stopRunning];
+//                self.capturedImage = [self imageFromCIImage:ciImage];
+//                [self getCapturedImage:self.capturedImage];
+//            });
+//        }
+//        
+
+        NSString *testString = [NSString stringWithFormat:@"%@ = %f",self.display_object_name,self.display_object_screen_rate];
+        displayTestString = [NSString stringWithFormat:@"%@\n%@",displayTestString,testString];
+
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.objectLabel1 setText: displayTestString];
         });

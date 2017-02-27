@@ -14,7 +14,7 @@
 #import "AVCamCaptureManager.h"
 #import "ParameterDataModel.h"
 
-#define RATE_RANGE 0.1
+#define RATE_RANGE 0.05
 
 @class CustomCameraViewController;
 @protocol CustomCameraViewControllerDelegate <NSObject>
@@ -44,11 +44,22 @@
 @property (nonatomic, assign) id <MTLTexture> sourceTexture;
 
 ////////////////////////To test to set Parameters /////////////////////////////////////
-@property (strong, nonatomic) IBOutlet UITextField *objectNameTextField;
-@property (strong, nonatomic) IBOutlet UITextField *objectValueTextField;
+@property (strong, nonatomic) IBOutlet UITextField *firstObjectNameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *firstObjectValueTextField;
+
+@property (strong, nonatomic) IBOutlet UITextField *secondObjectNameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *secondObjectValueTextField;
+
 
 @property (nonatomic, assign) float display_object_screen_rate;
 @property (nonatomic, strong) NSString *display_object_name;
+@property (nonatomic, assign) bool isFirstObject;
 
-@property (nonatomic, strong) ParameterDataModel *parameterDataModel;
+@property (nonatomic, assign) float second_display_object_screen_rate;
+@property (nonatomic, strong) NSString *second_display_object_name;
+@property (nonatomic, assign) bool isSecondObject;
+
+@property (nonatomic, strong) ParameterDataModel *firstObjectParameter;
+@property (nonatomic, strong) ParameterDataModel *secondObjectParameter;
+
 @end

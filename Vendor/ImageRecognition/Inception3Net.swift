@@ -3005,7 +3005,7 @@ let textureFormat = MPSImageFeatureChannelFormat.float16
             var results: NSMutableArray = NSMutableArray.init()
             var j = 0
             var i = 0
-            while( j < 1){
+            while( j < 2){
                 let (prob, index) = indexedProbabilities[i]
                 // labels at 0 and 1001 to 1008 are invalid (no labels were provided for these indices) so we ignore these
                 if((index < 1001) && (index > 0)){

@@ -27,20 +27,25 @@
     return self;
 }
 
-- (void)storeParmeters{
-    [[NSUserDefaults standardUserDefaults] setValue:self.objectName forKey:OBJECT_NAME];
-    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%f",self.objectValue] forKey:OBJECT_VALUE];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+-(void)setValueWithNameKey:(NSString *)nameKey withValueKey:(NSString *)valueKey
+{
+    self.nameKey = nameKey;
+    self.valueKey = valueKey;
+    self.objectName = [[NSUserDefaults standardUserDefaults] stringForKey:nameKey];
+    self.objectValue = [[[NSUserDefaults standardUserDefaults] stringForKey:valueKey] floatValue];
 }
 
-- (void)setParmetersFromKey{
-    self.objectName = [[NSUserDefaults standardUserDefaults] stringForKey:OBJECT_NAME];
-    self.objectValue = [[[NSUserDefaults standardUserDefaults] stringForKey:OBJECT_VALUE] floatValue];
-}
-
-- (void)setWithObjectNameWithValue:(NSString *)objectName withObjectValue:(float)objectValue{
+- (void)saveWithObjectNameWithValue:(NSString *)objectName
+                   withObjectValue:(float)objectValue
+                       withNameKey:(NSString *)nameKey
+                      withvalueKey:(NSString *)valueKey{
     self.objectName = objectName;
     self.objectValue = objectValue;
+    self.nameKey = nameKey;
+    self.valueKey = valueKey;
+    [[NSUserDefaults standardUserDefaults] setValue:self.objectName forKey:nameKey];
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%f",self.objectValue] forKey:valueKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSString *)getObjectName{
