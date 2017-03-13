@@ -73,6 +73,11 @@
 {
     self.captureManager = nil;
     self.captureVideoPreviewLayer = nil;
+    self.device = nil;
+    self.textureLoader = nil;
+    self.commandQueue = nil;
+    self.inception3Net = nil;
+    self.ciContext = nil;
     [super dealloc];
 }
 
@@ -151,9 +156,9 @@
 
 - (void)initMTLDevice{
     self.device = MTLCreateSystemDefaultDevice();
-    self.commandQueue = [self.device newCommandQueue];
-    self.textureLoader = [[MTKTextureLoader alloc] initWithDevice:self.device];
-    self.inception3Net = [[Inception3Net alloc] initWithCommandQueue:self.commandQueue];
+    self.commandQueue = [[self.device newCommandQueue] autorelease];
+    self.textureLoader = [[[MTKTextureLoader alloc] initWithDevice:self.device] autorelease];
+    self.inception3Net = [[[Inception3Net alloc] initWithCommandQueue:self.commandQueue] autorelease];
     self.ciContext = [CIContext contextWithMTLDevice:self.device];
 }
 
@@ -260,10 +265,6 @@
 //    [self addFlashView];
     self.isCaptured = true;
     [self dismissViewControllerAnimated:YES completion:nil];
-
-//    if (self.delegate) {
-//        [self.delegate customCameraImageCaptured:self withCapturedImage:self.capturedImage];
-//    }
 }
 
 -(void)addFlashView{

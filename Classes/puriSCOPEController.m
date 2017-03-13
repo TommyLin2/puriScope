@@ -1004,14 +1004,12 @@ BOOL picorimg,optorpic;
 }
 
 - (void)customCameraImageCaptured:(CustomCameraViewController*)controller withCapturedImage:(UIImage *)image{
-    [self dismissViewControllerAnimated:YES completion:nil];
     [self imageProcess:image];
 }
 
 -(void)imageProcess:(UIImage *)image{
-    @autoreleasepool {
-
-    CGImageRef ref = image.CGImage;
+    
+    CGImageRef ref = [image CGImage];
     CGContextRef bitmapcrop1 = [self createARGBBitmapContextFromImage:ref];
     //CGContextRef bitmapcrop1 = CreateARGBBitmapContext(ref);
     if (bitmapcrop1 == NULL)
@@ -1446,8 +1444,6 @@ BOOL picorimg,optorpic;
     
     [self dismissViewControllerAnimated:YES completion:nil];
     CGContextRelease(bitmapcrop1);
-//    CGImageRelease(ref);
-    }
 }
 
 
