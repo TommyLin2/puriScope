@@ -438,9 +438,6 @@ BOOL picorimg,optorpic;
 
 }
 
-
-
-
 - (void)dealloc {
    
   // [bData release];
@@ -467,12 +464,9 @@ BOOL picorimg,optorpic;
 		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Do You want to save the Result??"delegate:self cancelButtonTitle:@"NO" destructiveButtonTitle:nil otherButtonTitles:@"YES",nil];
 		actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
 		[actionSheet showInView:self.view]; // show from our table view (pops up in the middle of the table)
-		[actionSheet release];
-
+        [actionSheet release];
 	}
-	
 }
-
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -703,8 +697,7 @@ BOOL picorimg,optorpic;
 -(void)alertDone {
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"REPORT" message:@"... saved to your camera roll" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	
-	//alert.actionSheetStyle = UIActionSheetStyleDefault;
-	[alert show];	// show from our table view (pops up in the middle of the table)
+        [alert show];	// show from our table view (pops up in the middle of the table)
 	[alert release];
 }
 
@@ -1016,6 +1009,8 @@ BOOL picorimg,optorpic;
 }
 
 -(void)imageProcess:(UIImage *)image{
+    @autoreleasepool {
+
     CGImageRef ref = image.CGImage;
     CGContextRef bitmapcrop1 = [self createARGBBitmapContextFromImage:ref];
     //CGContextRef bitmapcrop1 = CreateARGBBitmapContext(ref);
@@ -1449,12 +1444,10 @@ BOOL picorimg,optorpic;
         free(data);
     }	
     
-    
     [self dismissViewControllerAnimated:YES completion:nil];
     CGContextRelease(bitmapcrop1);
-    //CGImageRelease(ref);
-    //[picker release];
-
+//    CGImageRelease(ref);
+    }
 }
 
 
@@ -1464,8 +1457,7 @@ BOOL picorimg,optorpic;
 	//[[picker parentViewController]dismissModalViewControllerAnimated:YES];
 
     [self dismissViewControllerAnimated:YES completion:nil];
-	
-	//[picker release];
+//	[picker release];
 }
 
 

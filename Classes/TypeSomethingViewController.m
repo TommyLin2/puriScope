@@ -96,7 +96,7 @@ NSString *nname,*aadress,*pperson;
 		NSString *addrStr = [[NSString alloc] initWithFormat:@"%@,\n%@ %@", streetStr, zipStr, cityStr];
 		if(i==0)
 		{	
-		aadress = [[NSString alloc] initWithFormat:@"%@",addrStr];
+		 aadress = [[NSString alloc] initWithFormat:@"%@",addrStr];
 		}
 		[addrStr release];
 		[streetStr release];
@@ -120,7 +120,6 @@ NSString *nname,*aadress,*pperson;
 {
     return NO;
 }
-
 
 - (void)dealloc {
     [textField release];

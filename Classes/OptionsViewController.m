@@ -1320,18 +1320,15 @@ if(textField!=res0lab)
 	
 	if(OPorIN == TRUE)
 	{
-	[[NSUserDefaults standardUserDefaults] setObject:res0lab.text forKey:@"vgoodlab"];
-	[[NSUserDefaults standardUserDefaults] setObject:res2lab.text forKey:@"satislab"];
-	[[NSUserDefaults standardUserDefaults] setObject:res4lab.text forKey:@"inadeqlab"];
-	[[NSUserDefaults standardUserDefaults] setInteger:swugormg.selectedSegmentIndex forKey:@"ugormg"];
-	[[NSUserDefaults standardUserDefaults] setBool:swsavereport.on forKey:@"savereport"];
-	//[[NSUserDefaults standardUserDefaults] setInteger:DIA forKey:@"DIAMETER"];
-	//	vgoodlab = res0lab.text;
-	//	satislab = res2lab.text;
-	//	inadeqlab = res4lab.text;
-	
-		
-		
+        [[NSUserDefaults standardUserDefaults] setObject:res0lab.text forKey:@"vgoodlab"];
+        [[NSUserDefaults standardUserDefaults] setObject:res2lab.text forKey:@"satislab"];
+        [[NSUserDefaults standardUserDefaults] setObject:res4lab.text forKey:@"inadeqlab"];
+        [[NSUserDefaults standardUserDefaults] setInteger:swugormg.selectedSegmentIndex forKey:@"ugormg"];
+        [[NSUserDefaults standardUserDefaults] setBool:swsavereport.on forKey:@"savereport"];
+        //[[NSUserDefaults standardUserDefaults] setInteger:DIA forKey:@"DIAMETER"];
+        //	vgoodlab = res0lab.text;
+        //	satislab = res2lab.text;
+        //	inadeqlab = res4lab.text;
 	}
 	[self.delegate OptionsViewControllerDidFinish:self];
 }

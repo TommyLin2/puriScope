@@ -989,7 +989,7 @@
 				LastUpgradeCheck = 0420;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = UCLF4QKXV4;
+						DevelopmentTeam = L34GFT5E8L;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -1286,7 +1286,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = UCLF4QKXV4;
+				DEVELOPMENT_TEAM = L34GFT5E8L;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1318,7 +1318,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = UCLF4QKXV4;
+				DEVELOPMENT_TEAM = L34GFT5E8L;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = puriSCOPE_Prefix.pch;
 				INFOPLIST_FILE = "puriSCOPE-Info.plist";
@@ -1404,7 +1404,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = UCLF4QKXV4;
+				DEVELOPMENT_TEAM = L34GFT5E8L;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = puriSCOPE_Prefix.pch;
 				INFOPLIST_FILE = "puriSCOPE-Info.plist";

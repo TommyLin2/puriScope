@@ -14,6 +14,7 @@
 @interface CustomCameraViewController ()
 
 @property (strong, nonatomic) Inception3Net *inception3Net;
+@property bool isCaptured;
 
 @end
 
@@ -38,11 +39,19 @@
     [super viewDidLoad];
     [self initMTLDevice];
     
-    
     [self initParameter];
     [self setParameterToTextField];
 
     // Do any additional setup after loading the view.
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if(_isCaptured){
+        if (self.delegate) {
+            [self.delegate customCameraImageCaptured:self withCapturedImage:self.capturedImage];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -148,7 +157,6 @@
     self.ciContext = [CIContext contextWithMTLDevice:self.device];
 }
 
-
 - (IBAction)setPartmeterTotest{
     [self.firstObjectParameter saveWithObjectNameWithValue:self.display_object_name withObjectValue:self.display_object_screen_rate withNameKey:FIRST_OBJECT_NAME withvalueKey:FIRST_OBJECT_VALUE];
     [self.secondObjectParameter saveWithObjectNameWithValue:self.second_display_object_name withObjectValue:self.second_display_object_screen_rate withNameKey:SECOND_OBJECT_NAME withvalueKey:SECOND_OBJECT_VALUE];
@@ -190,6 +198,7 @@
     else{
         return;
     }
+    CGImageRelease(cgImageRef);
     [self runNetWork:ciImage];
 }
 
@@ -205,25 +214,25 @@
         NSLog(@"result - %@", array);
         NSString *displayTestString = @"";
 
-//        for (int i =0; i<2; i++) {
-            NSMutableDictionary *dictionary1  = [array objectAtIndex:0];
-            NSArray *keys1=[dictionary1 allKeys];
-            self.display_object_name = keys1[0];
-            self.display_object_screen_rate = [[dictionary1 objectForKey:self.display_object_name] floatValue];
+        NSMutableDictionary *dictionary1  = [array objectAtIndex:0];
+        NSArray *keys1=[dictionary1 allKeys];
+        self.display_object_name = keys1[0];
+        self.display_object_screen_rate = [[dictionary1 objectForKey:self.display_object_name] floatValue];
         
         NSMutableDictionary *dictionary2  = [array objectAtIndex:1];
         NSArray *keys2=[dictionary2 allKeys];
         self.second_display_object_name = keys2[0];
         self.second_display_object_screen_rate = [[dictionary2 objectForKey:self.second_display_object_name] floatValue];
 
-        
-//        }
-        
+        self.firstObjectParameter.objectValue = 0.7;
         if ([self.display_object_name isEqualToString:self.firstObjectParameter.objectName]) {
             if ((self.display_object_screen_rate>(self.firstObjectParameter.objectValue-RATE_RANGE))&&(self.display_object_screen_rate<(self.firstObjectParameter.objectValue+RATE_RANGE))) {
                 self.isFirstObject = true;
             }
         }
+        
+        self.firstObjectParameter.objectValue = 0.7;
+
         if ([self.second_display_object_name isEqualToString:self.secondObjectParameter.objectName]) {
             if ((self.second_display_object_screen_rate>(self.secondObjectParameter.objectValue-RATE_RANGE))&&(self.second_display_object_screen_rate<(self.secondObjectParameter.objectValue+RATE_RANGE))) {
                 self.isSecondObject = true;
@@ -248,16 +257,22 @@
 }
 
 - (void)getCapturedImage:(UIImage *)image{
-    [self addFlashView];
-    if (self.delegate) {
-        [self.delegate customCameraImageCaptured:self withCapturedImage:self.capturedImage];
-    }
+//    [self addFlashView];
+    self.isCaptured = true;
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+//    if (self.delegate) {
+//        [self.delegate customCameraImageCaptured:self withCapturedImage:self.capturedImage];
+//    }
 }
 
 -(void)addFlashView{
+    
+    [self.view.subviews makeObjectsPerformSelector: @selector(removeFromSuperview)];
+
     UIView *flashView = [[[UIView alloc] initWithFrame:self.view.frame] autorelease];
     [flashView setBackgroundColor:[UIColor whiteColor]];
-    [self.view.window addSubview:flashView];
+    [self.view addSubview:flashView];
     [UIView animateWithDuration:.4f
                              animations:^{
                                  [flashView setAlpha:0.f];

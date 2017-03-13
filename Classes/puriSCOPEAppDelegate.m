@@ -28,7 +28,6 @@
     [window setRootViewController:viewController];
 }
 
-
 - (void)dealloc {
     [viewController release];
     [window release];
@@ -42,6 +41,5 @@
     else  /* iphone */
         return UIInterfaceOrientationMaskAllButUpsideDown;
 }
-
 
 @end

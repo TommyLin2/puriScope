@@ -22,12 +22,6 @@
 @property (nonatomic, retain) NSString	*objectName;
 @property (nonatomic, assign) float objectValue;
 
-//- (void)storeParmeters;
-//- (void)setParmetersFromKey;
-//- (NSString *)getObjectName;
-//- (float)getObjectValue;
-//- (void)setWithObjectNameWithValue:(NSString *)objectName withObjectValue:(float)objectValue;
-
 - (void)saveWithObjectNameWithValue:(NSString *)objectName
                     withObjectValue:(float)objectValue
                         withNameKey:(NSString *)nameKey
