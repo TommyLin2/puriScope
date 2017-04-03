@@ -198,9 +198,10 @@
     CIImage *ciImage = [[[CIImage alloc] initWithCVImageBuffer:imageBuffer] autorelease];
     CGImageRef cgImageRef = [self.ciContext createCGImage:ciImage fromRect:ciImage.extent];
     if (cgImageRef) {
-        self.sourceTexture = [self.textureLoader newTextureWithCGImage:cgImageRef options:nil error:nil];
+        self.sourceTexture = [[self.textureLoader newTextureWithCGImage:cgImageRef options:nil error:nil] autorelease];
     }
     else{
+        CGImageRelease(cgImageRef);
         return;
     }
     CGImageRelease(cgImageRef);
