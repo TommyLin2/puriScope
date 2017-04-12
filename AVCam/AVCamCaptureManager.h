@@ -61,10 +61,10 @@
 @property (nonatomic,retain) AVCaptureDeviceInput *audioInput;
 @property (nonatomic,retain) AVCaptureStillImageOutput *stillImageOutput;
 @property (nonatomic,retain) AVCamRecorder *recorder;
-@property (nonatomic,assign) id deviceConnectedObserver;
-@property (nonatomic,assign) id deviceDisconnectedObserver;
+@property (nonatomic,weak) id deviceConnectedObserver;
+@property (nonatomic,weak) id deviceDisconnectedObserver;
 @property (nonatomic,assign) UIBackgroundTaskIdentifier backgroundRecordingID;
-@property (nonatomic,assign) id <AVCamCaptureManagerDelegate> delegate;
+@property (nonatomic,weak) id <AVCamCaptureManagerDelegate> delegate;
 
 @property (nonatomic,retain) AVCaptureDevice *videoDevice;
 @property (nonatomic,retain) AVCaptureConnection *videoConnection;

@@ -70,16 +70,16 @@
     return YES;
 }
 
-- (void)dealloc
-{
-    self.captureManager = nil;
-    self.captureVideoPreviewLayer = nil;
-    self.device = nil;
-    self.textureLoader = nil;
-    self.commandQueue = nil;
-    self.inception3Net = nil;
-    self.ciContext = nil;
-}
+//- (void)dealloc
+//{
+//    self.captureManager = nil;
+//    self.captureVideoPreviewLayer = nil;
+//    self.device = nil;
+//    self.textureLoader = nil;
+//    self.commandQueue = nil;
+//    self.inception3Net = nil;
+//    self.ciContext = nil;
+//}
 
 -(void)initParameter{
     self.firstObjectParameter = [[ParameterDataModel alloc] init];
@@ -199,6 +199,8 @@
 
     if(self.isCapturing)
         return;
+    
+    
     CIImage *ciImage = [[CIImage alloc] initWithCVImageBuffer:imageBuffer] ;
     CGImageRef cgImageRef = [self.ciContext createCGImage:ciImage fromRect:ciImage.extent];
     if (cgImageRef) {
@@ -208,10 +210,9 @@
         CGImageRelease(cgImageRef);
         return;
     }
-    CGImageRelease(cgImageRef);
 
-    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        CGImageRelease(cgImageRef);
         self.isCapturing = true;
         [self runNetWork:ciImage];
     });
