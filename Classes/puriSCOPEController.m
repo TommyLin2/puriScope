@@ -15,7 +15,7 @@ float alpha;
 double Diam;
 NSString *_diam;
 BOOL picorimg,optorpic;
-@synthesize lbldiam,lblugormg,Options,btninfo,resultfox,sample,blank,getImage,getPhoto,newfoxy,adress,namelabel,reportview,result3,timeLabel,libsegcam,taglabel,personLabel,save,lblreport,btnoptions,vwslidemenu,reslabel;
+@synthesize lbldiam,lblugormg,Options,btninfo,resultfox,sample,blank,getImage,getPhoto,newfoxy,adress,namelabel,reportview,result3,timeLabel,libsegcam,taglabel,personLabel,save,lblreport,btnoptions,vwslidemenu,reslabel,btnSmartGel;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -343,12 +343,13 @@ BOOL picorimg,optorpic;
 	[UIView setAnimationDuration:2];
 	float l=120.0;
 	float ix=520.0,iy=150.0;
-	float ag,ar,ain,ao,pi=M_PI,e=M_E;
+	float ag,ar,ain,ao,asmart,pi=M_PI,e=M_E;
 	
 	ag = (pi/3.5)*1;
 	ar=2*ag;
 	ao=3*ag;
 	ain=4*ag;
+    asmart=5*ag;
 	
 	alpha=((1.5*pi)-ag);
 	
@@ -357,6 +358,7 @@ BOOL picorimg,optorpic;
 	CGPoint pos3 = save.center;
 	CGPoint pos4 = btnoptions.center;
 	CGPoint pos5 = btninfo.center;
+//    CGPoint pos6 = btnSmartGel.center;
 	CGPoint slpos1 = vwslidemenu.center;
 	
 	pos1.x=ix+(sin(alpha)*l);
@@ -373,6 +375,10 @@ BOOL picorimg,optorpic;
 	
 	pos5.x=ix+(sin(alpha+ain)*l);
 	pos5.y=iy+(cos(alpha+ain)*l);
+    
+//    pos6.x=ix+(sin(alpha+asmart)*l);
+//    pos6.y=iy+(cos(alpha+asmart)*l);
+
 	
 	slpos1.y=(alpha*75)-71;
 
@@ -410,6 +416,14 @@ BOOL picorimg,optorpic;
 	gIn.size.width=35+xlargeIn;
 	gIn.size.height=35+xlargeIn;
 	btninfo.bounds = gIn;
+    
+//    int xlargeSmart;
+//    xlargeSmart=(150*pow(e,(-5*(alpha-((1.5*pi)-ain))*(alpha-((1.5*pi)-asmart)))));
+//    CGRect gsmart = btnSmartGel.bounds;
+//    gsmart.size.width=35+xlargeSmart;
+//    gsmart.size.height=35+xlargeSmart;
+//    btnSmartGel.bounds = gsmart;
+
 	
 	getPhoto.center=pos2;
 	getImage.center=pos1;
@@ -419,6 +433,7 @@ BOOL picorimg,optorpic;
 		save.center=pos3;
 		btnoptions.center=pos4;
 		btninfo.center=pos5;
+//        btnSmartGel.center = pos6;
 	}else
 	{
 		save.hidden=TRUE;
@@ -590,7 +605,7 @@ BOOL picorimg,optorpic;
 {
     float l=120.0;
 	float ix=520.0,iy=150.0;
-	float ag,ar,ain,ao,pi=M_PI,e=M_E;
+	float ag,ar,ain,ao,asmart,pi=M_PI,e=M_E;
 	
 	UITouch *touch2 = [touches anyObject];
 	second = [touch2 locationInView:self.view];
@@ -599,6 +614,7 @@ BOOL picorimg,optorpic;
 	ar=2*ag;
 	ao=3*ag;
 	ain=4*ag;
+    asmart = 5*ag;
 	
 	alpha=alpha+(pi/180*((second.y-first.y)/35));
 	if(alpha >= (1.5*pi))
@@ -615,6 +631,8 @@ BOOL picorimg,optorpic;
 	CGPoint pos3 = save.center;
 	CGPoint pos4 = btnoptions.center;
 	CGPoint pos5 = btninfo.center;
+//    CGPoint pos6 = btnSmartGel.center;
+
 	CGPoint slpos1 = vwslidemenu.center;
 	
 	pos1.x=ix+(sin(alpha)*l);
@@ -631,6 +649,9 @@ BOOL picorimg,optorpic;
 
 	pos5.x=ix+(sin(alpha+ain)*l);
 	pos5.y=iy+(cos(alpha+ain)*l);
+
+//    pos6.x=ix+(sin(alpha+asmart)*l);
+//    pos6.y=iy+(cos(alpha+asmart)*l);
 
 	slpos1.y=(alpha*75)-71;
 	
@@ -661,6 +682,14 @@ BOOL picorimg,optorpic;
 	gO.size.width=35+xlargeO;
 	gO.size.height=35+xlargeO;
 	btnoptions.bounds = gO;
+    
+//    int xlargeSmart;
+//    xlargeSmart=(150*pow(e,(-5*(alpha-((1.5*pi)-asmart))*(alpha-((1.5*pi)-asmart)))));
+//    CGRect gSmart = btnSmartGel.bounds;
+//    gSmart.size.width=35+xlargeSmart;
+//    gSmart.size.height=35+xlargeSmart;
+//    btnSmartGel.bounds = gSmart;
+
 	
 	int xlargeIn;
 	if(li)
@@ -673,7 +702,9 @@ BOOL picorimg,optorpic;
 	gIn.size.width=35+xlargeIn;
 	gIn.size.height=35+xlargeIn;
 	btninfo.bounds = gIn;
-	
+    
+//    btnSmartGel.bounds = gIn;
+    
 	getImage.center=pos1;
 	getPhoto.center=pos2;
 	
@@ -682,6 +713,8 @@ BOOL picorimg,optorpic;
 		save.center=pos3;
 		btnoptions.center=pos4;
 		btninfo.center=pos5;
+//        btnSmartGel.center=pos6;
+
 	}else
 	{
 		save.hidden=TRUE;
@@ -729,7 +762,6 @@ BOOL picorimg,optorpic;
 	nname=@"";
 }
 
-
 - (void)typeSomethingViewController:(TypeSomethingViewController *)controller didTypeSomething:(NSString *)text
 {
     taglabel.text = [NSString stringWithFormat:@"             %@",text];
@@ -740,7 +772,6 @@ BOOL picorimg,optorpic;
     [self dismissViewControllerAnimated:YES completion:nil];
 	if([[NSUserDefaults standardUserDefaults] boolForKey:@"savereport"]==TRUE)
 	{
-	
 		getImage.hidden=TRUE;;
 		getPhoto.hidden=TRUE;
 		save.hidden=TRUE;
@@ -1002,7 +1033,6 @@ BOOL picorimg,optorpic;
 - (void)customCameraImageCaptured:(CustomCameraViewController*)controller withCapturedImage:(UIImage *)image{
     [self imageProcess:image];
 }
-
 
 -(void)imageProcess:(UIImage *)image{
     
@@ -1446,9 +1476,7 @@ BOOL picorimg,optorpic;
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    
 	//[[picker parentViewController]dismissModalViewControllerAnimated:YES];
-
     [self dismissViewControllerAnimated:YES completion:nil];
 //	[picker release];
 }

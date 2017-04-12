@@ -27,8 +27,6 @@
     self.engine = [[DirtyExtractor alloc] init];
 }
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -125,5 +123,8 @@
     return image;
 }
 
+-(IBAction)backButtonPressed{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end
