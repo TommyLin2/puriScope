@@ -5,6 +5,7 @@
 #include <math.h>
 #import "puriSCOPEViewController.h"
 #import "CustomCameraViewController.h"
+#import "SmartGelTestViewController.h"
 
 int firstrun;
 NSString *thePath;
@@ -511,7 +512,8 @@ BOOL picorimg,optorpic;
 			if  ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
 			{
                 imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-                [self launchCustomCameraViewController];
+//                [self launchCustomCameraViewController];
+                [self launchSmartGelCameraViewController];
 			}
 			else
 			{
@@ -540,7 +542,8 @@ BOOL picorimg,optorpic;
 		if  ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
 		{
             imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-            [self launchCustomCameraViewController];
+//            [self launchCustomCameraViewController];
+            [self launchSmartGelCameraViewController];
 		}
 		else
 		{
@@ -560,6 +563,13 @@ BOOL picorimg,optorpic;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"customcamera" bundle:[NSBundle mainBundle]];
     CustomCameraViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"CustomCameraViewController"];
     controller.delegate = self;
+    controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:controller animated:NO completion:nil];
+}
+
+-(void)launchSmartGelCameraViewController{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"customcamera" bundle:[NSBundle mainBundle]];
+    CustomCameraViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"SmartGelTestViewController"];
     controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:controller animated:NO completion:nil];
 }

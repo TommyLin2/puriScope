@@ -223,6 +223,7 @@
 		8D1E01DC1E41D55800583F53 /* weights_fc1.dat in Resources */ = {isa = PBXBuildFile; fileRef = 8D1E01161E41D55700583F53 /* weights_fc1.dat */; };
 		8D1E01DD1E41D55800583F53 /* weights_fc2.dat in Resources */ = {isa = PBXBuildFile; fileRef = 8D1E01171E41D55700583F53 /* weights_fc2.dat */; };
 		8D3389FE1E45786F0028A2A8 /* ParameterDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3389FD1E45786F0028A2A8 /* ParameterDataModel.m */; };
+		8D3E8C541E9E63EC0037E0AB /* SmartGelTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E8C531E9E63EC0037E0AB /* SmartGelTestViewController.m */; };
 		8D7E29B21E387430003C6583 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E29B11E387430003C6583 /* Default-568h@2x.png */; };
 		8DCD8F291E39D1A70077CD9C /* CustomCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F281E39D1A70077CD9C /* CustomCameraViewController.m */; };
 		8DCD8F3A1E3AD12F0077CD9C /* AVCamCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F351E3AD12F0077CD9C /* AVCamCaptureManager.m */; };
@@ -485,6 +486,8 @@
 		8D1E01171E41D55700583F53 /* weights_fc2.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = weights_fc2.dat; sourceTree = "<group>"; };
 		8D3389FC1E45786F0028A2A8 /* ParameterDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParameterDataModel.h; path = Models/ParameterDataModel/ParameterDataModel.h; sourceTree = "<group>"; };
 		8D3389FD1E45786F0028A2A8 /* ParameterDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParameterDataModel.m; path = Models/ParameterDataModel/ParameterDataModel.m; sourceTree = "<group>"; };
+		8D3E8C521E9E63EC0037E0AB /* SmartGelTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SmartGelTestViewController.h; path = SmartGelTestViewController/SmartGelTestViewController.h; sourceTree = "<group>"; };
+		8D3E8C531E9E63EC0037E0AB /* SmartGelTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SmartGelTestViewController.m; path = SmartGelTestViewController/SmartGelTestViewController.m; sourceTree = "<group>"; };
 		8D7E29B11E387430003C6583 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8DCD8F251E39D14D0077CD9C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8DCD8F271E39D1A70077CD9C /* CustomCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCameraViewController.h; path = CustomCameraViewController/CustomCameraViewController.h; sourceTree = "<group>"; };
@@ -574,6 +577,8 @@
 				E9A50C22119197F40082EA4B /* PDFViewController.m */,
 				8DCD8F271E39D1A70077CD9C /* CustomCameraViewController.h */,
 				8DCD8F281E39D1A70077CD9C /* CustomCameraViewController.m */,
+				8D3E8C521E9E63EC0037E0AB /* SmartGelTestViewController.h */,
+				8D3E8C531E9E63EC0037E0AB /* SmartGelTestViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1260,6 +1265,7 @@
 				8D1E004D1E409D4800583F53 /* DrawView.swift in Sources */,
 				1D3623260D0F684500981E51 /* puriSCOPEAppDelegate.m in Sources */,
 				8DCD8F291E39D1A70077CD9C /* CustomCameraViewController.m in Sources */,
+				8D3E8C541E9E63EC0037E0AB /* SmartGelTestViewController.m in Sources */,
 				8DCD8F3B1E3AD12F0077CD9C /* AVCamRecorder.m in Sources */,
 				8D1E00481E409C4800583F53 /* Inception3Net.swift in Sources */,
 				E95585F611895E3E005BC2B7 /* OptionsViewController.m in Sources */,
