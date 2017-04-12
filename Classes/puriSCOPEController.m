@@ -335,8 +335,6 @@ BOOL picorimg,optorpic;
 		[dData addObject:plistentries];
 		[dData writeToFile:thePath atomically:YES];
 		//NSLog(@"%@",dData);
-		[dData release];
-		[plistentries release];
 		
 	}
 	
@@ -441,7 +439,6 @@ BOOL picorimg,optorpic;
 - (void)dealloc {
    
   // [bData release];
-    [super dealloc];
 }
 
 //#pragma mark -
@@ -464,7 +461,6 @@ BOOL picorimg,optorpic;
 		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Do You want to save the Result??"delegate:self cancelButtonTitle:@"NO" destructiveButtonTitle:nil otherButtonTitles:@"YES",nil];
 		actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
 		[actionSheet showInView:self.view]; // show from our table view (pops up in the middle of the table)
-        [actionSheet release];
 	}
 }
 
@@ -475,7 +471,6 @@ BOOL picorimg,optorpic;
 		TypeSomethingViewController *typeSomethingViewController = [[TypeSomethingViewController alloc] init];
 		typeSomethingViewController.delegate = self;
         [self presentViewController:typeSomethingViewController animated:NO completion:nil];
-		[typeSomethingViewController release];
 	}
 	else
 	{
@@ -499,7 +494,6 @@ BOOL picorimg,optorpic;
 			
 			controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
             [self presentViewController:controller animated:NO completion:nil];
-			[controller release];
 			if( ugormg==TRUE)
 			{
 				lblugormg.text = @" mg/L Organic";
@@ -559,7 +553,6 @@ BOOL picorimg,optorpic;
 		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Do You want to save the Result??"delegate:self cancelButtonTitle:@"NO" destructiveButtonTitle:nil otherButtonTitles:@"YES",nil];
 		actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
 		[actionSheet showInView:self.view]; // show from our table view (pops up in the middle of the table)
-		[actionSheet release];
 	}
 }
 
@@ -698,7 +691,6 @@ BOOL picorimg,optorpic;
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"REPORT" message:@"... saved to your camera roll" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	
         [alert show];	// show from our table view (pops up in the middle of the table)
-	[alert release];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -855,8 +847,6 @@ BOOL picorimg,optorpic;
 	[dData addObject:plistentries];
 	[dData writeToFile:thePath atomically:YES];
 	//NSLog(@"%@",dData);
-	[dData release];
-	[plistentries release];
 
     save.enabled= FALSE;
 	//[self alertDone];
@@ -882,7 +872,6 @@ BOOL picorimg,optorpic;
 	TypeSomethingViewController *typeSomethingViewController = [[TypeSomethingViewController alloc] init];
 	typeSomethingViewController.delegate = self;
     [self presentViewController:typeSomethingViewController animated:YES completion:nil];
-	[typeSomethingViewController release];
 }
 
 - (IBAction)showInfo {  
@@ -892,7 +881,6 @@ BOOL picorimg,optorpic;
 	
 	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:controller animated:YES completion:nil];
-	[controller release];
 }
 
 - (IBAction)options:(id)sender{
@@ -902,7 +890,6 @@ BOOL picorimg,optorpic;
 		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Do You want to save the Result??"delegate:self cancelButtonTitle:@"NO" destructiveButtonTitle:nil otherButtonTitles:@"YES",nil];
 		actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
 		[actionSheet showInView:self.view]; // show from our table view (pops up in the middle of the table)
-		[actionSheet release];
 	}else
 	{
         OPorIN = TRUE;
@@ -912,7 +899,6 @@ BOOL picorimg,optorpic;
         controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         [self presentViewController:controller animated:YES completion:nil];
 	
-        [controller release];
         if( ugormg==0)
         {
             lblugormg.text = @"ug/cm2 Organic";
@@ -1006,6 +992,7 @@ BOOL picorimg,optorpic;
 - (void)customCameraImageCaptured:(CustomCameraViewController*)controller withCapturedImage:(UIImage *)image{
     [self imageProcess:image];
 }
+
 
 -(void)imageProcess:(UIImage *)image{
     

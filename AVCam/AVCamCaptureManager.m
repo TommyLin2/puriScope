@@ -160,8 +160,6 @@
     self.audioInput = nil;
     self.stillImageOutput = nil;
     self.recorder = nil;
-    
-    [super dealloc];
 }
 
 - (BOOL) setupSession
@@ -186,20 +184,20 @@
 		}
 	}
     // Init the device inputs
-    AVCaptureDeviceInput *newVideoInput = [[[AVCaptureDeviceInput alloc] initWithDevice:[self backFacingCamera] error:nil] autorelease];
-    AVCaptureDeviceInput *newAudioInput = [[[AVCaptureDeviceInput alloc] initWithDevice:[self audioDevice] error:nil] autorelease];
+    AVCaptureDeviceInput *newVideoInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self backFacingCamera] error:nil] ;
+    AVCaptureDeviceInput *newAudioInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self audioDevice] error:nil] ;
     
 	
     // Setup the still image file output
-    AVCaptureStillImageOutput *newStillImageOutput = [[[AVCaptureStillImageOutput alloc] init] autorelease];
-    NSDictionary *outputSettings = [[[NSDictionary alloc] initWithObjectsAndKeys:
+    AVCaptureStillImageOutput *newStillImageOutput = [[AVCaptureStillImageOutput alloc] init] ;
+    NSDictionary *outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys:
                                     AVVideoCodecJPEG, AVVideoCodecKey,
-                                    nil] autorelease];
+                                    nil];
     [newStillImageOutput setOutputSettings:outputSettings];
     
     
     // Create session (use default AVCaptureSessionPresetHigh)
-    AVCaptureSession *newCaptureSession = [[[AVCaptureSession alloc] init] autorelease];
+    AVCaptureSession *newCaptureSession = [[AVCaptureSession alloc] init] ;
     
     
     // Add inputs and output to the capture session
@@ -219,7 +217,7 @@
     [self setSession:newCaptureSession];
 	// Set up the movie file output
     NSURL *outputFileURL = [self tempFileURL];
-    AVCamRecorder *newRecorder = [[[AVCamRecorder alloc] initWithSession:[self session] outputFileURL:outputFileURL] autorelease];
+    AVCamRecorder *newRecorder = [[AVCamRecorder alloc] initWithSession:[self session] outputFileURL:outputFileURL];
     [newRecorder setDelegate:self];
 	
 	// Send an error to the delegate if video recording is unavailable
@@ -269,13 +267,12 @@
     [session addInput:input];
     
     // Create a VideoDataOutput and add it to the session
-    AVCaptureVideoDataOutput *output = [[[AVCaptureVideoDataOutput alloc] init] autorelease];
+    AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init] ;
     [session addOutput:output];
     
     // Configure your output.
     dispatch_queue_t queue = dispatch_queue_create("myQueue", NULL);
     [output setSampleBufferDelegate:self queue:queue];
-    dispatch_release(queue);
     
     // Specify the pixel format
     output.videoSettings =
@@ -402,9 +399,9 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         
         [self performSelector:@selector(deviceOrientationDidChange)];
         if (position == AVCaptureDevicePositionBack)
-            newVideoInput = [[[AVCaptureDeviceInput alloc] initWithDevice:[self frontFacingCamera] error:&error] autorelease];
+            newVideoInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self frontFacingCamera] error:&error] ;
         else if (position == AVCaptureDevicePositionFront)
-            newVideoInput = [[[AVCaptureDeviceInput alloc] initWithDevice:[self backFacingCamera] error:&error] autorelease];
+            newVideoInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self backFacingCamera] error:&error];
         else
             goto bail;
         
@@ -562,7 +559,7 @@ bail:
 - (void) copyFileToDocuments:(NSURL *)fileURL
 {
 	NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
 	[dateFormatter setDateFormat:@"yyyy-MM-dd_HH-mm-ss"];
 	NSString *destinationPath = [documentsDirectory stringByAppendingFormat:@"/output_%@.mov", [dateFormatter stringFromDate:[NSDate date]]];
 	NSError	*error;

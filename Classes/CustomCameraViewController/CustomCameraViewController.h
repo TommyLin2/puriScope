@@ -32,16 +32,16 @@
 @property (retain, nonatomic) IBOutlet UILabel *objectLabel1;
 
 @property (strong, nonatomic) IBOutlet UIButton *snapButton;
-@property (nonatomic, assign) id <CustomCameraViewControllerDelegate> delegate;
+@property (nonatomic, retain) id <CustomCameraViewControllerDelegate> delegate;
 @property (strong, nonatomic) UIImage *capturedImage;
 
-@property (nonatomic, assign) id <MTLDevice> device;
+@property (nonatomic, retain) id <MTLDevice> device;
 
-@property (nonatomic, assign) id <MTLCommandQueue> commandQueue;
+@property (nonatomic, retain) id <MTLCommandQueue> commandQueue;
 @property (nonatomic, strong) MTKTextureLoader *textureLoader;
 
 @property (nonatomic, strong) CIContext *ciContext;
-@property (nonatomic, assign) id <MTLTexture> sourceTexture;
+@property (nonatomic, retain) id <MTLTexture> sourceTexture;
 
 ////////////////////////To test to set Parameters /////////////////////////////////////
 @property (strong, nonatomic) IBOutlet UITextField *firstObjectNameTextField;

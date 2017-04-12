@@ -126,7 +126,6 @@ int x=240,arlen;
 			
 			arlen = [fData count]-1;
 			lblrepcount.text=[NSString stringWithFormat:@"%i Reportlines are ready to send",arlen];
-			[fData release];
 			
 			svinfo.hidden=TRUE;
 			self.view.backgroundColor = [UIColor whiteColor];
@@ -283,7 +282,6 @@ int x=240,arlen;
 	{
 		UIDeviceHardware *h=[[UIDeviceHardware alloc] init];
 		NSString *HardwareID = [h platformString];
-		[h release];
 		NSString *model = [[UIDevice currentDevice] model];
         NSLog(@"model %@",model);
 		if([model isEqualToString:@"iPod touch"])
@@ -340,7 +338,6 @@ int x=240,arlen;
 	cactionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 	cactionSheet.tag=0;
 	[cactionSheet showInView:self.view]; // show from our table view (pops up in the middle of the table)
-	[cactionSheet release];
 	
 }	
 	
@@ -381,7 +378,6 @@ int x=240,arlen;
 	//NSURL *pdfURL = [NSURL URLWithString:finalPath];
 	controller.pdfURL = [NSURL fileURLWithPath:finalPath];
     [self presentViewController:controller animated:YES completion:nil];
-	[controller release];
 	
 }
 
@@ -393,7 +389,6 @@ int x=240,arlen;
 	delactionSheet.actionSheetStyle = UIActionSheetStyleDefault;
 	delactionSheet.tag=1;
 	[delactionSheet showInView:self.view]; // show from our table view (pops up in the middle of the table)
-	[delactionSheet release];
 }
 
 
@@ -440,12 +435,9 @@ int x=240,arlen;
 				NSArray *plistentries = [[NSArray alloc] initWithObjects:@"Date",@"Customer",@"Tag",@"Diameter",@"Result",@"\"ug or mg\"",@"BlankR",@"BlankG",@"BlankB",@"SampleR",@"SampleG",@"SampleB",nil];
 				NSArray *cData = [[NSArray alloc] initWithObjects:plistentries,nil];
 				[cData writeToFile:thePath atomically:YES];
-				[plistentries release];
-				[cData release];
 				
 				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"REPORT" message:[NSString stringWithFormat:@"Report with %i lines deleted!",arlen] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 				[alert show];
-				[alert release];
 				lblrepcount.text=[NSString stringWithFormat:@"0 Reportlines are ready to send"];
 			}
 		}	
@@ -1120,13 +1112,15 @@ if(textField!=res0lab)
 	NSMutableArray *dData = [[NSMutableArray alloc] initWithContentsOfFile:thePath];
 	
 	
-	int i,len=([dData count]-1);
-	NSString *outd = [[NSString alloc] initWithString:@""];
+    int i;
+    int len=(int)(dData.count-1);
+	NSString *outd = @"";
 	for(i=0;i<=len;i++)
 	{
 		NSArray *newd = [[NSArray alloc] initWithArray:[dData objectAtIndex:i]];
-		int u,leng=([newd count]-1);
-		NSString *outdn=[[NSString alloc]initWithString:@""],*unew;
+		int u,leng=(int)(newd.count-1);
+		NSString *outdn = @"";
+        NSString *unew;
 		for(u=0;u<=leng;u++)
 		{
 			unew = [newd objectAtIndex:u];
@@ -1138,11 +1132,9 @@ if(textField!=res0lab)
 			}	
 		}
 		outd = [NSString stringWithFormat:@"%@\n%@",outd,outdn];
-		[newd release];
 	}
 	[pfile writeData:[[NSString stringWithFormat:@"%@",outd] dataUsingEncoding:NSUTF8StringEncoding]];
 	//NSLog(@"%@",outd);
-	[dData release];
 	
 		
 	Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
@@ -1173,21 +1165,18 @@ if(textField!=res0lab)
 			NSString *emailBody = @"Your results from your puriSCOPE tests are attached.";
 			[picker setMessageBody:emailBody isHTML:NO];
             [self presentViewController:picker animated:YES completion:nil];
-			[picker release];
 			
 		}
 		else
 		{
 			UIAlertView *mailaccount = [[UIAlertView alloc] initWithTitle:@"MESSAGE delivery" message:@"Please check your Mail Account" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 			[mailaccount show];
-			[mailaccount release];
 		}
 	}
 	else
 	{
 		UIAlertView *mailaccount = [[UIAlertView alloc] initWithTitle:@"MESSAGE delivery" message:@"Please check your Mail Account" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[mailaccount show];
-		[mailaccount release];
 	}
 	
 }
@@ -1224,7 +1213,6 @@ if(textField!=res0lab)
 	
 	//alert.actionSheetStyle = UIActionSheetStyleDefault;
 	[alert show];	// show from our table view (pops up in the middle of the table)
-	[alert release];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -1253,20 +1241,19 @@ if(textField!=res0lab)
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"REGISTRATION" message:@"Please fill in your data correctly" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 	}else
 	{
 		
 	
 	NSString *Version = [[UIDevice currentDevice] systemVersion];
 
-	NSString *UUID = [[UIDevice currentDevice] uniqueIdentifier];
 	NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
 	NSString *thePath3 = [rootPath stringByAppendingPathComponent:@"act_puriSCOPE.csv"];	
 
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	[fileManager createFileAtPath:thePath3 contents:nil attributes:nil];
 	NSFileHandle* pfile = [NSFileHandle fileHandleForWritingAtPath:thePath3];
+    NSString *UUID = @"";
 	[pfile writeData:[[NSString stringWithFormat:@"%@,%@,%@,%@,%@\n\r",txtcomp.text,txtdep.text,txtemail.text,Version,UUID] dataUsingEncoding:NSUTF8StringEncoding]];
 	
 			
@@ -1298,7 +1285,6 @@ if(textField!=res0lab)
 					NSString *emailBody = @"<h1>Please do not change any part of this Email.</h1> <br> <h1><b>Data from your iPod for activation is attached.</b></h1>";
 					[picker setMessageBody:emailBody isHTML:YES];
                     [self presentViewController:picker animated:NO completion:nil];
-					[picker release];
 					
 				}
 				else
@@ -1362,7 +1348,6 @@ if(textField!=res0lab)
 
 
 - (void)dealloc {
-    [super dealloc];
 }
 
 

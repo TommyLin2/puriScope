@@ -29,9 +29,6 @@
 }
 
 - (void)dealloc {
-    [viewController release];
-    [window release];
-    [super dealloc];
 }
 
 -(UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window

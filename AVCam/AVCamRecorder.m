@@ -65,7 +65,7 @@ static void *AVCamRecorderConnectionsObserverContext = &AVCamRecorderConnections
 {
     self = [super init];
     if (self != nil) {
-        AVCaptureMovieFileOutput *aMovieFileOutput = [[[AVCaptureMovieFileOutput alloc] init] autorelease];
+        AVCaptureMovieFileOutput *aMovieFileOutput = [[AVCaptureMovieFileOutput alloc] init] ;
 		[aMovieFileOutput addObserver:self forKeyPath:@"connections" options:0 context:AVCamRecorderConnectionsObserverContext];
         if ([aSession canAddOutput:aMovieFileOutput])
             [aSession addOutput:aMovieFileOutput];
@@ -85,7 +85,6 @@ static void *AVCamRecorderConnectionsObserverContext = &AVCamRecorderConnections
 	self.outputFileURL = nil;
 	[movieFileOutput removeObserver:self forKeyPath:@"connections"];
 	self.movieFileOutput = nil;
-    [super dealloc];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

@@ -46,7 +46,6 @@ NSString *nname,*aadress,*pperson;
     ABPeoplePickerNavigationController *peoplePickerController = [[ABPeoplePickerNavigationController alloc] init];
     peoplePickerController.peoplePickerDelegate = self;
     [self presentViewController:peoplePickerController animated:YES completion:nil];
-    [peoplePickerController release];
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
@@ -56,17 +55,17 @@ NSString *nname,*aadress,*pperson;
 
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
 {
-    NSString *lastname = (NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
+    NSString *lastname = (__bridge NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
 	if(lastname == nil)
 	{
 		lastname=@"-";
 	}
-	NSString *firstname = (NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
+	NSString *firstname = (__bridge NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
 	if(firstname == nil)
 	{
 		firstname=@"-";
 	}
-	NSString *company = (NSString *)ABRecordCopyValue(person, kABPersonOrganizationProperty);
+	NSString *company = (__bridge NSString *)ABRecordCopyValue(person, kABPersonOrganizationProperty);
 	if(company == nil)
 	{
 		company=@"-";
@@ -98,15 +97,8 @@ NSString *nname,*aadress,*pperson;
 		{	
 		 aadress = [[NSString alloc] initWithFormat:@"%@",addrStr];
 		}
-		[addrStr release];
-		[streetStr release];
-		[zipStr release];
-		[cityStr release];
 			
 	}
-	[lastname release];
-	[firstname release];
-	[company release];
 	
 	CFRelease(addrMulti);
 	
@@ -122,8 +114,6 @@ NSString *nname,*aadress,*pperson;
 }
 
 - (void)dealloc {
-    [textField release];
-    [super dealloc];
 }
 
 

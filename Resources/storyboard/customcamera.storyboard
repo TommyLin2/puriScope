@@ -31,7 +31,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhN-q0-7Yv">
-                                        <rect key="frame" x="21" y="24" width="346" height="180"/>
+                                        <rect key="frame" x="21" y="80" width="346" height="180"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mmM-vM-M70">
                                                 <rect key="frame" x="326" y="1" width="12" height="21"/>
@@ -123,14 +123,29 @@
                                             <constraint firstItem="6XN-q0-olh" firstAttribute="top" secondItem="yj5-qL-TR1" secondAttribute="bottom" constant="6" id="xFe-kE-DlW"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sTc-4m-b65">
+                                        <rect key="frame" x="24" y="25" width="320" height="34"/>
+                                        <color key="backgroundColor" red="0.0" green="1" blue="0.2210715902" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="YWf-MV-xbf"/>
+                                            <constraint firstAttribute="width" constant="320" id="ZKM-fp-hfd"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Back"/>
+                                        <connections>
+                                            <action selector="backButtonPressed" destination="H6W-UW-kON" eventType="touchDragInside" id="Gzo-63-KnS"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="zhN-q0-7Yv" firstAttribute="leading" secondItem="ZJQ-Xx-sqt" secondAttribute="leading" constant="21" id="8H4-rh-629"/>
+                                    <constraint firstItem="sTc-4m-b65" firstAttribute="leading" secondItem="ZJQ-Xx-sqt" secondAttribute="leading" constant="24" id="AKX-o4-n9L"/>
+                                    <constraint firstItem="sTc-4m-b65" firstAttribute="top" secondItem="ZJQ-Xx-sqt" secondAttribute="top" constant="25" id="Gt9-YX-wCB"/>
                                     <constraint firstAttribute="trailing" secondItem="zhN-q0-7Yv" secondAttribute="trailing" constant="8" id="Vu8-tp-nc0"/>
                                     <constraint firstAttribute="trailing" secondItem="wgL-ad-m3M" secondAttribute="trailing" constant="8" id="WoA-hD-wul"/>
                                     <constraint firstAttribute="bottom" secondItem="wgL-ad-m3M" secondAttribute="bottom" constant="24" id="fHq-Hy-yDJ"/>
-                                    <constraint firstItem="zhN-q0-7Yv" firstAttribute="top" secondItem="ZJQ-Xx-sqt" secondAttribute="top" constant="24" id="w3C-vN-L0r"/>
+                                    <constraint firstItem="zhN-q0-7Yv" firstAttribute="top" secondItem="ZJQ-Xx-sqt" secondAttribute="top" constant="80" id="w3C-vN-L0r"/>
                                     <constraint firstItem="wgL-ad-m3M" firstAttribute="leading" secondItem="ZJQ-Xx-sqt" secondAttribute="leading" constant="21" id="zeC-K6-30h"/>
                                 </constraints>
                             </view>

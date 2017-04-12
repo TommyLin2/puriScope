@@ -9,11 +9,7 @@ extern NSString *nname,*aadress,*pperson;
 
 @protocol TypeSomethingViewControllerDelegate;
 
-@interface TypeSomethingViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate,UITextFieldDelegate>{
-    UITextField *textField;
-    UILabel *personlabel;
-	id<TypeSomethingViewControllerDelegate> delegate;
-}
+@interface TypeSomethingViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate,UITextFieldDelegate>
 
 @property (nonatomic, retain) IBOutlet UILabel *personlabel;
 @property (retain) IBOutlet UITextField *textField;

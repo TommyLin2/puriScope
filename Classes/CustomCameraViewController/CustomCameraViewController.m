@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) Inception3Net *inception3Net;
 @property bool isCaptured;
+@property bool isCapturing;
 
 @end
 
@@ -78,7 +79,6 @@
     self.commandQueue = nil;
     self.inception3Net = nil;
     self.ciContext = nil;
-    [super dealloc];
 }
 
 -(void)initParameter{
@@ -86,6 +86,7 @@
     self.secondObjectParameter = [[ParameterDataModel alloc] init];
     [self.firstObjectParameter setValueWithNameKey:FIRST_OBJECT_NAME withValueKey:FIRST_OBJECT_VALUE];
     [self.secondObjectParameter setValueWithNameKey:SECOND_OBJECT_NAME withValueKey:SECOND_OBJECT_VALUE];
+    self.isCapturing = false;
 }
 
 -(void)setParameterToTextField{
@@ -98,14 +99,14 @@
 
 -(void)initPhotoCaptureSeesion{
     if (self.captureManager == nil) {
-        AVCamCaptureManager* manager = [[[AVCamCaptureManager alloc] init] autorelease];
+        AVCamCaptureManager* manager = [[AVCamCaptureManager alloc] init] ;
         [self setCaptureManager:manager];
         
         //[self.captureManager setDelegate:self];
         self.captureManager.delegate = self;
         if (self.captureManager.setupSession) {
             // Create video preview layer and add it to the UI
-            AVCaptureVideoPreviewLayer*newCaptureVideoPreviewLayer = [[[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureManager.session] autorelease];
+            AVCaptureVideoPreviewLayer*newCaptureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureManager.session] ;
             UIView* view = self.videoPreviewView;
             CALayer* viewLayer = view.layer;
             //[viewLayer setMasksToBounds:YES];
@@ -130,11 +131,11 @@
 
 - (void)initVideoCaptureSession{
     if (self.captureManager == nil) {
-        AVCamCaptureManager* manager = [[[AVCamCaptureManager alloc] init] autorelease];
+        AVCamCaptureManager* manager = [[AVCamCaptureManager alloc] init] ;
         [self setCaptureManager:manager];
         self.captureManager.delegate = self;
         [self.captureManager setupCaptureSession];
-        AVCaptureVideoPreviewLayer*newCaptureVideoPreviewLayer = [[[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureManager.session] autorelease];
+        AVCaptureVideoPreviewLayer*newCaptureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureManager.session];
         UIView* view = self.videoPreviewView;
         CALayer* viewLayer = view.layer;
         //[viewLayer setMasksToBounds:YES];
@@ -156,9 +157,9 @@
 
 - (void)initMTLDevice{
     self.device = MTLCreateSystemDefaultDevice();
-    self.commandQueue = [[self.device newCommandQueue] autorelease];
-    self.textureLoader = [[[MTKTextureLoader alloc] initWithDevice:self.device] autorelease];
-    self.inception3Net = [[[Inception3Net alloc] initWithCommandQueue:self.commandQueue] autorelease];
+    self.commandQueue = [self.device newCommandQueue] ;
+    self.textureLoader = [[MTKTextureLoader alloc] initWithDevice:self.device];
+    self.inception3Net = [[Inception3Net alloc] initWithCommandQueue:self.commandQueue];
     self.ciContext = [CIContext contextWithMTLDevice:self.device];
 }
 
@@ -195,17 +196,26 @@
 //}
 
 - (void) captureManagerRealTimeImageCaptured:(CVImageBufferRef )imageBuffer withTimeStamp:(CMTime)timeStamp{
-    CIImage *ciImage = [[[CIImage alloc] initWithCVImageBuffer:imageBuffer] autorelease];
+
+    if(self.isCapturing)
+        return;
+    CIImage *ciImage = [[CIImage alloc] initWithCVImageBuffer:imageBuffer] ;
     CGImageRef cgImageRef = [self.ciContext createCGImage:ciImage fromRect:ciImage.extent];
     if (cgImageRef) {
-        self.sourceTexture = [[self.textureLoader newTextureWithCGImage:cgImageRef options:nil error:nil] autorelease];
+        self.sourceTexture = [self.textureLoader newTextureWithCGImage:cgImageRef options:nil error:nil];
     }
     else{
         CGImageRelease(cgImageRef);
         return;
     }
     CGImageRelease(cgImageRef);
-    [self runNetWork:ciImage];
+
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        self.isCapturing = true;
+        [self runNetWork:ciImage];
+    });
+
 }
 
 - (void)runNetWork:(CIImage *)ciImage{
@@ -215,7 +225,6 @@
         [self.inception3Net forwardWithCommandBuffer:commandBuffer sourceTexture:self.sourceTexture];
         [commandBuffer commit];
         [commandBuffer waitUntilCompleted];
-        
         NSArray* array = self.inception3Net.getResults;
         NSLog(@"result - %@", array);
         NSString *displayTestString = @"";
@@ -250,12 +259,13 @@
                 [[self.captureManager session] stopRunning];
                 self.capturedImage = [self imageFromCIImage:ciImage];
                 [self getCapturedImage:self.capturedImage];
+                self.isCapturing = false;
             });
         }
 
         NSString *testString = [NSString stringWithFormat:@"%@ = %f",self.display_object_name,self.display_object_screen_rate];
         displayTestString = [NSString stringWithFormat:@"%@\n%@",displayTestString,testString];
-
+        self.isCapturing = false;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.objectLabel1 setText: displayTestString];
         });
@@ -272,7 +282,7 @@
     
     [self.view.subviews makeObjectsPerformSelector: @selector(removeFromSuperview)];
 
-    UIView *flashView = [[[UIView alloc] initWithFrame:self.view.frame] autorelease];
+    UIView *flashView = [[UIView alloc] initWithFrame:self.view.frame] ;
     [flashView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:flashView];
     [UIView animateWithDuration:.4f
@@ -285,13 +295,6 @@
     ];
 }
 
-//-(IBAction)startCameraSession{
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        [[self.captureManager session] startRunning];
-//        self.isShooting = false;
-//    });
-//}
-
 - (UIImage *)imageFromCIImage:(CIImage *)ciImage {
     CIContext *ciContext = [CIContext contextWithOptions:nil];
     CGImageRef cgImage = [ciContext createCGImage:ciImage fromRect:[ciImage extent]];
@@ -300,29 +303,8 @@
     return image;
 }
 
-//- (void)shootImage{
-//    if([self.captureManager.session isRunning]){
-//        CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^(void) {
-//            @try {
-//                [self.captureManager captureStillImage];
-//            }
-//            @catch(NSException* iae) {
-//                NSLog(@"%@", iae.reason);
-//            }
-//        // Flash the screen white and fade it out to give UI feedback that a still image was taken
-//            UIView *flashView = [[[UIView alloc] initWithFrame:self.view.frame] autorelease];
-//            [flashView setBackgroundColor:[UIColor whiteColor]];
-//            [self.view.window addSubview:flashView];
-//            [UIView animateWithDuration:.4f
-//                         animations:^{
-//                             [flashView setAlpha:0.f];
-//                         }
-//                         completion:^(BOOL finished){
-//                             [flashView removeFromSuperview];
-//                         }
-//             ];
-//        });
-//    }
-//}
+-(IBAction)backButtonPressed{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

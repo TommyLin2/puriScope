@@ -22,7 +22,6 @@ extern bool OPorIN,li,ugormg;
 
 @interface OptionsViewController : UIViewController <UITextFieldDelegate,MFMailComposeViewControllerDelegate,UIActionSheetDelegate>
 {
-	id <OptionsViewControllerDelegate> delegate;
 	UITextField *res0lab;
 	UISlider *res0val;
 	UITextField *res2lab;
@@ -73,7 +72,6 @@ extern bool OPorIN,li,ugormg;
 }
 
 @property (nonatomic, assign) id <OptionsViewControllerDelegate> delegate;
-
 @property(nonatomic, retain) IBOutlet UILabel *lbloptions;
 @property(nonatomic, retain) IBOutlet UIView *svinfo;
 @property(nonatomic, retain) IBOutlet UISegmentedControl *swugormg;

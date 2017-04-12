@@ -11,8 +11,6 @@
 
 @implementation PDFViewController
 
-
-
 @synthesize webView, pdfURL;
 
 #pragma mark -
@@ -46,10 +44,5 @@
 }
 
 // Dealloc method -- webView, pdfURL
-- (void)dealloc {
-	[webView release];
-	[pdfURL release];
-	[super dealloc];
-}
 
 @end
