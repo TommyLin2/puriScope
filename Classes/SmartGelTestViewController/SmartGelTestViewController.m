@@ -12,8 +12,6 @@
 
 @end
 
-
-
 @implementation SmartGelTestViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -26,6 +24,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self initVideoCaptureSession];
+    self.engine = [[DirtyExtractor alloc] init];
 }
 
 
@@ -39,6 +38,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 -(void)initPhotoCaptureSeesion{
     if (self.captureManager == nil) {
@@ -99,9 +99,31 @@
 }
 
 - (void) captureManagerRealTimeImageCaptured:(CVImageBufferRef )imageBuffer withTimeStamp:(CMTime)timeStamp{
-    
+    CIImage *ciImage = [[CIImage alloc] initWithCVImageBuffer:imageBuffer] ;
+    [self runNetWork:ciImage];
 }
 
+- (void)runNetWork:(CIImage *)ciImage{
+    @autoreleasepool {
+        [self.engine reset];
+        [self.engine importImage:[self imageFromCIImage:ciImage]];
+        [self.engine extract];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *valueString = [NSString stringWithFormat:@"Value - %.2f", self.engine.dirtyValue];
+            [self.valueLabel setText:valueString];
+            NSString *localValueString = [NSString stringWithFormat:@"Local Value - %.2f", self.engine.localDirtyValue];
+            [self.localValueLabel setText:localValueString];
+        });
+    }
+}
+
+- (UIImage *)imageFromCIImage:(CIImage *)ciImage {
+    CIContext *ciContext = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [ciContext createCGImage:ciImage fromRect:[ciImage extent]];
+    UIImage *image = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+    return image;
+}
 
 
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AVCamCaptureManager.h"
+#import "DirtyExtractor.h"
 
 @interface SmartGelTestViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,AVCamCaptureManagerDelegate,AVCaptureVideoDataOutputSampleBufferDelegate> {
     
@@ -17,5 +18,11 @@
 @property (nonatomic,retain) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
 
 @property (strong, nonatomic) IBOutlet UIView *videoPreviewView;
+
+@property (strong, nonatomic) IBOutlet UILabel *localValueLabel;
+@property (strong, nonatomic) IBOutlet UILabel *valueLabel;
+
+@property (nonatomic, strong) DirtyExtractor *engine;
+
 
 @end

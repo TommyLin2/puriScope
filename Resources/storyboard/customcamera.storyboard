@@ -230,6 +230,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="localValueLabel" destination="jUl-QK-HT8" id="vuU-2N-o8Y"/>
+                        <outlet property="valueLabel" destination="tWG-x8-OWf" id="HP8-zR-f5W"/>
                         <outlet property="videoPreviewView" destination="ls9-FV-7dj" id="SLx-M0-gab"/>
                     </connections>
                 </viewController>
