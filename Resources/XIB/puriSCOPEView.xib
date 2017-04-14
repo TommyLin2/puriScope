@@ -247,6 +247,9 @@
                     <state key="highlighted" backgroundImage="info.png">
                         <color key="titleColor" red="0.21999999880000001" green="0.21999999880000001" blue="0.21999999880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="launchSmartGelCameraViewController" destination="-1" eventType="touchUpInside" id="bdW-fY-YVx"/>
+                    </connections>
                 </button>
                 <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="center" image="slidemenu.png" id="261">
                     <rect key="frame" x="1" y="1" width="5" height="25"/>

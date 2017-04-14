@@ -526,8 +526,7 @@ BOOL picorimg,optorpic;
 			if  ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
 			{
                 imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-//                [self launchCustomCameraViewController];
-                [self launchSmartGelCameraViewController];
+                [self launchCustomCameraViewController];
 			}
 			else
 			{
@@ -556,8 +555,7 @@ BOOL picorimg,optorpic;
 		if  ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
 		{
             imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-//            [self launchCustomCameraViewController];
-            [self launchSmartGelCameraViewController];
+            [self launchCustomCameraViewController];
 		}
 		else
 		{
@@ -581,7 +579,7 @@ BOOL picorimg,optorpic;
     [self presentViewController:controller animated:NO completion:nil];
 }
 
--(void)launchSmartGelCameraViewController{
+-(IBAction)launchSmartGelCameraViewController{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"customcamera" bundle:[NSBundle mainBundle]];
     CustomCameraViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"SmartGelTestViewController"];
     controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
