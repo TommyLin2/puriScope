@@ -15,7 +15,7 @@ float alpha;
 double Diam;
 NSString *_diam;
 BOOL picorimg,optorpic;
-@synthesize lbldiam,lblugormg,Options,btninfo,resultfox,sample,blank,getImage,getPhoto,newfoxy,adress,namelabel,reportview,result3,timeLabel,libsegcam,taglabel,personLabel,save,lblreport,btnoptions,vwslidemenu,reslabel,btnSmartGel;
+@synthesize lbldiam,lblugormg,Options,btninfo,resultfox,sample,blank,getImage,getPhoto,newfoxy,adress,namelabel,reportview,result3,timeLabel,libsegcam,taglabel,personLabel,save,lblreport,btnoptions,vwslidemenu,reslabel,btngel;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -343,14 +343,14 @@ BOOL picorimg,optorpic;
 	[UIView setAnimationDuration:2];
 	float l=120.0;
 	float ix=520.0,iy=150.0;
-	float ag,ar,ain,ao,asmart,pi=M_PI,e=M_E;
+	float ag,ar,ain,ao,agel,pi=M_PI,e=M_E;
 	
 	ag = (pi/3.5)*1;
 	ar=2*ag;
 	ao=3*ag;
 	ain=4*ag;
-    asmart=5*ag;
-	
+    agel=5*ag;
+
 	alpha=((1.5*pi)-ag);
 	
 	CGPoint pos1 = getImage.center;
@@ -358,7 +358,8 @@ BOOL picorimg,optorpic;
 	CGPoint pos3 = save.center;
 	CGPoint pos4 = btnoptions.center;
 	CGPoint pos5 = btninfo.center;
-//    CGPoint pos6 = btnSmartGel.center;
+    CGPoint pos6 = btngel.center;
+
 	CGPoint slpos1 = vwslidemenu.center;
 	
 	pos1.x=ix+(sin(alpha)*l);
@@ -376,10 +377,9 @@ BOOL picorimg,optorpic;
 	pos5.x=ix+(sin(alpha+ain)*l);
 	pos5.y=iy+(cos(alpha+ain)*l);
     
-//    pos6.x=ix+(sin(alpha+asmart)*l);
-//    pos6.y=iy+(cos(alpha+asmart)*l);
-
-	
+    pos6.x=ix+(sin(alpha+agel)*l);
+    pos6.y=iy+(cos(alpha+agel)*l);
+    
 	slpos1.y=(alpha*75)-71;
 
 	int xlargeI;
@@ -417,13 +417,12 @@ BOOL picorimg,optorpic;
 	gIn.size.height=35+xlargeIn;
 	btninfo.bounds = gIn;
     
-//    int xlargeSmart;
-//    xlargeSmart=(150*pow(e,(-5*(alpha-((1.5*pi)-ain))*(alpha-((1.5*pi)-asmart)))));
-//    CGRect gsmart = btnSmartGel.bounds;
-//    gsmart.size.width=35+xlargeSmart;
-//    gsmart.size.height=35+xlargeSmart;
-//    btnSmartGel.bounds = gsmart;
-
+    int xlargeGel;
+    xlargeGel=(150*pow(e,(-5*(alpha-((1.5*pi)-agel))*(alpha-((1.5*pi)-agel)))));
+    CGRect gel = btninfo.bounds;
+    gel.size.width=35+xlargeGel;
+    gel.size.height=35+xlargeGel;
+    btngel.bounds = gel;
 	
 	getPhoto.center=pos2;
 	getImage.center=pos1;
@@ -433,12 +432,12 @@ BOOL picorimg,optorpic;
 		save.center=pos3;
 		btnoptions.center=pos4;
 		btninfo.center=pos5;
-//        btnSmartGel.center = pos6;
 	}else
 	{
 		save.hidden=TRUE;
 		btnoptions.hidden=TRUE;
 		btninfo.center=pos3;
+        btngel.center=pos4;
 	}
 	
 	
@@ -605,7 +604,7 @@ BOOL picorimg,optorpic;
 {
     float l=120.0;
 	float ix=520.0,iy=150.0;
-	float ag,ar,ain,ao,asmart,pi=M_PI,e=M_E;
+	float ag,ar,ain,ao,agel,pi=M_PI,e=M_E;
 	
 	UITouch *touch2 = [touches anyObject];
 	second = [touch2 locationInView:self.view];
@@ -614,8 +613,8 @@ BOOL picorimg,optorpic;
 	ar=2*ag;
 	ao=3*ag;
 	ain=4*ag;
-    asmart = 5*ag;
-	
+    agel=5*ag;
+
 	alpha=alpha+(pi/180*((second.y-first.y)/35));
 	if(alpha >= (1.5*pi))
 	{
@@ -631,7 +630,7 @@ BOOL picorimg,optorpic;
 	CGPoint pos3 = save.center;
 	CGPoint pos4 = btnoptions.center;
 	CGPoint pos5 = btninfo.center;
-//    CGPoint pos6 = btnSmartGel.center;
+    CGPoint pos6 = btngel.center;
 
 	CGPoint slpos1 = vwslidemenu.center;
 	
@@ -649,9 +648,9 @@ BOOL picorimg,optorpic;
 
 	pos5.x=ix+(sin(alpha+ain)*l);
 	pos5.y=iy+(cos(alpha+ain)*l);
-
-//    pos6.x=ix+(sin(alpha+asmart)*l);
-//    pos6.y=iy+(cos(alpha+asmart)*l);
+    
+    pos6.x=ix+(sin(alpha+agel)*l);
+    pos6.y=iy+(cos(alpha+agel)*l);
 
 	slpos1.y=(alpha*75)-71;
 	
@@ -703,8 +702,18 @@ BOOL picorimg,optorpic;
 	gIn.size.height=35+xlargeIn;
 	btninfo.bounds = gIn;
     
-//    btnSmartGel.bounds = gIn;
-    
+    int xlargeGel;
+    if(li)
+    {
+        xlargeGel=(150*pow(e,(-5*(alpha-((1.5*pi)-agel))*(alpha-((1.5*pi)-agel)))));
+    }else{
+        xlargeGel=xlargeO;
+    }
+    CGRect gGel = btngel.bounds;
+    gGel.size.width=35+xlargeGel;
+    gGel.size.height=35+xlargeGel;
+    btngel.bounds = gGel;
+	
 	getImage.center=pos1;
 	getPhoto.center=pos2;
 	
@@ -713,13 +722,13 @@ BOOL picorimg,optorpic;
 		save.center=pos3;
 		btnoptions.center=pos4;
 		btninfo.center=pos5;
-//        btnSmartGel.center=pos6;
-
+        btngel.center= pos6;
 	}else
 	{
 		save.hidden=TRUE;
 		btnoptions.hidden=TRUE;
 		btninfo.center=pos3;
+        btngel.center = pos4;
 	}
 	
 	vwslidemenu.center=slpos1;

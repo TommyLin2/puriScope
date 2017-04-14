@@ -45,7 +45,7 @@ extern NSMutableArray *dDate;
 	UILabel *lblreport;
 	UIButton *btnoptions;
 	UIButton *btninfo;
-    UIButton *btnSmartGel;
+    UIButton *btngel;
 	UILabel *lblugormg;
 	UIImageView *vwslidemenu;
 	UILabel *lbldiam;
@@ -72,7 +72,7 @@ extern NSMutableArray *dDate;
 @property(nonatomic, retain)IBOutlet UIButton *save;
 @property(nonatomic, retain)IBOutlet UILabel *lblreport;
 @property(nonatomic, retain)IBOutlet UIButton *btnoptions;
-@property(nonatomic, retain)IBOutlet UIButton *btnSmartGel;
+@property(nonatomic, retain)IBOutlet UIButton *btngel;
 @property(nonatomic, retain)IBOutlet UIImageView *vwslidemenu;
 @property(nonatomic, retain)IBOutlet UILabel *reslabel;
 
