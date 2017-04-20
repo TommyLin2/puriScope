@@ -15,6 +15,7 @@
 		590DCB2E1467ED3300549041 /* puriSCOPE_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 590DCB2D1467ED3300549041 /* puriSCOPE_114.png */; };
 		590DCB331467F3B200549041 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 590DCB321467F3B200549041 /* Default@2x.png */; };
 		594893FF14618B5F00B39BC0 /* puriscope.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 594893FE14618B5F00B39BC0 /* puriscope.pdf */; };
+		8D0E30881EA468A400B8B575 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0E30871EA468A400B8B575 /* ContactsUI.framework */; };
 		8D1E00351E4064AD00583F53 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1E00341E4064AD00583F53 /* Metal.framework */; };
 		8D1E00371E40668800583F53 /* MetalPerformanceShaders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1E00361E40668800583F53 /* MetalPerformanceShaders.framework */; };
 		8D1E00391E40669400583F53 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1E00381E40669400583F53 /* Accelerate.framework */; };
@@ -223,6 +224,7 @@
 		8D1E01DC1E41D55800583F53 /* weights_fc1.dat in Resources */ = {isa = PBXBuildFile; fileRef = 8D1E01161E41D55700583F53 /* weights_fc1.dat */; };
 		8D1E01DD1E41D55800583F53 /* weights_fc2.dat in Resources */ = {isa = PBXBuildFile; fileRef = 8D1E01171E41D55700583F53 /* weights_fc2.dat */; };
 		8D3389FE1E45786F0028A2A8 /* ParameterDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3389FD1E45786F0028A2A8 /* ParameterDataModel.m */; };
+		8D3D460A1EA8687600AB7D28 /* smartgel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3D46091EA8687600AB7D28 /* smartgel.png */; };
 		8D3E8C541E9E63EC0037E0AB /* SmartGelTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E8C531E9E63EC0037E0AB /* SmartGelTestViewController.m */; };
 		8D3E8C581E9E6A700037E0AB /* DirtyExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E8C571E9E6A700037E0AB /* DirtyExtractor.m */; };
 		8D7E29B21E387430003C6583 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E29B11E387430003C6583 /* Default-568h@2x.png */; };
@@ -276,6 +278,7 @@
 		590DCB2D1467ED3300549041 /* puriSCOPE_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puriSCOPE_114.png; sourceTree = "<group>"; };
 		590DCB321467F3B200549041 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		594893FE14618B5F00B39BC0 /* puriscope.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = puriscope.pdf; path = Resources/puriscope.pdf; sourceTree = "<group>"; };
+		8D0E30871EA468A400B8B575 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* puriSCOPE-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "puriSCOPE-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		8D1E00341E4064AD00583F53 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		8D1E00361E40668800583F53 /* MetalPerformanceShaders.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalPerformanceShaders.framework; path = System/Library/Frameworks/MetalPerformanceShaders.framework; sourceTree = SDKROOT; };
@@ -487,6 +490,7 @@
 		8D1E01171E41D55700583F53 /* weights_fc2.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = weights_fc2.dat; sourceTree = "<group>"; };
 		8D3389FC1E45786F0028A2A8 /* ParameterDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParameterDataModel.h; path = Models/ParameterDataModel/ParameterDataModel.h; sourceTree = "<group>"; };
 		8D3389FD1E45786F0028A2A8 /* ParameterDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParameterDataModel.m; path = Models/ParameterDataModel/ParameterDataModel.m; sourceTree = "<group>"; };
+		8D3D46091EA8687600AB7D28 /* smartgel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = smartgel.png; path = Resources/Images/smartgel.png; sourceTree = "<group>"; };
 		8D3E8C521E9E63EC0037E0AB /* SmartGelTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SmartGelTestViewController.h; path = SmartGelTestViewController/SmartGelTestViewController.h; sourceTree = "<group>"; };
 		8D3E8C531E9E63EC0037E0AB /* SmartGelTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SmartGelTestViewController.m; path = SmartGelTestViewController/SmartGelTestViewController.m; sourceTree = "<group>"; };
 		8D3E8C561E9E6A700037E0AB /* DirtyExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirtyExtractor.h; path = engine/DirtyExtractor.h; sourceTree = "<group>"; };
@@ -544,6 +548,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D0E30881EA468A400B8B575 /* ContactsUI.framework in Frameworks */,
 				8D1E003D1E40760A00583F53 /* CoreMedia.framework in Frameworks */,
 				8D1E003B1E4075FF00583F53 /* CoreVideo.framework in Frameworks */,
 				8D1E00391E40669400583F53 /* Accelerate.framework in Frameworks */,
@@ -639,6 +644,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8D0E30871EA468A400B8B575 /* ContactsUI.framework */,
 				8D1E003C1E40760A00583F53 /* CoreMedia.framework */,
 				8D1E003A1E4075FF00583F53 /* CoreVideo.framework */,
 				8D1E00381E40669400583F53 /* Accelerate.framework */,
@@ -959,6 +965,7 @@
 		E95585C611895C2D005BC2B7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8D3D46091EA8687600AB7D28 /* smartgel.png */,
 				E99DB5C511D4CF8F00CCA417 /* Load.png */,
 				E99DB5C611D4CF8F00CCA417 /* Save.png */,
 				E9A50B9411913C090082EA4B /* stop.jpg */,
@@ -1127,6 +1134,7 @@
 				8D1E01301E41D55700583F53 /* bias_mixed_2_tower_1_conv_2.dat in Resources */,
 				E95585EC11895E16005BC2B7 /* TypeSomethingView.xib in Resources */,
 				E95585F811895E3E005BC2B7 /* Settings.bundle in Resources */,
+				8D3D460A1EA8687600AB7D28 /* smartgel.png in Resources */,
 				8D1E014D1E41D55700583F53 /* bias_mixed_6_tower_1_conv.dat in Resources */,
 				8D1E01D71E41D55700583F53 /* bias_conv2.dat in Resources */,
 				8D1E01181E41D55700583F53 /* bias_conv.dat in Resources */,

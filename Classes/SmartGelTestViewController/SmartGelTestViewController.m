@@ -127,4 +127,8 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(IBAction)catureImage{
+    
+}
+
 @end
