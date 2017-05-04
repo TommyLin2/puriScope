@@ -22,6 +22,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *localValueLabel;
 @property (strong, nonatomic) IBOutlet UILabel *valueLabel;
 
+@property (strong, nonatomic) UIImage *capturedImage;
+@property (strong, nonatomic) NSString *capturedImageValueString;
+
+
 @property (nonatomic, strong) DirtyExtractor *engine;
 
 

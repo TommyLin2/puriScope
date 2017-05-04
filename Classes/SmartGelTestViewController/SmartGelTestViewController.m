@@ -24,6 +24,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self initVideoCaptureSession];
+    self.capturedImage = [[UIImage alloc] init];
     self.engine = [[DirtyExtractor alloc] init];
 }
 
@@ -104,11 +105,12 @@
 - (void)runNetWork:(CIImage *)ciImage{
     @autoreleasepool {
         [self.engine reset];
-        [self.engine importImage:[self imageFromCIImage:ciImage]];
+        self.capturedImage =[self imageFromCIImage:ciImage];
+        [self.engine importImage:self.capturedImage];
         [self.engine extract];
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *valueString = [NSString stringWithFormat:@"Value - %.2f", self.engine.dirtyValue];
-            [self.valueLabel setText:valueString];
+            self.capturedImageValueString = [NSString stringWithFormat:@"Value - %.2f", self.engine.dirtyValue];
+            [self.valueLabel setText:self.capturedImageValueString];
             NSString *localValueString = [NSString stringWithFormat:@"Local Value - %.2f", self.engine.localDirtyValue];
             [self.localValueLabel setText:localValueString];
         });
@@ -129,6 +131,28 @@
 
 -(IBAction)catureImage{
     
+    UIImageWriteToSavedPhotosAlbum(self.capturedImage, nil, nil, nil);
+
+    
+//    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//    NSString *imageSubdirectory = [documentsDirectory stringByAppendingPathComponent:@"SmartGel"];
+//    
+//    NSString *fileName = [NSString stringWithFormat:@"%@_%@.png",[self getTimeString],self.capturedImageValueString];
+//    NSString *filePath = [imageSubdirectory stringByAppendingPathComponent:fileName];
+//    
+//    // Convert UIImage object into NSData (a wrapper for a stream of bytes) formatted according to PNG spec
+//    NSData *imageData = UIImagePNGRepresentation(self.capturedImage);
+//    [imageData writeToFile:filePath atomically:YES];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+
+}
+
+-(NSString*)getTimeString{
+    NSDate *currentTime = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYMMdd_hh_mm_ss"];
+    NSString *resultString = [dateFormatter stringFromDate: currentTime];
+    return resultString;
 }
 
 @end

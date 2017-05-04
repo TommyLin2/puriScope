@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -203,15 +203,24 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="424-yY-gAU">
+                                        <rect key="frame" x="159.5" y="611" width="55" height="30"/>
+                                        <state key="normal" title="Capture"/>
+                                        <connections>
+                                            <action selector="catureImage" destination="gfa-IW-sDI" eventType="touchUpInside" id="ssq-Xb-fnd"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="424-yY-gAU" secondAttribute="bottom" constant="26" id="AGa-xa-NJU"/>
                                     <constraint firstItem="jUl-QK-HT8" firstAttribute="leading" secondItem="ls9-FV-7dj" secondAttribute="leading" constant="24" id="QkW-7z-mPU"/>
                                     <constraint firstAttribute="bottom" secondItem="jUl-QK-HT8" secondAttribute="bottom" constant="26" id="gdq-3C-gya"/>
                                     <constraint firstItem="tWG-x8-OWf" firstAttribute="leading" secondItem="ls9-FV-7dj" secondAttribute="leading" constant="24" id="kac-Qb-sMG"/>
                                     <constraint firstItem="1Nl-h1-Z3a" firstAttribute="leading" secondItem="ls9-FV-7dj" secondAttribute="leading" constant="24" id="npB-JJ-pB7"/>
                                     <constraint firstItem="jUl-QK-HT8" firstAttribute="top" secondItem="tWG-x8-OWf" secondAttribute="bottom" constant="16" id="oMa-ZV-SeY"/>
                                     <constraint firstItem="1Nl-h1-Z3a" firstAttribute="top" secondItem="ls9-FV-7dj" secondAttribute="top" constant="25" id="wDk-ZY-09l"/>
+                                    <constraint firstItem="424-yY-gAU" firstAttribute="centerX" secondItem="ls9-FV-7dj" secondAttribute="centerX" id="zXs-a2-M0A"/>
                                 </constraints>
                             </view>
                         </subviews>
