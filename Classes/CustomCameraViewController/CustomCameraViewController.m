@@ -16,6 +16,7 @@
 @property (strong, nonatomic) Inception3Net *inception3Net;
 @property bool isCaptured;
 @property bool isCapturing;
+@property bool isSettedParameter;
 
 @end
 
@@ -41,8 +42,7 @@
     [self initMTLDevice];
     
     [self initParameter];
-    [self setParameterToTextField];
-
+    [self initUIwithSettedParamter];
     // Do any additional setup after loading the view.
 }
 
@@ -86,15 +86,25 @@
     self.secondObjectParameter = [[ParameterDataModel alloc] init];
     [self.firstObjectParameter setValueWithNameKey:FIRST_OBJECT_NAME withValueKey:FIRST_OBJECT_VALUE];
     [self.secondObjectParameter setValueWithNameKey:SECOND_OBJECT_NAME withValueKey:SECOND_OBJECT_VALUE];
+    if((self.firstObjectParameter.objectValue==0.0f)||(self.secondObjectParameter.objectValue==0.0f))
+        self.isSettedParameter = false;
+    else
+        self.isSettedParameter = true;
     self.isCapturing = false;
 }
 
--(void)setParameterToTextField{
-    self.firstObjectNameTextField.text =self.firstObjectParameter.objectName;
-    self.firstObjectValueTextField.text =[NSString stringWithFormat:@"%f",self.firstObjectParameter.objectValue];
+-(void)initUIwithSettedParamter{
+    if(self.isSettedParameter){
+        [self.descriptionLabel setText:@"Please press this button to reset distance of auto shoot."];
+    }else{
+        [self.descriptionLabel setText:@"Please press this button to set distance of auto shoot."];
+    }
     
-    self.secondObjectNameTextField.text =self.secondObjectParameter.objectName;
-    self.secondObjectValueTextField.text =[NSString stringWithFormat:@"%f",self.secondObjectParameter.objectValue];
+//    self.firstObjectNameTextField.text =self.firstObjectParameter.objectName;
+//    self.firstObjectValueTextField.text =[NSString stringWithFormat:@"%f",self.firstObjectParameter.objectValue];
+//    
+//    self.secondObjectNameTextField.text =self.secondObjectParameter.objectName;
+//    self.secondObjectValueTextField.text =[NSString stringWithFormat:@"%f",self.secondObjectParameter.objectValue];
 }
 
 -(void)initPhotoCaptureSeesion{
@@ -164,17 +174,24 @@
 }
 
 - (IBAction)setPartmeterTotest{
-    [self.firstObjectParameter saveWithObjectNameWithValue:self.display_object_name withObjectValue:self.display_object_screen_rate withNameKey:FIRST_OBJECT_NAME withvalueKey:FIRST_OBJECT_VALUE];
-    [self.secondObjectParameter saveWithObjectNameWithValue:self.second_display_object_name withObjectValue:self.second_display_object_screen_rate withNameKey:SECOND_OBJECT_NAME withvalueKey:SECOND_OBJECT_VALUE];
-
-    [self setParameterToTextField];
+    
+    if(self.isSettedParameter){
+        [self.firstObjectParameter saveWithObjectNameWithValue:@"" withObjectValue:0.0f withNameKey:FIRST_OBJECT_NAME withvalueKey:FIRST_OBJECT_VALUE];
+        [self.secondObjectParameter saveWithObjectNameWithValue:@"" withObjectValue:0.0f withNameKey:SECOND_OBJECT_NAME withvalueKey:SECOND_OBJECT_VALUE];
+        self.isSettedParameter = false;
+    }else{
+        [self.firstObjectParameter saveWithObjectNameWithValue:self.display_object_name withObjectValue:self.display_object_screen_rate withNameKey:FIRST_OBJECT_NAME withvalueKey:FIRST_OBJECT_VALUE];
+        [self.secondObjectParameter saveWithObjectNameWithValue:self.second_display_object_name withObjectValue:self.second_display_object_screen_rate withNameKey:SECOND_OBJECT_NAME withvalueKey:SECOND_OBJECT_VALUE];
+        self.isSettedParameter = true;
+    }
+    [self initUIwithSettedParamter];
 }
 
-- (IBAction)clearParameter{
-    [self.firstObjectParameter saveWithObjectNameWithValue:@"" withObjectValue:0.0f withNameKey:FIRST_OBJECT_NAME withvalueKey:FIRST_OBJECT_VALUE];
-    [self.secondObjectParameter saveWithObjectNameWithValue:@"" withObjectValue:0.0f withNameKey:SECOND_OBJECT_NAME withvalueKey:SECOND_OBJECT_VALUE];
-    [self setParameterToTextField];
-}
+//- (IBAction)clearParameter{
+//    [self.firstObjectParameter saveWithObjectNameWithValue:@"" withObjectValue:0.0f withNameKey:FIRST_OBJECT_NAME withvalueKey:FIRST_OBJECT_VALUE];
+//    [self.secondObjectParameter saveWithObjectNameWithValue:@"" withObjectValue:0.0f withNameKey:SECOND_OBJECT_NAME withvalueKey:SECOND_OBJECT_VALUE];
+//    [self setParameterToTextField];
+//}
 
 - (void)setPhotoCaptureSession{
     [[self.captureManager session] stopRunning];
@@ -267,9 +284,9 @@
         NSString *testString = [NSString stringWithFormat:@"%@ = %f",self.display_object_name,self.display_object_screen_rate];
         displayTestString = [NSString stringWithFormat:@"%@\n%@",displayTestString,testString];
         self.isCapturing = false;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.objectLabel1 setText: displayTestString];
-        });
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.objectLabel1 setText: displayTestString];
+//        });
     }
 }
 

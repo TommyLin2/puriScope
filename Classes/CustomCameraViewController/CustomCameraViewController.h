@@ -29,7 +29,7 @@
 @property (nonatomic,retain) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
 
 @property (strong, nonatomic) IBOutlet UIView *videoPreviewView;
-@property (retain, nonatomic) IBOutlet UILabel *objectLabel1;
+//@property (retain, nonatomic) IBOutlet UILabel *objectLabel1;
 
 @property (strong, nonatomic) IBOutlet UIButton *snapButton;
 @property (nonatomic, retain) id <CustomCameraViewControllerDelegate> delegate;
@@ -44,12 +44,13 @@
 @property (nonatomic, retain) id <MTLTexture> sourceTexture;
 
 ////////////////////////To test to set Parameters /////////////////////////////////////
-@property (strong, nonatomic) IBOutlet UITextField *firstObjectNameTextField;
-@property (strong, nonatomic) IBOutlet UITextField *firstObjectValueTextField;
+//@property (strong, nonatomic) IBOutlet UITextField *firstObjectNameTextField;
+//@property (strong, nonatomic) IBOutlet UITextField *firstObjectValueTextField;
+//
+//@property (strong, nonatomic) IBOutlet UITextField *secondObjectNameTextField;
+//@property (strong, nonatomic) IBOutlet UITextField *secondObjectValueTextField;
 
-@property (strong, nonatomic) IBOutlet UITextField *secondObjectNameTextField;
-@property (strong, nonatomic) IBOutlet UITextField *secondObjectValueTextField;
-
+@property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @property (nonatomic, assign) float display_object_screen_rate;
 @property (nonatomic, strong) NSString *display_object_name;
