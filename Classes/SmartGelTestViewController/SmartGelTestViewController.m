@@ -7,6 +7,9 @@
 //
 
 #import "SmartGelTestViewController.h"
+#import <Photos/PHAssetCollectionChangeRequest.h>
+#import <Photos/PHAssetChangeRequest.h>
+#import <Photos/PHCollection.h>
 
 @interface SmartGelTestViewController ()
 
@@ -132,19 +135,31 @@
 -(IBAction)catureImage{
     
     UIImageWriteToSavedPhotosAlbum(self.capturedImage, nil, nil, nil);
-
     
-//    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-//    NSString *imageSubdirectory = [documentsDirectory stringByAppendingPathComponent:@"SmartGel"];
-//    
-//    NSString *fileName = [NSString stringWithFormat:@"%@_%@.png",[self getTimeString],self.capturedImageValueString];
-//    NSString *filePath = [imageSubdirectory stringByAppendingPathComponent:fileName];
-//    
-//    // Convert UIImage object into NSData (a wrapper for a stream of bytes) formatted according to PNG spec
-//    NSData *imageData = UIImagePNGRepresentation(self.capturedImage);
-//    [imageData writeToFile:filePath atomically:YES];
-//    [self dismissViewControllerAnimated:YES completion:nil];
-
+    __block PHObjectPlaceholder *myAlbum;
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        PHAssetCollectionChangeRequest *changeRequest = [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:@"SmartGel"];
+        myAlbum = changeRequest.placeholderForCreatedAssetCollection;
+    } completionHandler:^(BOOL success, NSError *error) {
+        if (success) {
+            PHFetchResult *fetchResult = [PHAssetCollection fetchAssetCollectionsWithLocalIdentifiers:@[myAlbum.localIdentifier] options:nil];
+            PHAssetCollection *assetCollection = fetchResult.firstObject;
+            
+            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                PHAssetChangeRequest *assetChangeRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:self.capturedImage];
+                
+                // add asset
+                PHAssetCollectionChangeRequest *assetCollectionChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:assetCollection];
+                [assetCollectionChangeRequest addAssets:@[[assetChangeRequest placeholderForCreatedAsset]]];
+            } completionHandler:^(BOOL success, NSError *error) {
+                if (!success) {
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }
+            }];
+        } else {
+            NSLog(@"Error: %@", error);
+        }
+    }];
 }
 
 -(NSString*)getTimeString{

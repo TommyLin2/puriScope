@@ -228,6 +228,7 @@
 		8D3E8C541E9E63EC0037E0AB /* SmartGelTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E8C531E9E63EC0037E0AB /* SmartGelTestViewController.m */; };
 		8D3E8C581E9E6A700037E0AB /* DirtyExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E8C571E9E6A700037E0AB /* DirtyExtractor.m */; };
 		8D7E29B21E387430003C6583 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E29B11E387430003C6583 /* Default-568h@2x.png */; };
+		8DC28EA11EBD5C720004A33A /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DCD8F3D1E3AD2ED0077CD9C /* Photos.framework */; };
 		8DCD8F291E39D1A70077CD9C /* CustomCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F281E39D1A70077CD9C /* CustomCameraViewController.m */; };
 		8DCD8F3A1E3AD12F0077CD9C /* AVCamCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F351E3AD12F0077CD9C /* AVCamCaptureManager.m */; };
 		8DCD8F3B1E3AD12F0077CD9C /* AVCamRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F371E3AD12F0077CD9C /* AVCamRecorder.m */; };
@@ -548,6 +549,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DC28EA11EBD5C720004A33A /* Photos.framework in Frameworks */,
 				8D0E30881EA468A400B8B575 /* ContactsUI.framework in Frameworks */,
 				8D1E003D1E40760A00583F53 /* CoreMedia.framework in Frameworks */,
 				8D1E003B1E4075FF00583F53 /* CoreVideo.framework in Frameworks */,

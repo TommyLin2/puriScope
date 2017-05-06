@@ -48,7 +48,6 @@
 #import "AVCamCaptureManager.h"
 #import "AVCamRecorder.h"
 #import <MobileCoreServices/UTCoreTypes.h>
-//#import <AssetsLibrary/AssetsLibrary.h>
 #import <ImageIO/CGImageProperties.h>
 
 @interface AVCamCaptureManager (RecorderDelegate) <AVCamRecorderDelegate>
