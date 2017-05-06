@@ -41,7 +41,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 -(void)initPhotoCaptureSeesion{
     if (self.captureManager == nil) {
         AVCamCaptureManager* manager = [[AVCamCaptureManager alloc] init] ;
@@ -112,10 +111,10 @@
         [self.engine importImage:self.capturedImage];
         [self.engine extract];
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.capturedImageValueString = [NSString stringWithFormat:@"Value - %.2f", self.engine.dirtyValue];
+            self.capturedImageValueString = [NSString stringWithFormat:@"%.2f", self.engine.dirtyValue];
             [self.valueLabel setText:self.capturedImageValueString];
-            NSString *localValueString = [NSString stringWithFormat:@"Local Value - %.2f", self.engine.localDirtyValue];
-            [self.localValueLabel setText:localValueString];
+//            NSString *localValueString = [NSString stringWithFormat:@"Local Value - %.2f", self.engine.localDirtyValue];
+//            [self.localValueLabel setText:localValueString];
         });
     }
 }
@@ -152,7 +151,7 @@
                 PHAssetCollectionChangeRequest *assetCollectionChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:assetCollection];
                 [assetCollectionChangeRequest addAssets:@[[assetChangeRequest placeholderForCreatedAsset]]];
             } completionHandler:^(BOOL success, NSError *error) {
-                if (!success) {
+                if (success) {
                     [self dismissViewControllerAnimated:YES completion:nil];
                 }
             }];
@@ -168,6 +167,10 @@
     [dateFormatter setDateFormat:@"YYMMdd_hh_mm_ss"];
     NSString *resultString = [dateFormatter stringFromDate: currentTime];
     return resultString;
+}
+
+-(BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 @end

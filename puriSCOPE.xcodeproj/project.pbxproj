@@ -229,6 +229,7 @@
 		8D3E8C581E9E6A700037E0AB /* DirtyExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E8C571E9E6A700037E0AB /* DirtyExtractor.m */; };
 		8D7E29B21E387430003C6583 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E29B11E387430003C6583 /* Default-568h@2x.png */; };
 		8DC28EA11EBD5C720004A33A /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DCD8F3D1E3AD2ED0077CD9C /* Photos.framework */; };
+		8DC28EA31EBD76860004A33A /* radio-on-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC28EA21EBD76860004A33A /* radio-on-button.png */; };
 		8DCD8F291E39D1A70077CD9C /* CustomCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F281E39D1A70077CD9C /* CustomCameraViewController.m */; };
 		8DCD8F3A1E3AD12F0077CD9C /* AVCamCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F351E3AD12F0077CD9C /* AVCamCaptureManager.m */; };
 		8DCD8F3B1E3AD12F0077CD9C /* AVCamRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD8F371E3AD12F0077CD9C /* AVCamRecorder.m */; };
@@ -497,6 +498,7 @@
 		8D3E8C561E9E6A700037E0AB /* DirtyExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirtyExtractor.h; path = engine/DirtyExtractor.h; sourceTree = "<group>"; };
 		8D3E8C571E9E6A700037E0AB /* DirtyExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DirtyExtractor.m; path = engine/DirtyExtractor.m; sourceTree = "<group>"; };
 		8D7E29B11E387430003C6583 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		8DC28EA21EBD76860004A33A /* radio-on-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "radio-on-button.png"; path = "Resources/Images/radio-on-button.png"; sourceTree = "<group>"; };
 		8DCD8F251E39D14D0077CD9C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8DCD8F271E39D1A70077CD9C /* CustomCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCameraViewController.h; path = CustomCameraViewController/CustomCameraViewController.h; sourceTree = "<group>"; };
 		8DCD8F281E39D1A70077CD9C /* CustomCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCameraViewController.m; path = CustomCameraViewController/CustomCameraViewController.m; sourceTree = "<group>"; };
@@ -967,6 +969,7 @@
 		E95585C611895C2D005BC2B7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8DC28EA21EBD76860004A33A /* radio-on-button.png */,
 				8D3D46091EA8687600AB7D28 /* smartgel.png */,
 				E99DB5C511D4CF8F00CCA417 /* Load.png */,
 				E99DB5C611D4CF8F00CCA417 /* Save.png */,
@@ -1118,6 +1121,7 @@
 				8D1E015B1E41D55700583F53 /* bias_mixed_7_tower_1_conv_4.dat in Resources */,
 				8D1E012B1E41D55700583F53 /* bias_mixed_1_tower_conv.dat in Resources */,
 				8D1E01A81E41D55700583F53 /* weights_mixed_5_tower_conv.dat in Resources */,
+				8DC28EA31EBD76860004A33A /* radio-on-button.png in Resources */,
 				8D1E01A41E41D55700583F53 /* weights_mixed_5_tower_1_conv_2.dat in Resources */,
 				8D1E01DD1E41D55800583F53 /* weights_fc2.dat in Resources */,
 				8D1E01531E41D55700583F53 /* bias_mixed_6_tower_conv.dat in Resources */,

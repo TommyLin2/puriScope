@@ -179,68 +179,77 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ls9-FV-7dj">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="513"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4rh-XX-pNu">
+                                <rect key="frame" x="0.0" y="577" width="375" height="90"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUl-QK-HT8">
-                                        <rect key="frame" x="24" y="617" width="49" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUl-QK-HT8">
+                                        <rect key="frame" x="16" y="10" width="101" height="24"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Nl-h1-Z3a">
-                                        <rect key="frame" x="24" y="25" width="40" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Back"/>
-                                        <connections>
-                                            <action selector="backButtonPressed" destination="gfa-IW-sDI" eventType="touchUpInside" id="s6J-II-Swn"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWG-x8-OWf">
-                                        <rect key="frame" x="24" y="577" width="49" height="24"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="424-yY-gAU">
-                                        <rect key="frame" x="159.5" y="611" width="55" height="30"/>
-                                        <state key="normal" title="Capture"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="424-yY-gAU">
+                                        <rect key="frame" x="155.5" y="13" width="64" height="64"/>
+                                        <state key="normal" image="radio-on-button.png"/>
                                         <connections>
                                             <action selector="catureImage" destination="gfa-IW-sDI" eventType="touchUpInside" id="ssq-Xb-fnd"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWG-x8-OWf">
+                                        <rect key="frame" x="42" y="42" width="49" height="24"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="424-yY-gAU" secondAttribute="bottom" constant="26" id="AGa-xa-NJU"/>
-                                    <constraint firstItem="jUl-QK-HT8" firstAttribute="leading" secondItem="ls9-FV-7dj" secondAttribute="leading" constant="24" id="QkW-7z-mPU"/>
-                                    <constraint firstAttribute="bottom" secondItem="jUl-QK-HT8" secondAttribute="bottom" constant="26" id="gdq-3C-gya"/>
-                                    <constraint firstItem="tWG-x8-OWf" firstAttribute="leading" secondItem="ls9-FV-7dj" secondAttribute="leading" constant="24" id="kac-Qb-sMG"/>
-                                    <constraint firstItem="1Nl-h1-Z3a" firstAttribute="leading" secondItem="ls9-FV-7dj" secondAttribute="leading" constant="24" id="npB-JJ-pB7"/>
-                                    <constraint firstItem="jUl-QK-HT8" firstAttribute="top" secondItem="tWG-x8-OWf" secondAttribute="bottom" constant="16" id="oMa-ZV-SeY"/>
-                                    <constraint firstItem="1Nl-h1-Z3a" firstAttribute="top" secondItem="ls9-FV-7dj" secondAttribute="top" constant="25" id="wDk-ZY-09l"/>
-                                    <constraint firstItem="424-yY-gAU" firstAttribute="centerX" secondItem="ls9-FV-7dj" secondAttribute="centerX" id="zXs-a2-M0A"/>
+                                    <constraint firstItem="tWG-x8-OWf" firstAttribute="centerX" secondItem="jUl-QK-HT8" secondAttribute="centerX" id="7px-i7-BiM"/>
+                                    <constraint firstItem="424-yY-gAU" firstAttribute="centerY" secondItem="4rh-XX-pNu" secondAttribute="centerY" id="7wN-Rp-GqQ"/>
+                                    <constraint firstAttribute="height" constant="90" id="Llw-vo-oQb"/>
+                                    <constraint firstItem="424-yY-gAU" firstAttribute="centerX" secondItem="4rh-XX-pNu" secondAttribute="centerX" id="Ylx-8z-tgH"/>
+                                    <constraint firstItem="jUl-QK-HT8" firstAttribute="leading" secondItem="4rh-XX-pNu" secondAttribute="leading" constant="16" id="n70-Ar-dMg"/>
+                                    <constraint firstItem="jUl-QK-HT8" firstAttribute="top" secondItem="4rh-XX-pNu" secondAttribute="top" constant="10" id="tDC-gL-xIE"/>
+                                    <constraint firstItem="tWG-x8-OWf" firstAttribute="top" secondItem="jUl-QK-HT8" secondAttribute="bottom" constant="8" id="uJU-iC-cbb"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ls9-FV-7dj" firstAttribute="top" secondItem="l8s-6O-adl" secondAttribute="top" id="AQK-Nk-ynl"/>
-                            <constraint firstItem="ls9-FV-7dj" firstAttribute="leading" secondItem="l8s-6O-adl" secondAttribute="leading" id="eTM-cW-Q4o"/>
-                            <constraint firstItem="ujh-Zg-2FW" firstAttribute="top" secondItem="ls9-FV-7dj" secondAttribute="bottom" id="g79-dI-W8c"/>
-                            <constraint firstAttribute="trailing" secondItem="ls9-FV-7dj" secondAttribute="trailing" id="yDh-tg-7mg"/>
+                            <constraint firstItem="ls9-FV-7dj" firstAttribute="top" secondItem="8KC-hC-9in" secondAttribute="bottom" id="01C-RE-cKv"/>
+                            <constraint firstAttribute="trailing" secondItem="4rh-XX-pNu" secondAttribute="trailing" id="8zc-Kc-6i9"/>
+                            <constraint firstItem="ls9-FV-7dj" firstAttribute="leading" secondItem="l8s-6O-adl" secondAttribute="leading" id="I8K-tV-BNE"/>
+                            <constraint firstAttribute="trailing" secondItem="ls9-FV-7dj" secondAttribute="trailing" id="pf1-f4-dMm"/>
+                            <constraint firstItem="4rh-XX-pNu" firstAttribute="top" secondItem="ls9-FV-7dj" secondAttribute="bottom" id="tGT-AA-vXJ"/>
+                            <constraint firstItem="ujh-Zg-2FW" firstAttribute="top" secondItem="4rh-XX-pNu" secondAttribute="bottom" id="taA-qq-2DK"/>
+                            <constraint firstItem="4rh-XX-pNu" firstAttribute="leading" secondItem="l8s-6O-adl" secondAttribute="leading" id="xP7-qY-RO9"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="WCq-7U-E44">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="LfD-Ld-yn1">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonPressed" destination="gfa-IW-sDI" id="mIi-pt-lIw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
-                        <outlet property="localValueLabel" destination="jUl-QK-HT8" id="vuU-2N-o8Y"/>
                         <outlet property="valueLabel" destination="tWG-x8-OWf" id="HP8-zR-f5W"/>
                         <outlet property="videoPreviewView" destination="ls9-FV-7dj" id="SLx-M0-gab"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EoQ-q1-Wiv" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="536.79999999999995" y="178.56071964017991"/>
+            <point key="canvasLocation" x="1228" y="178.56071964017991"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="radio-on-button.png" width="64" height="64"/>
+    </resources>
 </document>

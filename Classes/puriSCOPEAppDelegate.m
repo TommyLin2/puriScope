@@ -38,5 +38,4 @@
     else  /* iphone */
         return UIInterfaceOrientationMaskAllButUpsideDown;
 }
-
 @end
