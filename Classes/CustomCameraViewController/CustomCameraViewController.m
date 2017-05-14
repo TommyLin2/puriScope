@@ -32,6 +32,16 @@
     return self;
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscapeRight;
+}
+
+-(BOOL)shouldAutorotate
+{
+    return YES;
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self initVideoCaptureSession];
@@ -60,14 +70,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait;
-}
-
--(BOOL)shouldAutorotate
-{
-    return YES;
+- (AVCaptureVideoOrientation)interfaceOrientationToVideoOrientation:(UIInterfaceOrientation)orientation {
+    switch (orientation) {
+        case UIInterfaceOrientationPortrait:
+            return AVCaptureVideoOrientationPortrait;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            return AVCaptureVideoOrientationPortraitUpsideDown;
+        case UIInterfaceOrientationLandscapeLeft:
+            return AVCaptureVideoOrientationLandscapeLeft;
+        case UIInterfaceOrientationLandscapeRight:
+            return AVCaptureVideoOrientationLandscapeRight;
+        default:
+            break;
+    }
+    return AVCaptureVideoOrientationPortrait;
 }
 
 //- (void)dealloc
@@ -95,16 +111,18 @@
 
 -(void)initUIwithSettedParamter{
     if(self.isSettedParameter){
-        [self.descriptionLabel setText:@"Please press this button to reset distance of auto shoot."];
+        [self.buttonLabel setText:@"Reset"];
+        [self showAlertdialog:@"PuriScope" message:@"Please press Reset button to reset distance of auto shoot."];
+
     }else{
-        [self.descriptionLabel setText:@"Please press this button to set distance of auto shoot."];
+        [self.buttonLabel setText:@"Set"];
+        [self showAlertdialog:@"PuriScope" message:@"Please press Set button to set distance of auto shoot."];
     }
-    
-//    self.firstObjectNameTextField.text =self.firstObjectParameter.objectName;
-//    self.firstObjectValueTextField.text =[NSString stringWithFormat:@"%f",self.firstObjectParameter.objectValue];
-//    
-//    self.secondObjectNameTextField.text =self.secondObjectParameter.objectName;
-//    self.secondObjectValueTextField.text =[NSString stringWithFormat:@"%f",self.secondObjectParameter.objectValue];
+}
+
+-(void)showAlertdialog:(NSString*)title message:(NSString*)message{
+    UIAlertView *view = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [view show];
 }
 
 -(void)initPhotoCaptureSeesion{
@@ -122,10 +140,13 @@
             //[viewLayer setMasksToBounds:YES];
             
             CGRect bounds = view.bounds;
+
             [newCaptureVideoPreviewLayer setFrame:bounds];
-            
+            if (newCaptureVideoPreviewLayer.connection.supportsVideoOrientation) {
+                newCaptureVideoPreviewLayer.connection.videoOrientation = [self interfaceOrientationToVideoOrientation:[UIApplication sharedApplication].statusBarOrientation];
+            }
+
             [newCaptureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-            
             [viewLayer insertSublayer:newCaptureVideoPreviewLayer
                                 below:[viewLayer.sublayers objectAtIndex:0]];
             
@@ -151,7 +172,9 @@
         //[viewLayer setMasksToBounds:YES];
         CGRect bounds = view.bounds;
         [newCaptureVideoPreviewLayer setFrame:bounds];
-        
+        if (newCaptureVideoPreviewLayer.connection.supportsVideoOrientation) {
+            newCaptureVideoPreviewLayer.connection.videoOrientation = [self interfaceOrientationToVideoOrientation:[UIApplication sharedApplication].statusBarOrientation];
+        }
         [newCaptureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
         
         [viewLayer insertSublayer:newCaptureVideoPreviewLayer
@@ -217,7 +240,6 @@
     if(self.isCapturing)
         return;
     
-    
     CIImage *ciImage = [[CIImage alloc] initWithCVImageBuffer:imageBuffer] ;
     CGImageRef cgImageRef = [self.ciContext createCGImage:ciImage fromRect:ciImage.extent];
     if (cgImageRef) {
@@ -233,7 +255,6 @@
         self.isCapturing = true;
         [self runNetWork:ciImage];
     });
-
 }
 
 - (void)runNetWork:(CIImage *)ciImage{

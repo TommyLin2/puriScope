@@ -50,7 +50,7 @@
 //@property (strong, nonatomic) IBOutlet UITextField *secondObjectNameTextField;
 //@property (strong, nonatomic) IBOutlet UITextField *secondObjectValueTextField;
 
-@property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *buttonLabel;
 
 @property (nonatomic, assign) float display_object_screen_rate;
 @property (nonatomic, strong) NSString *display_object_name;

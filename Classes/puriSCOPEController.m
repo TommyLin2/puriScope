@@ -244,8 +244,6 @@ BOOL picorimg,optorpic;
 	{
 		return FALSE;
 	}
-	
-	
 }
 
 

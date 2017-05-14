@@ -10,6 +10,7 @@
 #import <Photos/PHAssetCollectionChangeRequest.h>
 #import <Photos/PHAssetChangeRequest.h>
 #import <Photos/PHCollection.h>
+#import <Photos/PHFetchOptions.h>
 
 @interface SmartGelTestViewController ()
 
@@ -17,12 +18,24 @@
 
 @implementation SmartGelTestViewController
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
     }
     return self;
 }
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+-(BOOL)shouldAutorotate
+{
+    return YES;
+}
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -133,32 +146,56 @@
 
 -(IBAction)catureImage{
     
+    [self addFlashView];
     UIImageWriteToSavedPhotosAlbum(self.capturedImage, nil, nil, nil);
     
     __block PHObjectPlaceholder *myAlbum;
-    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-        PHAssetCollectionChangeRequest *changeRequest = [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:@"SmartGel"];
-        myAlbum = changeRequest.placeholderForCreatedAssetCollection;
-    } completionHandler:^(BOOL success, NSError *error) {
-        if (success) {
-            PHFetchResult *fetchResult = [PHAssetCollection fetchAssetCollectionsWithLocalIdentifiers:@[myAlbum.localIdentifier] options:nil];
-            PHAssetCollection *assetCollection = fetchResult.firstObject;
+    __block PHAssetCollection *collection;
+
+    PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
+    fetchOptions.predicate = [NSPredicate predicateWithFormat:@"title = %@", @"SmartGel"];
+    collection = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum
+                                                          subtype:PHAssetCollectionSubtypeAny
+                                                          options:fetchOptions].firstObject;
+    if(!collection){
+        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+            //        NSString *valueString = [NSString stringWithFormat:@"SmartGel - %@", self.capturedImageValueString];
+            NSString *valueString = @"SmartGel";
             
-            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-                PHAssetChangeRequest *assetChangeRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:self.capturedImage];
+            PHAssetCollectionChangeRequest *changeRequest = [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:valueString];
+            myAlbum = changeRequest.placeholderForCreatedAssetCollection;
+        } completionHandler:^(BOOL success, NSError *error) {
+            if (success) {
+                PHFetchResult *fetchResult = [PHAssetCollection fetchAssetCollectionsWithLocalIdentifiers:@[myAlbum.localIdentifier] options:nil];
+                PHAssetCollection *assetCollection = fetchResult.firstObject;
                 
-                // add asset
-                PHAssetCollectionChangeRequest *assetCollectionChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:assetCollection];
-                [assetCollectionChangeRequest addAssets:@[[assetChangeRequest placeholderForCreatedAsset]]];
-            } completionHandler:^(BOOL success, NSError *error) {
-                if (success) {
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                }
-            }];
-        } else {
-            NSLog(@"Error: %@", error);
-        }
-    }];
+                [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                    PHAssetChangeRequest *assetChangeRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:self.capturedImage];
+                    
+                    // add asset
+                    PHAssetCollectionChangeRequest *assetCollectionChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:assetCollection];
+                    [assetCollectionChangeRequest addAssets:@[[assetChangeRequest placeholderForCreatedAsset]]];
+                } completionHandler:^(BOOL success, NSError *error) {
+                    if (success) {
+                    }
+                }];
+            } else {
+                NSLog(@"Error: %@", error);
+            }
+        }];
+
+    }else{
+        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+            PHAssetChangeRequest *assetChangeRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:self.capturedImage];
+            
+            // add asset
+            PHAssetCollectionChangeRequest *assetCollectionChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:collection];
+            [assetCollectionChangeRequest addAssets:@[[assetChangeRequest placeholderForCreatedAsset]]];
+        } completionHandler:^(BOOL success, NSError *error) {
+            if (success) {
+            }
+        }];
+    }
 }
 
 -(NSString*)getTimeString{
@@ -172,5 +209,23 @@
 -(BOOL)prefersStatusBarHidden{
     return YES;
 }
+
+-(void)addFlashView{
+    
+    [self.videoPreviewView.subviews makeObjectsPerformSelector: @selector(removeFromSuperview)];
+    
+    UIView *flashView = [[UIView alloc] initWithFrame:self.view.frame] ;
+    [flashView setBackgroundColor:[UIColor whiteColor]];
+    [self.videoPreviewView addSubview:flashView];
+    [UIView animateWithDuration:.4f
+                     animations:^{
+                         [flashView setAlpha:0.f];
+                     }
+                     completion:^(BOOL finished){
+                         [flashView removeFromSuperview];
+                     }
+     ];
+}
+
 
 @end
