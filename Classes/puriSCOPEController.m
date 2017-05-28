@@ -49,7 +49,7 @@ BOOL picorimg,optorpic;
 	NSString *eresult = [dresult stringByReplacingOccurrencesOfString:@"e" withString:@""];
 	NSString *fresult = [eresult stringByReplacingOccurrencesOfString:@"f" withString:@""];
 	
-	int l = [fresult length];
+	long l = [fresult length];
 	
 	NSString *nr1 = [fresult substringFromIndex:l-2];
 	NSString *nr2 = [[fresult substringFromIndex:l-4] substringToIndex:2];
@@ -250,7 +250,7 @@ BOOL picorimg,optorpic;
 - (void)viewDidLoad
 {
 	li=([self licheck]);
-	DIA = [[NSUserDefaults standardUserDefaults] integerForKey:@"DIAMETER"];
+	DIA = (uint)[[NSUserDefaults standardUserDefaults] integerForKey:@"DIAMETER"];
 	optorpic=FALSE;
 		
 	if( [[NSUserDefaults standardUserDefaults] integerForKey:@"ugormg"]==0)
@@ -302,7 +302,6 @@ BOOL picorimg,optorpic;
 	
 	
     [super viewDidLoad];
-	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
 	personLabel.text = @"";
 	taglabel.text= @"";
 	reslabel.text=@"";
@@ -318,7 +317,7 @@ BOOL picorimg,optorpic;
 	//NSLog(@"bd:%@",bData);
 	
 
-	int len;
+	long len;
 	
 	len = [bData count];
 	
@@ -460,84 +459,15 @@ BOOL picorimg,optorpic;
 - (IBAction)showimagepicker2:(id)sender;
 {	picorimg=FALSE;
 	optorpic=FALSE;
-	if(firstrun==0|li==FALSE)
-	{
+	if(firstrun==0|li==FALSE){
 	
-	imagePickerController = [[UIImagePickerController alloc] init];		
-	imagePickerController.delegate = self;
-	imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    [self presentViewController:imagePickerController animated:NO completion:nil];
-    //[imagePickerController release];
+        imagePickerController = [[UIImagePickerController alloc] init];
+        imagePickerController.delegate = self;
+        imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:imagePickerController animated:NO completion:nil];
 	}
-	else
-	{
-		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Do You want to save the Result??"delegate:self cancelButtonTitle:@"NO" destructiveButtonTitle:nil otherButtonTitles:@"YES",nil];
-		actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-		[actionSheet showInView:self.view]; // show from our table view (pops up in the middle of the table)
-	}
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-	if(buttonIndex==0)
-	{	
-		TypeSomethingViewController *typeSomethingViewController = [[TypeSomethingViewController alloc] init];
-		typeSomethingViewController.delegate = self;
-        [self presentViewController:typeSomethingViewController animated:NO completion:nil];
-	}
-	else
-	{
-		if(optorpic)
-		{OPorIN = TRUE;
-			reportview.hidden=TRUE;
-			lblreport.hidden=TRUE;
-			blank.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1];
-			sample.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1];
-			result3.text=@"0.00";
-			taglabel.text=@"";
-			personLabel.text=@"";
-			namelabel.text=@"";
-			adress.text=@"";
-			resultfox.image=nil;
-			reslabel.text=@"";
-			firstrun=0;
-			
-			OptionsViewController *controller = [[OptionsViewController alloc] initWithNibName:@"OptionsView" bundle:nil];
-			controller.delegate = self;
-			
-			controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-            [self presentViewController:controller animated:NO completion:nil];
-			if( ugormg==TRUE)
-			{
-				lblugormg.text = @" mg/L Organic";
-			}else
-			{
-				lblugormg.text = @"ug/cm2 Organic";
-			}
-			
-		}
-		
-		imagePickerController = [[UIImagePickerController alloc] init];
-		imagePickerController.delegate = self;
-		if(picorimg)
-		{
-			if  ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-			{
-                imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-                [self launchCustomCameraViewController];
-			}
-			else
-			{
-				imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-                [self presentViewController:imagePickerController animated:NO completion:nil];
-			}
-			
-		}else
-		{
-			imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            [self presentViewController:imagePickerController animated:NO completion:nil];
-		}
-		
+	else{
+        [self showActionSheetForTypeSomethingViewController];
 	}
 }
 
@@ -563,10 +493,80 @@ BOOL picorimg,optorpic;
 	}
 	else
 	{
-		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Do You want to save the Result??"delegate:self cancelButtonTitle:@"NO" destructiveButtonTitle:nil otherButtonTitles:@"YES",nil];
-		actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-		[actionSheet showInView:self.view]; // show from our table view (pops up in the middle of the table)
+        [self showActionSheetForTypeSomethingViewController];
 	}
+}
+
+- (void)showActionSheetForTypeSomethingViewController{
+
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:@"Do You want to save the Result??" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self showImagepikerControllerforOption];
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"YES" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        [self launchTypeSomethingViewController];
+    }]];
+    [self presentViewController:actionSheet animated:YES completion:nil];
+}
+
+-(void)showImagepikerControllerforOption{
+    if(optorpic){
+        OPorIN = TRUE;
+        reportview.hidden=TRUE;
+        lblreport.hidden=TRUE;
+        blank.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1];
+        sample.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1];
+        result3.text=@"0.00";
+        taglabel.text=@"";
+        personLabel.text=@"";
+        namelabel.text=@"";
+        adress.text=@"";
+        resultfox.image=nil;
+        reslabel.text=@"";
+        firstrun=0;
+        
+        OptionsViewController *controller = [[OptionsViewController alloc] initWithNibName:@"OptionsView" bundle:nil];
+        controller.delegate = self;
+        
+        controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self presentViewController:controller animated:NO completion:nil];
+        if( ugormg==TRUE)
+        {
+            lblugormg.text = @" mg/L Organic";
+        }else
+        {
+            lblugormg.text = @"ug/cm2 Organic";
+        }
+    }
+    imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    if(picorimg)
+    {
+        if  ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        {
+            imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self launchCustomCameraViewController];
+        }
+        else
+        {
+            imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:imagePickerController animated:NO completion:nil];
+        }
+        
+    }else
+    {
+        imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:imagePickerController animated:NO completion:nil];
+    }
+}
+
+-(void)launchTypeSomethingViewController{
+    TypeSomethingViewController *typeSomethingViewController = [[TypeSomethingViewController alloc] init];
+    typeSomethingViewController.delegate = self;
+    [self presentViewController:typeSomethingViewController animated:NO completion:nil];
+    
 }
 
 - (void)launchCustomCameraViewController{
@@ -736,35 +736,36 @@ BOOL picorimg,optorpic;
 }
 
 -(void)alertDone {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"REPORT" message:@"... saved to your camera roll" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	
-        [alert show];	// show from our table view (pops up in the middle of the table)
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-	//peoplepicker.hidden=FALSE;
-	namelabel.hidden=FALSE;
-	newfoxy.hidden=TRUE;
-	reportview.hidden=TRUE;
-	lblreport.hidden=TRUE;
-	//labeler.hidden=FALSE;
-	taglabel.hidden=FALSE;
-	blank.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1];
-	sample.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1];
-	result3.text=@"0.00";
-	taglabel.text=@"";
-	personLabel.text=@"";
-	namelabel.text=@"";
-	adress.text=@"";
-	resultfox.image=nil;
-	Options.hidden=TRUE;
-	//tooptions.hidden=FALSE;
-	reslabel.text=@"";
-	firstrun=0;
-	aadress=@"";
-	pperson=@"";
-	nname=@"";
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"REPORT"
+                                                                   message:@"... saved to your camera roll"
+                                                            preferredStyle:UIAlertControllerStyleActionSheet]; // 1
+    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                              namelabel.hidden=FALSE;
+                                                              newfoxy.hidden=TRUE;
+                                                              reportview.hidden=TRUE;
+                                                              lblreport.hidden=TRUE;
+                                                              //labeler.hidden=FALSE;
+                                                              taglabel.hidden=FALSE;
+                                                              blank.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1];
+                                                              sample.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1];
+                                                              result3.text=@"0.00";
+                                                              taglabel.text=@"";
+                                                              personLabel.text=@"";
+                                                              namelabel.text=@"";
+                                                              adress.text=@"";
+                                                              resultfox.image=nil;
+                                                              Options.hidden=TRUE;
+                                                              //tooptions.hidden=FALSE;
+                                                              reslabel.text=@"";
+                                                              firstrun=0;
+                                                              aadress=@"";
+                                                              pperson=@"";
+                                                              nname=@"";
+                                                          }];
+    
+    [alert addAction:firstAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)typeSomethingViewController:(TypeSomethingViewController *)controller didTypeSomething:(NSString *)text
@@ -932,11 +933,8 @@ BOOL picorimg,optorpic;
 - (IBAction)options:(id)sender{
 	optorpic=TRUE;
 	if(firstrun==1)
-	{
-		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Do You want to save the Result??"delegate:self cancelButtonTitle:@"NO" destructiveButtonTitle:nil otherButtonTitles:@"YES",nil];
-		actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-		[actionSheet showInView:self.view]; // show from our table view (pops up in the middle of the table)
-	}else
+        [self showActionSheetForTypeSomethingViewController];
+	else
 	{
         OPorIN = TRUE;
         OptionsViewController *controller = [[OptionsViewController alloc] initWithNibName:@"OptionsView" bundle:nil];
@@ -960,8 +958,8 @@ BOOL picorimg,optorpic;
 	CGContextRef    context = NULL;
 	CGColorSpaceRef colorSpace;
 	void *          bitmapData;
-	int             bitmapByteCount;
-	int             bitmapBytesPerRow;
+	long             bitmapByteCount;
+	long             bitmapBytesPerRow;
 	
 	// Get image width, height. We'll use the entire image.
 	size_t pixelsWide = CGImageGetWidth(inImage);
@@ -1079,7 +1077,7 @@ BOOL picorimg,optorpic;
         {
             for(xb=br;xb<bl;xb++)
             {nb++;
-                int offset = 4*((w*yb)+xb);
+                long offset = 4*((w*yb)+xb);
                 //int alpha =  data[offset]; maybe we need it?
                 int redb = data[offset+1];
                 data[offset+1]=255;
@@ -1118,7 +1116,7 @@ BOOL picorimg,optorpic;
         {
             for(xs=sr;xs<sl;xs++)
             {ns++;
-                int offset = 4*((w*ys)+xs);
+                long offset = 4*((w*ys)+xs);
                 alpha =  data[offset]; //maybe we need it?
                 int reds = data[offset+1];
                 data[offset+1]=255;
@@ -1240,7 +1238,7 @@ BOOL picorimg,optorpic;
         T=8.53;
         // Diamter Berechnung
         
-        DIA = [[NSUserDefaults standardUserDefaults] integerForKey:@"DIAMETER"];
+        DIA = (uint)[[NSUserDefaults standardUserDefaults] integerForKey:@"DIAMETER"];
         
         switch (DIA) {
             case 1:Diam=0.2;
@@ -1331,7 +1329,7 @@ BOOL picorimg,optorpic;
         
         RSF = (Mn6_S - Mn6_CS) + ((Mn2_S - Mn2_CS)*4);
         Mn7R = (Mn7_CS - Mn7_S);
-        ERR = abs((Mn7R-RSF)*100/Mn7R);
+        ERR = fabs((Mn7R-RSF)*100/Mn7R);
         
         // Berechnungsstufe 4:
         /*if (ERR < 20)
@@ -1487,5 +1485,9 @@ BOOL picorimg,optorpic;
 }
 
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
 
 @end

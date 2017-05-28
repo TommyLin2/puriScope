@@ -17,7 +17,7 @@ NSString *vgoodlab, *satislab, *inadeqlab,*thePath;
 float vgood,good,satis,adeq,R,G,B,blankR,blankG,blankB,sampleR,sampleG,sampleB;
 uint DIA;
 bool OPorIN,li,ugormg;
-int x=240,arlen;
+long x=240,arlen;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -125,7 +125,7 @@ int x=240,arlen;
 			NSMutableArray *fData = [[NSMutableArray alloc] initWithContentsOfFile:thePath];
 			
 			arlen = [fData count]-1;
-			lblrepcount.text=[NSString stringWithFormat:@"%i Reportlines are ready to send",arlen];
+			lblrepcount.text=[NSString stringWithFormat:@"%lu Reportlines are ready to send",arlen];
 			
 			svinfo.hidden=TRUE;
 			self.view.backgroundColor = [UIColor whiteColor];
@@ -1311,22 +1311,9 @@ if(textField!=res0lab)
         [[NSUserDefaults standardUserDefaults] setObject:res4lab.text forKey:@"inadeqlab"];
         [[NSUserDefaults standardUserDefaults] setInteger:swugormg.selectedSegmentIndex forKey:@"ugormg"];
         [[NSUserDefaults standardUserDefaults] setBool:swsavereport.on forKey:@"savereport"];
-        //[[NSUserDefaults standardUserDefaults] setInteger:DIA forKey:@"DIAMETER"];
-        //	vgoodlab = res0lab.text;
-        //	satislab = res2lab.text;
-        //	inadeqlab = res4lab.text;
 	}
 	[self.delegate OptionsViewControllerDidFinish:self];
 }
-
-
-/*
- // Override to allow orientations other than the default portrait orientation.
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
- // Return YES for supported orientations
- return (interfaceOrientation == UIInterfaceOrientationPortrait);
- }
- */
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -1334,21 +1321,5 @@ if(textField!=res0lab)
 	
 	// Release any cached data, images, etc that aren't in use.
 }
-
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
-	
-	
-	/*[[NSUserDefaults standardUserDefaults] setObject:res0lab.text forKey:@"vgoodlab"];
-	[[NSUserDefaults standardUserDefaults] setObject:res2lab.text forKey:@"satislab"];
-	[[NSUserDefaults standardUserDefaults] setObject:res4lab.text forKey:@"inadeqlab"];
-*/
-}
-
-
-- (void)dealloc {
-}
-
 
 @end
