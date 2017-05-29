@@ -113,7 +113,6 @@
     if(self.isSettedParameter){
         [self.buttonLabel setText:@"Reset"];
         [self showAlertdialog:@"PuriScope" message:@"Please press Reset button to reset distance of auto shoot."];
-
     }else{
         [self.buttonLabel setText:@"Set"];
         [self showAlertdialog:@"PuriScope" message:@"Please press Set button to set distance of auto shoot."];
@@ -121,8 +120,11 @@
 }
 
 -(void)showAlertdialog:(NSString*)title message:(NSString*)message{
-    UIAlertView *view = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [view show];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert]; // 1
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 -(void)initPhotoCaptureSeesion{

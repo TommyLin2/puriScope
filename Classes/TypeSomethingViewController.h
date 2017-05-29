@@ -5,11 +5,13 @@
 
 #import <UIKit/UIKit.h>
 #import <AddressBookUI/AddressBookUI.h>
+#import <ContactsUI/ContactsUI.h>
+
 extern NSString *nname,*aadress,*pperson;
 
 @protocol TypeSomethingViewControllerDelegate;
 
-@interface TypeSomethingViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate,UITextFieldDelegate>
+@interface TypeSomethingViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate,UITextFieldDelegate,CNContactViewControllerDelegate,CNContactPickerDelegate>
 
 @property (nonatomic, retain) IBOutlet UILabel *personlabel;
 @property (retain) IBOutlet UITextField *textField;
