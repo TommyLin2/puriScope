@@ -83,8 +83,7 @@ NSString *nname,*aadress,*pperson;
 -(void)contactPickerDidCancel:(CNContactPickerViewController *)picker {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (void)dealloc {
 }
-
-
 @end

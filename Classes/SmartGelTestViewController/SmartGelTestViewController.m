@@ -54,6 +54,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    self.captureManager = nil;
+    self.captureVideoPreviewLayer = nil;
+}
+
 -(void)initPhotoCaptureSeesion{
     if (self.captureManager == nil) {
         AVCamCaptureManager* manager = [[AVCamCaptureManager alloc] init] ;
@@ -226,6 +232,4 @@
                      }
      ];
 }
-
-
 @end

@@ -86,16 +86,16 @@
     return AVCaptureVideoOrientationPortrait;
 }
 
-//- (void)dealloc
-//{
-//    self.captureManager = nil;
-//    self.captureVideoPreviewLayer = nil;
-//    self.device = nil;
-//    self.textureLoader = nil;
-//    self.commandQueue = nil;
-//    self.inception3Net = nil;
-//    self.ciContext = nil;
-//}
+- (void)dealloc
+{
+    self.captureManager = nil;
+    self.captureVideoPreviewLayer = nil;
+    self.device = nil;
+    self.textureLoader = nil;
+    self.commandQueue = nil;
+    self.inception3Net = nil;
+    self.ciContext = nil;
+}
 
 -(void)initParameter{
     self.firstObjectParameter = [[ParameterDataModel alloc] init];
@@ -345,6 +345,7 @@
 }
 
 -(IBAction)backButtonPressed{
+    [[self.captureManager session] stopRunning];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
