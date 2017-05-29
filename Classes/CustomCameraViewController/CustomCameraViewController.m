@@ -112,10 +112,10 @@
 -(void)initUIwithSettedParamter{
     if(self.isSettedParameter){
         [self.buttonLabel setText:@"Reset"];
-        [self showAlertdialog:@"PuriScope" message:@"Please press Reset button to reset distance of auto shoot."];
+        [self showAlertdialog:@"PuriScope" message:@"Parameters for distance of auto shoot is set. Now Auto Shoot Function is Enabled. Please press Reset button to reset distance of auto shoot."];
     }else{
         [self.buttonLabel setText:@"Set"];
-        [self showAlertdialog:@"PuriScope" message:@"Please press Set button to set distance of auto shoot."];
+        [self showAlertdialog:@"PuriScope" message:@"Parameters for distance of auto shoot is reset. Now Auto Shoot Function is disabled. Please press Set button to set distance of auto shoot."];
     }
 }
 
@@ -280,15 +280,12 @@
         self.second_display_object_name = keys2[0];
         self.second_display_object_screen_rate = [[dictionary2 objectForKey:self.second_display_object_name] floatValue];
 
-        self.firstObjectParameter.objectValue = 0.7;
         if ([self.display_object_name isEqualToString:self.firstObjectParameter.objectName]) {
             if ((self.display_object_screen_rate>(self.firstObjectParameter.objectValue-RATE_RANGE))&&(self.display_object_screen_rate<(self.firstObjectParameter.objectValue+RATE_RANGE))) {
                 self.isFirstObject = true;
             }
         }
         
-        self.firstObjectParameter.objectValue = 0.7;
-
         if ([self.second_display_object_name isEqualToString:self.secondObjectParameter.objectName]) {
             if ((self.second_display_object_screen_rate>(self.secondObjectParameter.objectValue-RATE_RANGE))&&(self.second_display_object_screen_rate<(self.secondObjectParameter.objectValue+RATE_RANGE))) {
                 self.isSecondObject = true;
@@ -307,14 +304,10 @@
         NSString *testString = [NSString stringWithFormat:@"%@ = %f",self.display_object_name,self.display_object_screen_rate];
         displayTestString = [NSString stringWithFormat:@"%@\n%@",displayTestString,testString];
         self.isCapturing = false;
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.objectLabel1 setText: displayTestString];
-//        });
     }
 }
 
 - (void)getCapturedImage:(UIImage *)image{
-//    [self addFlashView];
     self.isCaptured = true;
     [self dismissViewControllerAnimated:YES completion:nil];
 }

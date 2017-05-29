@@ -70,7 +70,7 @@ NSString *nname,*aadress,*pperson;
     aadress = @"-";
 
     if([contact.postalAddresses count]>0){
-        CNLabeledValue *postalAddress =[contact.postalAddresses objectAtIndex:0];
+        CNLabeledValue *postalAddress = [contact.postalAddresses objectAtIndex:0];
         CNPostalAddress *postal = postalAddress.value;
         NSString *streetStr = [postal street];
         NSString *zipStr = [postal postalCode];

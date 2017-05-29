@@ -118,7 +118,6 @@ long x=240,arlen;
 			 */
 			vwnoli.hidden=TRUE;
 			svinfo.hidden=TRUE;
-            
 			
 			NSString *rootP = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
 			thePath = [rootP stringByAppendingPathComponent:@"Data.xml"];
@@ -138,8 +137,6 @@ long x=240,arlen;
 			res2val.value = satis;
 			res2vallab.text=[NSString stringWithFormat:@"%.2f",satis];
 			
-			
-			
 			vgoodlab = [[NSUserDefaults standardUserDefaults] stringForKey:@"vgoodlab"];
 			res0lab.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"vgoodlab"];
 			
@@ -148,7 +145,6 @@ long x=240,arlen;
 			
 			inadeqlab = [[NSUserDefaults standardUserDefaults] stringForKey:@"inadeqlab"];
 			res4lab.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"inadeqlab"];
-			
 			
 			R = [[NSUserDefaults standardUserDefaults] floatForKey:@"BlankR"];
 			Rvalue.text = [NSString stringWithFormat:@"%.2f",R];
@@ -679,12 +675,11 @@ if(textField!=res0lab)
 	btndia07.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];
 	btndia08.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];
 	btndia09.backgroundColor = [UIColor colorWithRed:0.75 green:0.26 blue:0.59 alpha:1];
-	btndia10.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];
-	
+	btndia10.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];	
 	DIA = 9;
 	[[NSUserDefaults standardUserDefaults] setInteger:DIA forKey:@"DIAMETER"];
-
 }
+
 - (IBAction)btndia10:(id)sender
 {
 	btndia01.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];

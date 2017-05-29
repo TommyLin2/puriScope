@@ -442,10 +442,6 @@ BOOL picorimg,optorpic;
 	vwslidemenu.center=slpos1;
 	
 	[UIView commitAnimations];
-	
-	//[bData release];		
-//	[dData release];
-
 }
 
 - (void)dealloc {
@@ -457,7 +453,8 @@ BOOL picorimg,optorpic;
 //#pragma mark Image Picker
 
 - (IBAction)showimagepicker2:(id)sender;
-{	picorimg=FALSE;
+{
+    picorimg=FALSE;
 	optorpic=FALSE;
 	if(firstrun==0|li==FALSE){
 	
@@ -466,14 +463,13 @@ BOOL picorimg,optorpic;
         imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:imagePickerController animated:NO completion:nil];
 	}
-	else{
+    else{
         [self showActionSheetForTypeSomethingViewController];
 	}
 }
 
 - (IBAction)showImagePicker:(id)sender
 {
-    
     picorimg=TRUE;
 	optorpic=FALSE;
 	if(firstrun==0 |li==FALSE)
@@ -778,7 +774,7 @@ BOOL picorimg,optorpic;
     [self dismissViewControllerAnimated:YES completion:nil];
 	if([[NSUserDefaults standardUserDefaults] boolForKey:@"savereport"]==TRUE)
 	{
-		getImage.hidden=TRUE;;
+		getImage.hidden=TRUE;
 		getPhoto.hidden=TRUE;
 		save.hidden=TRUE;
 		btnoptions.hidden=TRUE;

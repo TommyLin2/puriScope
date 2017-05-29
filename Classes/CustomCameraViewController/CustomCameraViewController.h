@@ -14,7 +14,7 @@
 #import "AVCamCaptureManager.h"
 #import "ParameterDataModel.h"
 
-#define RATE_RANGE 0.05
+#define RATE_RANGE 0.1
 
 @class CustomCameraViewController;
 @protocol CustomCameraViewControllerDelegate <NSObject>
