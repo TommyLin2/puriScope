@@ -203,7 +203,7 @@ long x=240,arlen;
 						
 			
 			swsavereport.on= [[NSUserDefaults standardUserDefaults] boolForKey:@"savereport"];
-			DIA = [[NSUserDefaults standardUserDefaults] integerForKey:@"DIAMETER"];
+			DIA = (uint)[[NSUserDefaults standardUserDefaults] integerForKey:@"DIAMETER"];
 			
 			if(DIA==1)
 			{
@@ -332,13 +332,31 @@ long x=240,arlen;
 	return NO;
 }
 
-- (IBAction)kalib:(id)sender
-{
-	UIActionSheet *cactionSheet = [[UIActionSheet alloc] initWithTitle:@"Do you really want to recalibrate this puriSCOPE?"delegate:self cancelButtonTitle:@"NO" destructiveButtonTitle:nil otherButtonTitles:@"YES",nil];
-	cactionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-	cactionSheet.tag=0;
-	[cactionSheet showInView:self.view]; // show from our table view (pops up in the middle of the table)
-	
+- (IBAction)kalib:(id)sender{
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:@"Do you really want to recalibrate this puriSCOPE?" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"YES" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        R=sampleR-blankR;
+        G=sampleG-blankG;
+        B=sampleB-blankB;
+        
+        
+        Rvalue.text= [NSString stringWithFormat:@"%.2f",R];
+        Gvalue.text= [NSString stringWithFormat:@"%.2f",G];
+        Bvalue.text= [NSString stringWithFormat:@"%.2f",B];
+        
+        [[NSUserDefaults standardUserDefaults] setFloat:R forKey:@"BlankR"];
+        
+        [[NSUserDefaults standardUserDefaults] setFloat:G forKey:@"BlankG"];
+        
+        [[NSUserDefaults standardUserDefaults] setFloat:B forKey:@"BlankB"];
+    }]];
+    [self presentViewController:actionSheet animated:YES completion:nil];
 }	
 	
 
@@ -385,63 +403,37 @@ long x=240,arlen;
 
 - (IBAction)delplist:(id)sender
 {
-	UIActionSheet *delactionSheet = [[UIActionSheet alloc] initWithTitle:@"Do You want to delete all Reportlines??"delegate:self cancelButtonTitle:@"NO" destructiveButtonTitle:nil otherButtonTitles:@"YES",nil];
-	delactionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-	delactionSheet.tag=1;
-	[delactionSheet showInView:self.view]; // show from our table view (pops up in the middle of the table)
-}
-
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-		if(actionSheet.tag==0)
-		{	if(buttonIndex==0)
-			{
-				R=sampleR-blankR;
-				G=sampleG-blankG;
-				B=sampleB-blankB;
-			
-			
-				Rvalue.text= [NSString stringWithFormat:@"%.2f",R];
-				Gvalue.text= [NSString stringWithFormat:@"%.2f",G];
-				Bvalue.text= [NSString stringWithFormat:@"%.2f",B];
-			
-				[[NSUserDefaults standardUserDefaults] setFloat:R forKey:@"BlankR"];
-			
-				[[NSUserDefaults standardUserDefaults] setFloat:G forKey:@"BlankG"];
-			
-				[[NSUserDefaults standardUserDefaults] setFloat:B forKey:@"BlankB"];	
-			
-			}
-		}else if(actionSheet.tag==1)
-		{
-			if(buttonIndex==0)
-			{
-				//Delete All Data from Array
-				//int len,i;
-				NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
-				thePath = [rootPath stringByAppendingPathComponent:@"Data.xml"];
-				//NSArray *cData;
-				/*
-				NSMutableArray *cData = [[NSMutableArray alloc] initWithContentsOfFile:thePath];
-				
-				len= [cData count]-1;
-				for(i=0;i<=len;i++)
-				{
-					[cData removeObjectAtIndex:0];
-					
-				}
-				*/
-				NSArray *plistentries = [[NSArray alloc] initWithObjects:@"Date",@"Customer",@"Tag",@"Diameter",@"Result",@"\"ug or mg\"",@"BlankR",@"BlankG",@"BlankB",@"SampleR",@"SampleG",@"SampleB",nil];
-				NSArray *cData = [[NSArray alloc] initWithObjects:plistentries,nil];
-				[cData writeToFile:thePath atomically:YES];
-				
-				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"REPORT" message:[NSString stringWithFormat:@"Report with %i lines deleted!",arlen] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-				[alert show];
-				lblrepcount.text=[NSString stringWithFormat:@"0 Reportlines are ready to send"];
-			}
-		}	
-		
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:@"Do You want to delete all Reportlines??" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"YES" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        //Delete All Data from Array
+        //int len,i;
+        NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+        thePath = [rootPath stringByAppendingPathComponent:@"Data.xml"];
+        //NSArray *cData;
+        /*
+         NSMutableArray *cData = [[NSMutableArray alloc] initWithContentsOfFile:thePath];
+         
+         len= [cData count]-1;
+         for(i=0;i<=len;i++)
+         {
+         [cData removeObjectAtIndex:0];
+         
+         }
+         */
+        NSArray *plistentries = [[NSArray alloc] initWithObjects:@"Date",@"Customer",@"Tag",@"Diameter",@"Result",@"\"ug or mg\"",@"BlankR",@"BlankG",@"BlankB",@"SampleR",@"SampleG",@"SampleB",nil];
+        NSArray *cData = [[NSArray alloc] initWithObjects:plistentries,nil];
+        [cData writeToFile:thePath atomically:YES];
+        [self showAlert:@"REPORT" withMessage:@"Report with %lu lines deleted!"];
+        lblrepcount.text=[NSString stringWithFormat:@"0 Reportlines are ready to send"];
+    }]];
+    [self presentViewController:actionSheet animated:YES completion:nil];
+    
 }
 
 
@@ -708,11 +700,7 @@ if(textField!=res0lab)
 
 	DIA = 10;
 	[[NSUserDefaults standardUserDefaults] setInteger:DIA forKey:@"DIAMETER"];
-
 }
-
-
-
 
 /*
 - (IBAction)acbtnopt01:(id)sender
@@ -954,27 +942,22 @@ if(textField!=res0lab)
 	rectFS.size.width=480;
 	ptFS.x=240;
 	ptFS.y=140;
-	
+    
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.5];
-
-	
+    
 	btnopt01.hidden=TRUE;
 	btnopt02.hidden=TRUE;
 	btnopt03.hidden=TRUE;
 	btnopt04.hidden=TRUE;
-	
+    
 	vwopt01.center=ptFS;
 	vwopt01.bounds=rectFS;
 	vwopt01.hidden=FALSE;
-	
 	vwopt02.hidden=TRUE;
 	vwopt03.hidden=TRUE;
 	vwopt04.hidden=TRUE;
-
 	btnback.hidden=FALSE;
-
-	
 	[UIView commitAnimations];
 }
 
@@ -989,7 +972,6 @@ if(textField!=res0lab)
 	
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.5];
-	
 	
 	btnopt01.hidden=TRUE;
 	btnopt02.hidden=TRUE;
@@ -1021,7 +1003,6 @@ if(textField!=res0lab)
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.5];
 	
-	
 	btnopt01.hidden=TRUE;
 	btnopt02.hidden=TRUE;
 	btnopt03.hidden=TRUE;
@@ -1036,8 +1017,6 @@ if(textField!=res0lab)
 	vwopt04.hidden=TRUE;
 	
 	btnback.hidden=FALSE;
-
-	
 	[UIView commitAnimations];
 }
 
@@ -1134,9 +1113,6 @@ if(textField!=res0lab)
 		outd = [NSString stringWithFormat:@"%@\n%@",outd,outdn];
 	}
 	[pfile writeData:[[NSString stringWithFormat:@"%@",outd] dataUsingEncoding:NSUTF8StringEncoding]];
-	//NSLog(@"%@",outd);
-	
-		
 	Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
 	if (mailClass != nil)
 	{
@@ -1149,18 +1125,8 @@ if(textField!=res0lab)
 			[picker setSubject:@"Hello from puriSCOPE"];
 			NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
 			NSString *thePath2 = [rootPath stringByAppendingPathComponent:@"puriSCOPE.csv"];
-
-			//NSArray *toRecipients = [NSArray arrayWithObject:@"c.stock@thonhauser.net"]; 
-			
-			
-			//[picker setBccRecipients:toRecipients];
-			
-			
-			// Attach an image to the email
-			//NSString *path = [[NSBundle mainBundle] pathForResource:@"PUREiSCOPE" ofType:@"csv"];
 			NSData *myData = [NSData dataWithContentsOfFile:thePath2];
 			[picker addAttachmentData:myData mimeType:@"csv" fileName:@"puriSCOPE.csv"];
-			
 			// Fill out the email body text
 			NSString *emailBody = @"Your results from your puriSCOPE tests are attached.";
 			[picker setMessageBody:emailBody isHTML:NO];
@@ -1168,30 +1134,20 @@ if(textField!=res0lab)
 			
 		}
 		else
-		{
-			UIAlertView *mailaccount = [[UIAlertView alloc] initWithTitle:@"MESSAGE delivery" message:@"Please check your Mail Account" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-			[mailaccount show];
-		}
+            [self showAlert:@"MESSAGE delivery" withMessage:@"Please check your Mail Account"];
 	}
 	else
-	{
-		UIAlertView *mailaccount = [[UIAlertView alloc] initWithTitle:@"MESSAGE delivery" message:@"Please check your Mail Account" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[mailaccount show];
-	}
-	
+        [self showAlert:@"MESSAGE delivery" withMessage:@"Please check your Mail Account"];
 }
-
-
-
 
 // Dismisses the email composition interface when users tap Cancel or Send. Proceeds to update the message field with the result of the operation.
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error 
-{	NSString *message=@"";
+{
+    NSString *message=@"";
 	//message.hidden = NO;
 	// Notifies users about errors associated with the interface
 	switch (result)
-	{	
-			
+	{
 		case MFMailComposeResultCancelled:
 			message = @"Result: canceled";
 			break;
@@ -1208,11 +1164,7 @@ if(textField!=res0lab)
 			message = @"Result: not sent";
 			break;
 	}
-	//NSLog(message);
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"MESSAGE delivery" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	
-	//alert.actionSheetStyle = UIActionSheetStyleDefault;
-	[alert show];	// show from our table view (pops up in the middle of the table)
+    [self showAlert:@"MESSAGE delivery" withMessage:message];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -1236,14 +1188,9 @@ if(textField!=res0lab)
 
 - (IBAction)registerpuri:(id)sender;
 {
-	
-	if([txtcomp.text length]<=1 | [txtdep.text length]<=1 | [txtemail.text length]<=6)
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"REGISTRATION" message:@"Please fill in your data correctly" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
-	}else
-	{
-		
+	if([txtcomp.text length]<=1 | [txtdep.text length]<=1 | [txtemail.text length]<=6){
+        [self showAlert:@"REGISTRATION" withMessage:@"Please fill in your data correctly"];
+	}else{
 	
 	NSString *Version = [[UIDevice currentDevice] systemVersion];
 
@@ -1304,8 +1251,7 @@ if(textField!=res0lab)
 
 - (IBAction)done {
 	
-	if(OPorIN == TRUE)
-	{
+	if(OPorIN == TRUE){
         [[NSUserDefaults standardUserDefaults] setObject:res0lab.text forKey:@"vgoodlab"];
         [[NSUserDefaults standardUserDefaults] setObject:res2lab.text forKey:@"satislab"];
         [[NSUserDefaults standardUserDefaults] setObject:res4lab.text forKey:@"inadeqlab"];
@@ -1320,6 +1266,14 @@ if(textField!=res0lab)
     [super didReceiveMemoryWarning];
 	
 	// Release any cached data, images, etc that aren't in use.
+}
+
+-(void)showAlert:(NSString *)title withMessage:(NSString *)message{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert]; // 1
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end
