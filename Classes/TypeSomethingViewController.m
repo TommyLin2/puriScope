@@ -46,7 +46,7 @@ NSString *nname,*aadress,*pperson;
 {
     CNContactPickerViewController *contactPicker = [[CNContactPickerViewController alloc] init];
     contactPicker.delegate = self;
-    contactPicker.displayedPropertyKeys = @[CNContactGivenNameKey];
+    contactPicker.displayedPropertyKeys = @[CNContactGivenNameKey,CNContactPostalAddressesKey];
     [self presentViewController:contactPicker animated:YES completion:nil];
 }
 
@@ -67,74 +67,22 @@ NSString *nname,*aadress,*pperson;
     
     personlabel.text=[[NSString alloc]initWithFormat:@"%@",name];
     pperson = [[NSString alloc]initWithFormat:@"%@",name];
+    aadress = @"-";
+
+    if([contact.postalAddresses count]>0){
+        CNLabeledValue *postalAddress =[contact.postalAddresses objectAtIndex:0];
+        CNPostalAddress *postal = postalAddress.value;
+        NSString *streetStr = [postal street];
+        NSString *zipStr = [postal postalCode];
+        NSString *cityStr = [postal city];
+        aadress = [[NSString alloc] initWithFormat:@"%@,\n%@ %@", streetStr, zipStr, cityStr];
+    }
+    textField.text = aadress;
 }
 
 -(void)contactPickerDidCancel:(CNContactPickerViewController *)picker {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-//- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
-//{
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//}
-//
-//- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
-//{
-//    NSString *lastname = (__bridge NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
-//	if(lastname == nil)
-//	{
-//		lastname=@"-";
-//	}
-//	NSString *firstname = (__bridge NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-//	if(firstname == nil)
-//	{
-//		firstname=@"-";
-//	}
-//	NSString *company = (__bridge NSString *)ABRecordCopyValue(person, kABPersonOrganizationProperty);
-//	if(company == nil)
-//	{
-//		company=@"-";
-//	}
-//	NSString *name = [[NSString alloc] initWithFormat:@"%@,\n%@ %@ ",company,firstname, lastname];
-//	
-//	personlabel.text=[[NSString alloc]initWithFormat:@"%@",name];
-//	pperson = [[NSString alloc]initWithFormat:@"%@",name];
-//		
-//    ABMutableMultiValueRef addrMulti = ABRecordCopyValue(person, kABPersonAddressProperty);
-//	aadress = @"-";
-//	
-//	//NSString *addressLabel;
-//	CFDictionaryRef addressDict;
-//    
-//	for (CFIndex i = 0; i < ABMultiValueGetCount(addrMulti); i++)
-//	{
-//		
-//		//addressLabel = (NSString*)ABAddressBookCopyLocalizedLabel(ABMultiValueCopyLabelAtIndex(addrMulti, i));
-//		addressDict = (CFDictionaryRef)ABMultiValueCopyValueAtIndex(addrMulti, i);
-//		NSString *streetStr = (NSString *)CFDictionaryGetValue(addressDict, kABPersonAddressStreetKey);
-//		NSString *zipStr = (NSString *)CFDictionaryGetValue(addressDict, kABPersonAddressZIPKey);
-//		NSString *cityStr = (NSString *)CFDictionaryGetValue(addressDict, kABPersonAddressCityKey);
-//		NSString *addrStr = [[NSString alloc] initWithFormat:@"%@,\n%@ %@", streetStr, zipStr, cityStr];
-//		if(i==0)
-//		{	
-//		 aadress = [[NSString alloc] initWithFormat:@"%@",addrStr];
-//		}
-//			
-//	}
-//	
-//	CFRelease(addrMulti);
-//	
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//    return NO;
-//	CFRelease(addressDict);
-//	//CFRelease(addressLabel);
-//}
-//
-//- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
-//{
-//    return NO;
-//}
-
 - (void)dealloc {
 }
 
